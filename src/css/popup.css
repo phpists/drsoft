@@ -1,0 +1,239 @@
+/*========================Начало страницы модальных окон===========================*/
+body {
+  margin: 0;
+  padding: 0;
+}
+
+      
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url(../fonts/OpenSans-Bold.woff) format("woff");
+}
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url(../fonts/OpenSans-Regular.woff) format("woff");
+}
+
+.btn {
+  color: #fff;
+  background-color: #8682b6;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 100px;
+  text-transform: uppercase;
+  font-family: "OpenSans-Bold";
+  width: 290px;
+  outline: none;
+  transition: all 0.3s;
+  border: 2px solid #8682b6;
+  cursor: pointer;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.btn:hover {
+  border: 2px solid #63608b;
+}
+
+.alert {
+  position: relative;
+  width: 100%;
+}
+.alert .container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.alert .alert__button button {
+  padding: 8px 20px;
+  color: black;
+  background-color: #63608b;
+  outline: none;
+  border-radius: 10px;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 0;
+  position: relative;
+}
+.error,
+.successfully,
+.message,
+.warning,
+.action {
+  position: absolute;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ececec;
+  background-color: #fff;
+  box-shadow: 0px 5px 51px 0px rgba(134, 130, 182, 0.4);
+  padding: 15px 80px 40px 80px;
+  transition: all 0.2s;
+  opacity: 0;
+  z-index: 999;
+}
+.error__text,
+.successfully__text,
+.message__text,
+.warning__text,
+.action__text {
+  max-width: 460px;
+  margin-bottom: 45px;
+  color: #413f53;
+}
+.error__close,
+.successfully__close,
+.message__close,
+.warning__close,
+.action__close {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  cursor: pointer;
+  border: 1px solid #454457;
+  right: 13px;
+  top: 10px;
+  border-radius: 50%;
+  transition: all 0.1s;
+}
+.error__close:hover,
+.successfully__close:hover,
+.message__close:hover,
+.warning__close:hover,
+.action__close:hover {
+  border: 2px solid #454457;
+  right: 13px;
+}
+.error__close-block,
+.successfully__close-block,
+.message__close-block,
+.warning__close-block,
+.action__close-block {
+  display: flex;
+}
+.error__close-item,
+.successfully__close-item,
+.message__close-item,
+.warning__close-item,
+.action__close-item {
+  position: absolute;
+  top: 49%;
+  left: 15%;
+  transform: translateY(-50%);
+  height: 1px;
+  background-color: #454457;
+  width: 18px;
+  transform: rotate(50deg);
+}
+.error__close-item:nth-child(2),
+.successfully__close-item:nth-child(2),
+.message__close-item:nth-child(2),
+.warning__close-item:nth-child(2),
+.action__close-item:nth-child(2) {
+  transform: rotate(-50deg);
+}
+.error__title,
+.successfully__title,
+.message__title,
+.warning__title,
+.action__title {
+  font-size: 32px;
+  text-transform: uppercase;
+  padding-left: 46px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #413f53;
+}
+.error__title:before,
+.successfully__title:before,
+.message__title:before,
+.warning__title:before,
+.action__title:before {
+  content: "";
+  background-image: url(../images/error.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.successfully__title:before {
+  background-image: url(../images/successfully.png);
+  top: 56%;
+}
+.message__title:before {
+  background-image: url(../images/message.png);
+  top: 56%;
+}
+.warning__title:before {
+  background-image: url(../images/warning.png);
+  top: 56%;
+}
+.action {
+  padding: 10px 8px 40px 8px;
+}
+.action__title {
+  margin-bottom: 36px;
+}
+.action__title:before {
+  background-image: inherit;
+  top: 3px;
+}
+.action__button {
+  width: 250px;
+  margin: 0 25px;
+  margin-bottom: 35px;
+}
+.action__button-green {
+  background-color: #00cea3;
+  border: 2px solid #00cea3;
+}
+.action__button-green:hover {
+  border: 2px solid #057c65;
+}
+.action__text {
+  display: block;
+  margin: 0 auto;
+  font-size: 13px;
+  color: #a1a1a1;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+    .action__close-block {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .action__title {
+        max-width: 200px;
+        padding: 0;
+    }
+
+    .error,
+    .successfully,
+    .message,
+    .warning,
+    .action {
+      padding: 10px 10px 40px 10px;
+    }
+    .error__text,
+    .successfully__text,
+    .message__text,
+    .warning__text,
+    .action__text {
+      max-width: 300px;
+    }
+  
+}
+
+/*========================Конец страницы модальных окон===========================*/

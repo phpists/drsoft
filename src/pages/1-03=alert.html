@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ВВЕДИТЕ ПАРОЛЬ</title>
+    <link rel="stylesheet" href="../css/popup.css" />
+  </head>
+
+  <body>
+    <div class="alert">
+      <div class="container">
+        <div class="alert__button">
+          <button class="error__btn">error</button>
+          <button class="successfully__btn">successfully</button>
+          <button class="message__btn">message</button>
+          <button class="warning__btn">warning</button>
+          <button class="action__btn">action</button>
+        </div>
+
+        <div class="error" style="display: none">
+          <div class="error__title">ошибка</div>
+          <div class="error__text">
+            Допускается не более трех неудачных попыток ввода пароля. Вы будете
+            возращены к выбору email
+          </div>
+          <div class="error__close">
+            <div class="error__close-item"></div>
+            <div class="error__close-item"></div>
+          </div>
+          <button class="error__btn btn">Продолжить</button>
+        </div>
+
+        <div class="successfully" style="display: none">
+          <div class="successfully__title">успешно</div>
+          <div class="successfully__text">
+            Допускается не более трех неудачных попыток ввода пароля. Вы будете
+            возращены к выбору email
+          </div>
+          <div class="successfully__close">
+            <div class="successfully__close-item"></div>
+            <div class="successfully__close-item"></div>
+          </div>
+          <button class="successfully__btn btn">Продолжить</button>
+        </div>
+
+        <div class="message" style="display: none">
+          <div class="message__title">Сообщение</div>
+          <div class="message__text">
+            Допускается не более трех неудачных попыток ввода пароля. Вы будете
+            возращены к выбору email
+          </div>
+          <div class="message__close">
+            <div class="message__close-item"></div>
+            <div class="message__close-item"></div>
+          </div>
+          <button class="message__btn btn">Продолжить</button>
+        </div>
+
+        <div class="warning" style="display: none">
+          <div class="warning__title">ошибка</div>
+          <div class="warning__text">
+            Допускается не более трех неудачных попыток ввода пароля. Вы будете
+            возращены к выбору email
+          </div>
+          <div class="warning__close">
+            <div class="warning__close-item"></div>
+            <div class="warning__close-item"></div>
+          </div>
+          <button class="warning__btn btn">Продолжить</button>
+        </div>
+
+        <div class="action" style="display: none">
+          <div class="action__title">Выберите действие</div>
+          <div class="action__close">
+            <div class="action__close-item"></div>
+            <div class="action__close-item"></div>
+          </div>
+          <div class="action__close-block">
+            <button class="action__button btn">Отключится</button>
+            <button class="action__button action__button-green btn">
+              Обновить расписание
+            </button>
+          </div>
+          <div class="action__text">
+            Расписание можно также обновить скроллом вверх/вниз
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/popup.js"></script>
+  </body>
+
+</html>
