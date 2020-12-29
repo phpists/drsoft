@@ -3,10 +3,15 @@ import React, { useState } from 'react';
 
 
 const Accent = () => {
-  const [activeClass, setActiveClass] = useState(false)
+  const [activeClass, setActiveClass] = useState(false);
+  const [activeSelect, setActiveSelect] = useState(false);
+  const [defaultDate, setDefaultDate] = useState("01.11.2020");
 
   let toggleClass;
   activeClass ? toggleClass = "accent__block-toggle" : toggleClass = "accent__block-toggle noactive";
+
+  let toggleSelect;
+  activeSelect ? toggleSelect = "select active" : toggleSelect = "select";
 
 
   return (
@@ -55,27 +60,47 @@ const Accent = () => {
         <div className="accent__block-select">
           <div className="list-select">
             <div className="list-select-text">Дата приемки</div>
-           
 
 
-            <div className="select">
+
+
+            <div
+              onClick={() => { setActiveSelect(activeSelect => !activeSelect) }}
+              className={toggleSelect}>
               <div className="list-select-selector">
-                <span className="select__current">01.11.2020</span>
+                <span className="select__current">{defaultDate}</span>
               </div>
               <div className="select__body-bg"></div>
               <div className="select__body">
-                <div className="list-select-option">01.11.2020</div>
-                <div className="list-select-option">02.11.2020</div>
-                <div className="list-select-option">03.11.2020</div>
-                <div className="list-select-option">04.11.2020</div>
-                <div className="list-select-option">05.11.2020</div>
-                <div className="list-select-option">06.11.2020</div>
+                <div
+                  onClick={() => { setDefaultDate("01.11.2020") }}
+                  className="list-select-option">01.11.2020</div>
+
+                <div
+                  onClick={() => { setDefaultDate("02.11.2020") }}
+                  className="list-select-option">02.11.2020</div>
+
+                <div
+                  onClick={() => { setDefaultDate("03.11.2020") }}
+                  className="list-select-option">03.11.2020</div>
               </div>
             </div>
+
+            {/* <select className="select">
+              <div className="list-select-selector">
+                <span className="">01.11.2020</span>
+              </div>
+              <div className="select__body-bg"></div>
+              <div className="select__body">
+                <option className="list-select-option select__current">01.11.2020</div>
+                <option className="list-select-option">02.11.2020</option>
+              </div>
+            </select> */}
+
+
+
           </div>
           <div className="list-select">
-
-
             <div
               onClick={() => { setActiveClass(activeClass => !activeClass) }}
               className={toggleClass}>
@@ -345,8 +370,8 @@ const Accent = () => {
           <button className="btn">Отказ</button>
           <button className="btn">Завершить приемку</button>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

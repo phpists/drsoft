@@ -3,6 +3,61 @@ import icon1 from "../../images/icon-1.png"
 
 
 const OverHead = () => {
+  const [activeSelect, setActiveSelect] = useState(false);
+  const [type, setType] = useState(null);
+  const [year, setYear] = useState(2020);
+  const [month, setMonth] = useState("Январь");
+  const [status, setStatus] = useState("Завершён");
+
+
+  ////////////   Show/hide dropdown
+  function onSelectClick(item) {
+    setActiveSelect(activeSelect => !activeSelect)
+    item === "year" && setType("year")
+    item === "month" && setType("month")
+    item === "status" && setType("status")
+  };
+
+  const years =
+    [
+      2020,
+      2019,
+      2018,
+      2017,
+      2016,
+      2015,
+      2014,
+      2013,
+      2012,
+      2011,
+      2010,
+      2009,
+      2008,
+      2007,
+      2006,
+      2005,
+      2004,
+      2003,
+      2002
+    ];
+
+  const months =
+    [
+      "Январь",
+      "Февраль",
+      "Март",
+      "Апрель",
+      "Май",
+      "Июнь",
+      "Июль",
+      "Август",
+      "Сентябрь",
+      "Октябрь",
+      "Ноябрь",
+      "Декабрь"
+    ];
+
+  const statuses = ["Завершён", "Не завершён"];
 
 
   return (
@@ -216,89 +271,67 @@ const OverHead = () => {
             <div className="overhead__block-select">
               <div className="list-select">
                 <div className="list-select-text">Год</div>
-                <div className="select">
+                <div
+                  className={activeSelect && type === "year" ? "select active" : "select"}
+                  onClick={() => onSelectClick("year")}>
                   <div className="list-select-selector">
-                    <span className="select__current">2020</span>
+                    <span className="select__current">{year}</span>
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
-                    <div className="list-select-option">2020</div>
-                    <div className="list-select-option">2019</div>
-                    <div className="list-select-option">2018</div>
-                    <div className="list-select-option">2017</div>
-                    <div className="list-select-option">2016</div>
-                    <div className="list-select-option">2015</div>
-                    <div className="list-select-option">2014</div>
-                    <div className="list-select-option">2013</div>
-                    <div className="list-select-option">2012</div>
-                    <div className="list-select-option">2011</div>
-                    <div className="list-select-option">2010</div>
-                    <div className="list-select-option">2009</div>
-                    <div className="list-select-option">2008</div>
-                    <div className="list-select-option">2007</div>
-                    <div className="list-select-option">2006</div>
-                    <div className="list-select-option">2005</div>
-                    <div className="list-select-option">2004</div>
-                    <div className="list-select-option">2003</div>
-                    <div className="list-select-option">2002</div>
-                    <div className="list-select-option">2010</div>
-                    <div className="list-select-option">2009</div>
-                    <div className="list-select-option">2008</div>
-                    <div className="list-select-option">2007</div>
-                    <div className="list-select-option">2006</div>
-                    <div className="list-select-option">2005</div>
-                    <div className="list-select-option">2002</div>
+                    {years.map((year) => (
+                      <div key={year}
+                        onClick={() => setYear(year)}
+                        className="list-select-option">{year}</div>
+                    ))}
                   </div>
                 </div>
               </div>
 
               <div className="list-select">
                 <div className="list-select-text">Месяц</div>
-                <div className="select">
+
+                <div className={activeSelect && type === "month" ? "select active" : "select"}
+                  onClick={() => onSelectClick("month")}>
                   <div className="list-select-selector">
-                    <span className="select__current">Январь</span>
+                    <span className="select__current">{month}</span>
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
-                    <option value="" className="list-select-option">Январь</option>
-                    <option value="" className="list-select-option">Февраль</option>
-                    <option value="" className="list-select-option">Март</option>
-                    <option value="" className="list-select-option">Апрель</option>
-                    <option value="" className="list-select-option">Май</option>
-                    <option value="" className="list-select-option">Июнь</option>
-                    <option value="" className="list-select-option">Июль</option>
-                    <option value="" className="list-select-option">Август</option>
-                    <option value="" className="list-select-option">
-                      Сентябрь
-                      </option>
-                    <option value="" className="list-select-option">Октябрь</option>
-                    <option value="" className="list-select-option">Ноябрь</option>
-                    <option value="" className="list-select-option">Декабрь</option>
+                    {months.map((month) => (
+                      <div key={month}
+                        onClick={() => setMonth(month)}
+                        className="list-select-option">{month}</div>
+                    ))}
                   </div>
                 </div>
               </div>
 
               <div className="list-select">
                 <div className="list-select-text">Статус</div>
-                <div className="select">
+                <div className={activeSelect && type === "status" ? "select active" : "select"}
+                  onClick={() => onSelectClick("status")}>
                   <div className="list-select-selector">
-                    <span className="select__current">Завершён</span>
+                    <span className="select__current">{status}</span>
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
-                    <option value="" className="list-select-option">
-                      Завершён
-                      </option>
-                    <option value="" className="list-select-option">
-                      Не завершён
-                      </option>
+                    {statuses.map((status) => (
+                      <div key={status}
+                        onClick={() => setStatus(status)}
+                        className="list-select-option">{status}</div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
 
+
+
+
             <div className="table__block-wrapper">
               <table className="table__block-table">
+                
                 <thead>
                   <tr className="table__block-title">
                     <th>Статус</th>
@@ -310,6 +343,7 @@ const OverHead = () => {
                     <th>Сумма, Р.</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <tr className="table__block-newover">
                     <td><span>Новая поставка</span></td>
@@ -617,33 +651,13 @@ const OverHead = () => {
                     <td>Купля-продажа</td>
                     <td>З10 000,00</td>
                   </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
