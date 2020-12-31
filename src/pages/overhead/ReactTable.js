@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTable } from "react-table";
+import { useTable, useSortBy } from "react-table";
 
 
 export const Reacttable = () => {
@@ -25,7 +25,7 @@ export const Reacttable = () => {
             "nakl_n": "126/2020к",
             "nakl_d": "2020-12-20T00:00:00",
             "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
+            "direct": false,
             "NDS": 32.0000,
             "Sum": 1234.0000,
             "company_id": 1,
@@ -49,11 +49,11 @@ export const Reacttable = () => {
         },
         {
             "nakl_id": 3,
-            "nakl_status_id": 5,
+            "nakl_status_id": 7,
             "nakl_n": "126/2020к",
             "nakl_d": "2020-12-20T00:00:00",
             "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
+            "direct": false,
             "NDS": 32.0000,
             "Sum": 1234.0000,
             "company_id": 1,
@@ -76,12 +76,12 @@ export const Reacttable = () => {
             "ContractTypeName": "купля продажа",
         },
         {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
+            "nakl_id": 14,
+            "nakl_status_id": 10,
             "nakl_n": "126/2020к",
             "nakl_d": "2020-12-20T00:00:00",
             "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
+            "direct": false,
             "NDS": 32.0000,
             "Sum": 1234.0000,
             "company_id": 1,
@@ -104,8 +104,8 @@ export const Reacttable = () => {
             "ContractTypeName": "купля продажа",
         },
         {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
+            "nakl_id": 8,
+            "nakl_status_id": 1,
             "nakl_n": "126/2020к",
             "nakl_d": "2020-12-20T00:00:00",
             "receive_d": "2020-12-21T00:00:00",
@@ -175,7 +175,9 @@ export const Reacttable = () => {
     } = useTable({
         columns,
         data,
-    });
+    },
+        useSortBy
+    );
 
 
     return (
@@ -186,7 +188,20 @@ export const Reacttable = () => {
                     <tr className="table__block-title"
                         {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+
+                            //Add the sorting props to control sorting
+                            < th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                                {column.render("Header")}
+
+                                {/* Add a sort direction indicator  */}
+                                <span>
+                                    {column.isSorted
+                                        ? column.isSortedDesc
+                                            ? ' 🔽'
+                                            : ' 🔼'
+                                        : ''}
+                                </span>
+                            </th>
                         ))}
                     </tr>
                 ))}
@@ -197,7 +212,9 @@ export const Reacttable = () => {
                     return (
                         <tr {...row.getRowProps()}>
                             {row.cells.map((cell) => {
-                                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                                return (
+                                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                )
                             })}
                         </tr>
                     );
