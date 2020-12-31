@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import icon1 from "../../images/icon-1.png"
+import { Reacttable } from './ReactTable';
+import { getNaklFiltered } from '../../helpers/nakladni';
+
 
 
 const OverHead = () => {
@@ -8,6 +11,16 @@ const OverHead = () => {
   const [year, setYear] = useState(2020);
   const [month, setMonth] = useState("Январь");
   const [status, setStatus] = useState("Завершён");
+  const [results, setResults] = useState([]);
+
+
+  useEffect(() => {
+    // (async function () {
+    //   const res = await getNaklFiltered()
+    //   console.log(res)
+    // })();
+  }, []);
+
 
 
   ////////////   Show/hide dropdown
@@ -252,7 +265,6 @@ const OverHead = () => {
           </div>
         </div>
       </header>
-
       <div className="overhead">
         <div className="overhead__block">
           <div className="overhead__block-top">
@@ -326,334 +338,10 @@ const OverHead = () => {
               </div>
             </div>
 
-
-
-
             <div className="table__block-wrapper">
-              <table className="table__block-table">
-                
-                <thead>
-                  <tr className="table__block-title">
-                    <th>Статус</th>
-                    <th>№</th>
-                    <th>Дата</th>
-                    <th>Поставщик</th>
-                    <th>Акцент</th>
-                    <th>Тип договора</th>
-                    <th>Сумма, Р.</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr className="table__block-newover">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-reception">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-shipment">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-error">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-
-                  <tr className="table__block-end">
-                    <td><span>Новая поставка</span></td>
-                    <td>123</td>
-                    <td>21.12.09</td>
-                    <td>ООО «Фармстандарт»</td>
-                    <td>Прямой</td>
-                    <td>Купля-продажа</td>
-                    <td>З10 000,00</td>
-                  </tr>
-                </tbody>
-              </table>
+              <Reacttable />
             </div>
+
           </div>
         </div>
       </div >
