@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import icon1 from "../../images/icon-1.png"
 import { getNaklFiltered } from '../../helpers/nakladni';
 import Reacttable from './ReactTable';
-
+import Spinner from "../../components/Loader/Loader";
 
 
 const OverHead = () => {
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
   const [year, setYear] = useState(2020);
-  const [month, setMonth] = useState("Январь");
+  const [month, setMonth] = useState({ number: 12, value: "Декабрь" });
   const [status, setStatus] = useState("Завершён");
   const [results, setResults] = useState(null);
 
 
   useEffect(() => {
-    getNaklFiltered()
+    getNaklFiltered(year, month)
       .then((data) => setResults(data))
     // .catch(() => setError(true));
-  }, [getNaklFiltered])
+  }, year)
 
   ////////////   Show/hide dropdown
   function onSelectClick(item) {
@@ -51,23 +51,39 @@ const OverHead = () => {
       2002
     ];
 
+
   const months =
     [
-      "Январь",
-      "Февраль",
-      "Март",
-      "Апрель",
-      "Май",
-      "Июнь",
-      "Июль",
-      "Август",
-      "Сентябрь",
-      "Октябрь",
-      "Ноябрь",
-      "Декабрь"
+      { number: 1, value: "Январь" },
+      { number: 2, value: "Февраль" },
+      { number: 3, value: "Март" },
+      { number: 4, value: "Апрель" },
+      { number: 5, value: "Май" },
+      { number: 6, value: "Июнь" },
+      { number: 7, value: "Июль" },
+      { number: 8, value: "Август" },
+      { number: 9, value: "Сентябрь" },
+      { number: 10, value: "Октябрь" },
+      { number: 11, value: "Ноябрь" },
+      { number: 12, value: "Декабрь" },
     ];
 
+
   const statuses = ["Завершён", "Не завершён"];
+
+
+  function changeYear(year) {
+    setYear(year);
+    getNaklFiltered(year, month.number)
+      .then((data) => setResults(data))
+  }
+
+
+  function changeMonth(month) {
+    setMonth(month);
+    getNaklFiltered(year, month.number)
+      .then((data) => setResults(data))
+  }
 
 
   return (
@@ -262,7 +278,7 @@ const OverHead = () => {
           </div>
         </div>
       </header>
-      <div className="overhead">
+      <div className="overhead height">
         <div className="overhead__block">
           <div className="overhead__block-top">
             <div className="overhead__block-top-right">
@@ -290,7 +306,7 @@ const OverHead = () => {
                   <div className="select__body">
                     {years.map((year) => (
                       <div key={year}
-                        onClick={() => setYear(year)}
+                        onClick={() => changeYear(year)}
                         className="list-select-option">{year}</div>
                     ))}
                   </div>
@@ -303,14 +319,14 @@ const OverHead = () => {
                 <div className={activeSelect && type === "month" ? "select active" : "select"}
                   onClick={() => onSelectClick("month")}>
                   <div className="list-select-selector">
-                    <span className="select__current">{month}</span>
+                    <span className="select__current">{month.value}</span>
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
                     {months.map((month) => (
-                      <div key={month}
-                        onClick={() => setMonth(month)}
-                        className="list-select-option">{month}</div>
+                      <div key={month.number}
+                        onClick={() => changeMonth(month)}
+                        className="list-select-option">{month.value}</div>
                     ))}
                   </div>
                 </div>
@@ -339,7 +355,7 @@ const OverHead = () => {
               {
                 results === null
                   ?
-                  < h3 >Загрузка...</h3>
+                  <Spinner />
                   :
                   <Reacttable
                     results={results}
