@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import icon1 from "../../images/icon-1.png"
-import { Reacttable } from './ReactTable';
 import { getNaklFiltered } from '../../helpers/nakladni';
+import Reacttable from './ReactTable';
 
 
 
@@ -11,17 +11,14 @@ const OverHead = () => {
   const [year, setYear] = useState(2020);
   const [month, setMonth] = useState("Январь");
   const [status, setStatus] = useState("Завершён");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
 
 
   useEffect(() => {
-    // (async function () {
-    //   const res = await getNaklFiltered()
-    //   console.log(res)
-    // })();
-  }, []);
-
-
+    getNaklFiltered()
+      .then((data) => setResults(data))
+    // .catch(() => setError(true));
+  }, [getNaklFiltered])
 
   ////////////   Show/hide dropdown
   function onSelectClick(item) {
@@ -339,9 +336,16 @@ const OverHead = () => {
             </div>
 
             <div className="table__block-wrapper">
-              <Reacttable />
+              {
+                results === null
+                  ?
+                  < h3 >Загрузка...</h3>
+                  :
+                  <Reacttable
+                    results={results}
+                  />
+              }
             </div>
-
           </div>
         </div>
       </div >

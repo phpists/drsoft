@@ -2,137 +2,21 @@ import React from 'react';
 import { useTable, useSortBy } from "react-table";
 
 
-export const Reacttable = () => {
-
-    const results = [
-        {
-            "nakl_id": 2,
-            "nakl_status_id": 4,
-            "nakl_n": "125/2020к",
-            "nakl_d": "2020-12-21T00:00:00",
-            "receive_d": "2020-12-22T00:00:00",
-            "direct": true,
-            "NDS": 33.0000,
-            "Sum": 8264.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": false,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 3,
-            "nakl_status_id": 7,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": false,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 14,
-            "nakl_status_id": 10,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": false,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 3,
-            "nakl_status_id": 5,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-        {
-            "nakl_id": 8,
-            "nakl_status_id": 1,
-            "nakl_n": "126/2020к",
-            "nakl_d": "2020-12-20T00:00:00",
-            "receive_d": "2020-12-21T00:00:00",
-            "direct": true,
-            "NDS": 32.0000,
-            "Sum": 1234.0000,
-            "company_id": 1,
-            "Provider": "ОАО Много",
-            "ContractTypeId": 1,
-            "ContractTypeName": "купля продажа",
-        },
-    ]
+const Reacttable = ({ results }) => {
 
     const data = React.useMemo(
         () =>
-            results.map((item) => {
+            results.data.map((item) => {
                 return {
-                    status: item.nakl_status_id,
-                    number: item.nakl_n,
-                    date: item.nakl_d,
-                    provider: item.Provider,
+                    status: item.status,
+                    number: item.doc_num,
+                    date: item.doc_date,
+                    provider: item.provider,
                     direct: item.direct ? "Прямой" : "Непрямой",
                     ContractTypeName: item.ContractTypeName,
-                    Sum: item.Sum,
+                    Sum: item.sum,
                 }
-            }),
-        []
+            }), []
     );
 
     const columns = React.useMemo(
@@ -162,7 +46,7 @@ export const Reacttable = () => {
                 accessor: "Sum",
             },
         ],
-        []
+        [results.data]
     );
 
 
@@ -225,4 +109,4 @@ export const Reacttable = () => {
 }
 
 
-
+export default Reacttable;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Routes from '../routes';
+// import Navbar from './Navbar';
+// import Routes from '../routes';
 import OverHead from '../pages/overhead/OverHead';
 
 
@@ -8,8 +8,9 @@ const App = () => {
 
 	return (
 		<>
-			<Navbar />
-			<Routes /> 
+			{/* <Navbar />
+			<Routes />  */}
+			<OverHead/>
 		</>
 	);
 };
