@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import icon1 from "../../images/icon-1.png"
 import { getNaklFiltered } from '../../helpers/nakladni';
-import Reacttable from './ReactTable';
+import OverHeadTable from './OverHeadTable';
 import Spinner from "../../components/Loader/Loader";
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 
 const OverHead = () => {
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
-  const [year, setYear] = useState(2020);
-  const [month, setMonth] = useState({ number: 12, value: "Декабрь" });
+  const [year, setYear] = useState(2021);
+  const [month, setMonth] = useState({ number: 1, value: "Январь" });
   const [status, setStatus] = useState("Завершён");
   const [results, setResults] = useState(null);
+  const [error, setError] = useState(false);
 
 
   useEffect(() => {
     getNaklFiltered(year, month)
       .then((data) => setResults(data))
-    // .catch(() => setError(true));
-  }, year)
+      .catch(() => setError(true));
+  }, [getNaklFiltered])
 
   ////////////   Show/hide dropdown
   function onSelectClick(item) {
@@ -30,6 +32,7 @@ const OverHead = () => {
 
   const years =
     [
+      2021,
       2020,
       2019,
       2018,
@@ -44,11 +47,7 @@ const OverHead = () => {
       2009,
       2008,
       2007,
-      2006,
-      2005,
-      2004,
-      2003,
-      2002
+      2006
     ];
 
 
@@ -304,6 +303,7 @@ const OverHead = () => {
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
+
                     {years.map((year) => (
                       <div key={year}
                         onClick={() => changeYear(year)}
@@ -323,6 +323,7 @@ const OverHead = () => {
                   </div>
                   <div className="select__body-bg"></div>
                   <div className="select__body">
+
                     {months.map((month) => (
                       <div key={month.number}
                         onClick={() => changeMonth(month)}
@@ -351,13 +352,16 @@ const OverHead = () => {
               </div>
             </div>
 
+
             <div className="table__block-wrapper">
-              {
+              {error ?
+                <ErrorMessage />
+                :
                 results === null
                   ?
                   <Spinner />
                   :
-                  <Reacttable
+                  <OverHeadTable
                     results={results}
                   />
               }

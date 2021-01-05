@@ -1,15 +1,17 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Routes from '../routes';
-import OverHead from '../pages/overhead/OverHead';
+import Skan from '../pages/skan/Skan';
+import OverHeadTable from '../pages/overhead/OverHeadTable';
 
 const App = () => {
 
 	return (
 		<>
-			{/**/} <Navbar />
+			{/**/}<Navbar />
 			<Routes />
-			{/* <OverHead /> */}
+			{/* <OverHeadTable/> 
+			<Skan />*/}
 		</>
 	);
 };

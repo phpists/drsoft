@@ -8,18 +8,18 @@ export async function getNaklFiltered(year, month) {
       'accessToken': "111111"
     }
   };
-  const formData = new FormData();
-  const jsonData = JSON.stringify({ address_id: 1, year: 2020 });
+  //const formData = new FormData();
+  //const jsonData = JSON.stringify({ address_id: 1, year: 2020 });
 
-  formData.append("jsonData", jsonData);
+  //formData.append("jsonData", jsonData);
 
 
   return await axiosInstance
-    .get(`nakls/filtr?address_id=1&year= ${year}&month= ${month}`, formData, config)
-    //.get("nakls/filtr?address_id=1&year=2020&month=12&status_id=1", config)
+    .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`, config)
+    //.get("nakls/filtr?address_id=1&year=2021&month=1&status_id=1", config)
     .then(response => {
       //console.log(response)
-      return response
+      return response.data
     }).catch(error => ({ error }))
 };
 

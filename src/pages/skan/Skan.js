@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import skan from "../../images/skan.png"
+import SkanTable from './SkanTable';
+import { getSkans } from '../../helpers/skans';
+import Spinner from "../../components/Loader/Loader";
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 
 
 const Skan = () => {
+    const [skans, setSkans] = useState(null);
+    const [error, setError] = useState(false);
+
+
+    useEffect(() => {
+        getSkans()
+            .then((data) => setSkans(data))
+            .catch(() => setError(true));
+    }, [getSkans]);
 
 
     return (
@@ -20,34 +33,25 @@ const Skan = () => {
                             <img src={skan} alt="skan" ></img>
                         </div>
                         <div className="skan__block-num">
-                            <div className="skan__block-number">7</div>
-                            <div className="skan__block-text">Отсканирование кодов</div>
+                            <div className="skan__block-number">
+                                {skans === null ? 0 : skans.length}
+                            </div>
+                            <div className="skan__block-text">Отсканированих кодов</div>
                         </div>
                     </div>
 
                     <div className="table__block-wrapper">
-                        <table className="table__block-table">
-                            <thead>
-                                <tr className="table__block-title">
-                                    <th>№</th>
-                                    <th colSpan="2">Коды маркировки</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr className="table__block-table-text">
-                                    <td>1</td>
-                                    <td>Агрегат</td>
-                                    <td>39312345600000000053</td>
-                                </tr>
-
-                                <tr className="table__block-table-text">
-                                    <td>1</td>
-                                    <td>Агрегат</td>
-                                    <td>39312345600000000053</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {error ?
+                            <ErrorMessage />
+                            :
+                            skans === null
+                                ?
+                                <Spinner />
+                                :
+                                <SkanTable
+                                    skans={skans}
+                                />
+                        }
                     </div>
 
                     <a href="#" className="skan__block-link"

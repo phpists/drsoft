@@ -1,18 +1,47 @@
 import React from 'react';
 import { useTable, useSortBy } from "react-table";
+import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 
-const Reacttable = ({ results }) => {
+const OverHeadTable = ({ results }) => {
+    //const OverHeadTable = () => {
+
+    // const results = [
+    //     {
+    //         "id": 1,
+    //         "number": "9sdls99",
+    //         "date_time": "2021-01-01T00:00:00",
+    //         "provider": "РОГА И КОПЫТА",
+    //         "acceptance_type": "Прямой",
+    //         "contract_type": "Комисия",
+    //         "sum": 1200.00,
+    //         "status": "Новая поставка",
+    //         "status_style": "table__block-newover"
+    //     },
+    //     {
+    //         "id": -1,
+    //         "number": "9sdls99",
+    //         "date_time": "2021-01-01T00:00:00",
+    //         "provider": "ОАО Мартышкин Труд",
+    //         "acceptance_type": "Обратный",
+    //         "contract_type": "Комисия",
+    //         "sum": 138250.00,
+    //         "status": "Новая поставка",
+    //         "status_style": "table__block-newover"
+    //     }
+    // ];
+
 
     const data = React.useMemo(
-        () => results.data.map((item) => {
+        () => results.map((item) => {
             return {
                 status: item.status,
-                number: item.doc_num,
-                date: item.doc_date,
+                style: item.status_style,
+                number: item.number,
+                date: item.date_time,
                 provider: item.provider,
-                direct: item.direct ? "Прямой" : "Непрямой",
+                acceptance_type: item.acceptance_type,
                 ContractTypeName: item.ContractTypeName,
                 Sum: item.sum,
             }
@@ -40,14 +69,14 @@ const Reacttable = ({ results }) => {
             },
             {
                 Header: "Акцент",
-                accessor: "direct",
+                accessor: "acceptance_type",
             },
             {
                 Header: "Сумма, Р.",
                 accessor: "Sum",
             },
         ],
-        [results.data]
+        [results]
     );
 
 
@@ -65,15 +94,11 @@ const Reacttable = ({ results }) => {
     );
 
 
-    function noData() {
-        return <h3>Нет даних</h3>
-    };
-
 
     return (
-        results.data.length === 0
+        results.length === 0
             ?
-            noData()
+            <NoDataMessage />
             :
             <table className="table__block-table"
                 {...getTableProps()} >
@@ -103,27 +128,31 @@ const Reacttable = ({ results }) => {
 
 
                 <tbody {...getTableBodyProps()}>
-                    {results.data.length === 0
+                    {results.length === 0
                         ?
-                        noData()
+                        <NoDataMessage />
                         :
                         rows.map((row, i) => {
                             prepareRow(row);
+                            //console.log(row.original.style) 
+
                             return (
-                                <tr {...row.getRowProps()}>
+                                < tr className = { row.original.style + "" }
+
+                            {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
-                                        return (
-                                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                                        )
-                                    })}
+                        return (
+                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                        )
+                    })}
                                 </tr>
-                            );
-                        })
-                    }
+                );
+            })
+        }
                 </tbody>
             </table >
     );
 };
 
 
-export default Reacttable;
+export default OverHeadTable;
