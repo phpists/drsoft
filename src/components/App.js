@@ -8,7 +8,8 @@ const App = () => {
 
 	return (
 		<>
-			{/**/}<Navbar />
+			{/**/}
+			<Navbar />
 			<Routes />
 			{/* <OverHeadTable/> 
 			<Skan />*/}

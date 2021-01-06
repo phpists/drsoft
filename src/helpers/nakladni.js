@@ -16,9 +16,7 @@ export async function getNaklFiltered(year, month) {
 
   return await axiosInstance
     .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`, config)
-    //.get("nakls/filtr?address_id=1&year=2021&month=1&status_id=1", config)
     .then(response => {
-      //console.log(response)
       return response.data
     }).catch(error => ({ error }))
 };

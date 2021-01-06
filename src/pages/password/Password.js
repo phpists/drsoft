@@ -19,6 +19,8 @@ const Password = () => {
                         className="password__logo logo">
                         <img src={logo} alt="logo" />
                         <div className="password__title">Введите пароль</div>
+
+
                         <div className="password__text">На email ***@gmail.com был отправлен пароль, пожалуйста, введите его"</div>
                         <div className="password__input">
                             <input
@@ -29,6 +31,7 @@ const Password = () => {
                             {warning &&
                                 <div className="password__input-error">Заданный email не найден, введите другой email</div>}
                         </div>
+
 
                         <div className="password__button">
                             <button

@@ -1,12 +1,17 @@
 import { axiosInstance } from './baseUrl'
 
 
-export function logIn() {
-  return axiosInstance.put("users/enter?login=admin&password=pas")
+
+export async function logIn(login, password) {
+  
+  return await axiosInstance
+  .put(`users/enter?login=${login}&password=${password}`)
     .then(response => {
-      return response
+      return response.data
     }).catch(error => ({ error }))
 };
+
+
 
 
 export function logOut() {

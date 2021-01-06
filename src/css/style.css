@@ -4,3 +4,10 @@
     min-height: 400px !important;
   }
 
+.authoriz__input {
+  margin-bottom: 20px;
+}
+
+.password__input {
+  margin-bottom: 40px;
+}
