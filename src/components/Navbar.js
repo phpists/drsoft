@@ -29,10 +29,6 @@ const Navbar = () => {
             </li>
 
             <li style={liStyle}>
-                <Link to="/password">Password Page</Link>
-            </li>
-
-            <li style={liStyle}>
                 <Link to="/edit">Edit Page</Link>
             </li>
 

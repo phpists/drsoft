@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 import logo from "../../images/logo.png";
 import { logIn } from '../../helpers/authorization';
 
+import { connect } from 'react-redux';
+import actions from '../../store/actions';
+import { withRouter } from 'react-router-dom';
 
-const Auth = () => {
+
+
+const Auth = (props) => {
+    const { authData } = props;
+
     const [login, setLogin] = useState(null);
     const [password, setPassword] = useState(null);
     //const [error, setError] = useState(false);
-    const [authData, setAuthData] = useState(null);
+    // const [authData, setAuthData] = useState(null);
 
 
     function onAuthorizationSubmit(event) {
         event.preventDefault();
-        logIn(login, password)
-            .then(resp => setAuthData(resp))
+        // logIn(login, password)
+        //     .then(resp => setAuthData(resp))
+        const data = { login, password }
+        props.loginUser(data);
     };
-
-    //{console.log("error:", error, "authData:", authData)}
-   // console.log(authData)
-
+    //console.log(authData)
     return (
         <div className="authoriz">
             <div className="container">
@@ -63,4 +69,15 @@ const Auth = () => {
 };
 
 
-export default Auth;
+const mapStateToProps = (state) => ({
+    authData: state.authorization.authData,
+})
+
+const mapDispatchToProps = dispatch => ({
+    loginUser: (data) => dispatch(actions.authorization.loginRequest(data))
+})
+
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(Auth)
+);
