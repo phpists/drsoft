@@ -39,7 +39,7 @@ const Modals = () => {
                     <div className="successfully__text">
                         Допускается не более трех неудачных попыток ввода пароля. Вы будете
                         возращены к выбору email
-        </div>
+                    </div>
                     <div className="successfully__close">
                         <div className="successfully__close-item"></div>
                         <div className="successfully__close-item"></div>
