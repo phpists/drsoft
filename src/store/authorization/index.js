@@ -16,6 +16,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     
     case Types.LOGIN_REQUEST: {
+      console.log("LOGIN_REQUEST");
+
       return {
         ...state,
         loader: true,
@@ -24,7 +26,8 @@ const reducer = (state = initialState, action) => {
     }
     
     case Types.LOGIN_SUCCESS: {
-      console.log("LOGIN_SUCCESS")
+      console.log("LOGIN_SUCCESS");
+      
       return {
         ...state,
         authData: action.payload,
@@ -33,6 +36,8 @@ const reducer = (state = initialState, action) => {
     }
     
     case Types.LOGIN_FAILURE: {
+      console.log("LOGIN_FAILURE");
+
       return {
         ...state,
         error: action.payload,

@@ -14,18 +14,20 @@ export const loginRequest = ({ login, password }) => {
     dispatch(startLogin());
     logIn(login, password)
       .then(res => {
-        res.is_error ?
+        if (res.is_error) {
           dispatch(loginFailure(true))
-          :
-          dispatch(loginSuccess(res))
-      })
+        } else {
+          sessionStorage.setItem('drSoftToken', res.data.access_token);
+          dispatch(loginSuccess(res));
+        }
+      });
   };
 };
 
 
 export const continueAfterError = () => {
   return dispatch => {
-    dispatch(continue1());
+    dispatch(continueAfterFailure());
   };
 };
 
@@ -39,7 +41,7 @@ const loginSuccess = (payload) => ({
   payload
 });
 
-const continue1 = () => ({
+const continueAfterFailure = () => ({
   type: Types.CONTINUE_AFTER_FAILURE,
 });
 
