@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        skans: action.payload,
+        skans: action.payload.data,
         loader: false,
       }
     }

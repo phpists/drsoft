@@ -21,16 +21,17 @@ const Auth = (props) => {
 
 
     return (
-        props.loader ?
-            <Loader />
-            :
-            props.error ?
-                <LoginModal />
-                :
-                <div className="authoriz">
-                    <div className="container">
-                        <div className="authoriz__wrapper">
-                            <form onSubmit={(event) => { onAuthorizationSubmit(event) }}
+        <div className="authoriz">
+            <div className="container">
+                <div className="authoriz__wrapper">
+
+                    {props.loader ?
+                        <Loader />
+                        :
+                        props.error ?
+                            <LoginModal />
+                            :
+                            < form onSubmit={(event) => { onAuthorizationSubmit(event) }}
                                 className="authoriz__logo logo">
                                 <img src={logo} alt="logo" />
                                 <div className="authoriz__title">Авторизация</div>
@@ -61,9 +62,11 @@ const Auth = (props) => {
                                     type="submit"
                                     className="btn authoriz__btn">Продолжить</button>
                             </form>
-                        </div>
-                    </div>
+                    }
+
                 </div>
+            </div>
+        </div >
     );
 };
 

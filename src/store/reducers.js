@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import authorization from './authorization';
 import nakladni from './nakladni';
-//import skans from './skans';
+import skans from './skans';
 
 
 const rootReducer = combineReducers({
   authorization,
   nakladni,
- // skans,
+  skans,
 });
 
 

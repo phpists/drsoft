@@ -23,7 +23,6 @@ const SkanTable = ({ skans }) => {
         }), [skans]
     );
 
-
     const columns = React.useMemo(
         () => [
             {
@@ -38,7 +37,6 @@ const SkanTable = ({ skans }) => {
         [skans]
     );
 
-
     const {
         getTableProps,
         getTableBodyProps,
@@ -51,7 +49,6 @@ const SkanTable = ({ skans }) => {
     },
         useSortBy
     );
-
 
 
     return (
@@ -86,10 +83,7 @@ const SkanTable = ({ skans }) => {
                 </thead>
 
                 <tbody {...getTableBodyProps()}>
-                    {skans.length === 0
-                        ?
-                        <NoDataMessage />
-                        :
+                    {
                         rows.map((row, i) => {
                             prepareRow(row);
                             return (

@@ -375,7 +375,6 @@ const OverHead = (props) => {
 
 
 
-
 const mapStateToProps = (state) => ({
   nakladni: state.nakladni.nakladni,
   loader: state.nakladni.loader,

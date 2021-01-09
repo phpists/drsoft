@@ -16,8 +16,8 @@ export const getSkansRequest = () => {
     getSkans()
 
       .then(res => {
-         if (res.status === 200) {
-        dispatch(getSkansSuccess(res));
+        if (res.status === 200) {
+          dispatch(getSkansSuccess(res));
 
         } else {
           dispatch(getSkansFailure(res));

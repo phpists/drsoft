@@ -12,7 +12,8 @@ export async function getSkans() {
   return await axiosInstance
     .get(`sgtins/1`, config)
     .then(response => {
-      return response.data
+      //console.log(response)
+      return response
     }).catch(error => ({ error }))
 };
 

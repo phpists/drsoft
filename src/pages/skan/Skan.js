@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React,  {useEffect } from 'react';
 import skan from "../../images/skan.png"
 import SkanTable from './SkanTable';
-import { getSkans } from '../../helpers/skans';
-import Spinner from "../../components/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { getSkansRequest } from "../../store/skans/actions";
 
 
-
-const Skan = () => {
-    const [skans, setSkans] = useState(null);
-    const [error, setError] = useState(false);
-
+const Skan = (props) => {
+    const { loader, skans, error } = props;
 
     useEffect(() => {
-        getSkans()
-            .then((data) => setSkans(data))
-            .catch(() => setError(true));
-    }, [getSkans]);
+        props.getSkans();
+    }, [props.getSkans]);
 
 
     return (
@@ -26,7 +23,7 @@ const Skan = () => {
                     <div className="skan__block-title">Сканирование кодов маркировки</div>
                     <div className="skan__block-subtitle">
                         Ацц 600МГ порошок д/приг.Р-ра/приемка внутрь пак. X6 (R)
-            </div>
+                    </div>
 
                     <div className="skan__block-wp">
                         <div className="skan__block-img">
@@ -34,32 +31,35 @@ const Skan = () => {
                         </div>
                         <div className="skan__block-num">
                             <div className="skan__block-number">
-                                {skans === null ? 0 : skans.length}
+                                {skans === null || skans === undefined ? 0 : skans.length}
                             </div>
                             <div className="skan__block-text">Отсканированих кодов</div>
                         </div>
                     </div>
 
                     <div className="table__block-wrapper">
-                        {error ?
-                            <ErrorMessage />
-                            :
-                            skans === null
-                                ?
-                                <Spinner />
-                                :
-                                <SkanTable
-                                    skans={skans}
-                                />
-                        }
-                    </div>
 
-                    <a href="#" className="skan__block-link"
-                    >Сбросить результат и начать заново</a
-                    >
-                    <div className="skan__button">
-                        <a href="#" className="btn skan__button-btn">Продолжить</a>
-                        <a href="#" className="btn skan__button-cancel">Отмена</a>
+                        {loader || skans === null ?
+                            <Loader />
+                            :
+                            error ?
+                                <ErrorMessage />
+                                :
+                                <>
+                                    <SkanTable
+                                        skans={skans}
+                                    />
+
+                                    <a href="#" className="skan__block-link"
+                                    >Сбросить результат и начать заново</a
+                                    >
+                                    <div className="skan__button">
+                                        <a href="#" className="btn skan__button-btn">Продолжить</a>
+                                        <a href="#" className="btn skan__button-cancel">Отмена</a>
+                                    </div>
+                                </>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -68,4 +68,18 @@ const Skan = () => {
 };
 
 
-export default Skan;
+
+const mapStateToProps = (state) => ({
+    skans: state.skans.skans,
+    loader: state.skans.loader,
+    error: state.skans.error
+});
+
+const mapDispatchToProps = dispatch => ({
+    getSkans: () => dispatch(getSkansRequest())
+});
+
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(Skan)
+);
