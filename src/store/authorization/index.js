@@ -53,6 +53,15 @@ const reducer = (state = initialState, action) => {
       }
     }
 
+    case Types.LOGIN_OUT: {
+      console.log("LOGIN_OUT")
+
+      return {
+        ...state,
+        token: null
+      }
+    }
+
     default: return state
   };
 };
