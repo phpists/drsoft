@@ -7,7 +7,6 @@ import App from '../src/components/App.js';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Router>

@@ -1,6 +1,5 @@
 import { logIn } from '../../helpers/authorization';
 
-
 export const Types = {
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -11,17 +10,17 @@ export const Types = {
 
 export const loginRequest = ({ login, password }) => {
   return dispatch => {
-    
+
     dispatch(startLogin());
 
     logIn(login, password)
-    
+
       .then(res => {
-        if (res.is_error) {
-          dispatch(loginFailure(true))
-        } else {
-          sessionStorage.setItem('drSoftToken', res.data.access_token);
+        if (res.data && res.data.access_token) {
+          localStorage.setItem('drSoftToken', res.data.access_token);
           dispatch(loginSuccess(res));
+        } else {
+          dispatch(loginFailure(true))
         }
       });
   };

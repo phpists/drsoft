@@ -257,24 +257,21 @@ const OverHead = (props) => {
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Документы</a
-            >
+              Документы</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Отчеты</a
-            >
+              Отчеты</a>
           </div>
           <div className="recording__item">
-            <a href="#" className="recording__item-link"
-            ><div className="recording__item-icon">
+            <a href="#" className="recording__item-link">
+              <div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Сообщения</a
-            >
+              Сообщения</a>
           </div>
         </div>
       </header>

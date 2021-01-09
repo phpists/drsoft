@@ -3,7 +3,7 @@ import { axiosInstance } from './baseUrl'
 
 export async function logIn(login, password) {
   return await axiosInstance
-    .put(`users/enter?login=${login}&password=${password}`)
+    .put(`users/enter`, null, { params: { login, password } })
     .then(response => { return response.data })
     .catch(error => ({ error }))
 };

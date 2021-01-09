@@ -2,44 +2,14 @@ import { axiosInstance } from './baseUrl'
 
 
 export async function getNaklFiltered(year, month) {
-
-  const config = {
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'accessToken': "111111"
-    }
-  };
-
   return await axiosInstance
-    .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`, config)
+    .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`)
+    //.get(`nakls/filtr`, null, { params: {address_id:1, year, month } })
     .then(response => {
       return response
     })
     .catch((error) => ({ error }))
 };
-
-
-// export async function getNaklFiltered(data) {
-//   const config = {
-//     headers: {
-//       'Content-Type': 'application/json; charset=utf-8',
-//       'accessToken': "111111"
-//     }
-//   };
-//   const formData = new FormData();
-//   formData.append('address_id', 1);
-//   formData.append('year', 2020);
-//   formData.append('month', 12);
-//   formData.append('status_id', 1);
-
-//   return await axiosInstance
-//     //.get("nakls/filtr?", formData, config)
-//     .get("nakls/filtr?address_id=1&year=2020&month=12&status_id=1", config)
-//     .then(response => {
-//       //console.log(response)
-//       return response
-//     }).catch(error => ({ error }))
-// };
 
 
 export async function getNakl(data) {

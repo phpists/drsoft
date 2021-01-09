@@ -71,6 +71,7 @@ const Auth = (props) => {
 };
 
 
+
 const mapStateToProps = (state) => ({
     authData: state.authorization.authData,
     loader: state.authorization.loader,
