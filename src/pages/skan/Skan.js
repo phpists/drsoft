@@ -1,4 +1,4 @@
-import React,  {useEffect } from 'react';
+import React, { useEffect } from 'react';
 import skan from "../../images/skan.png"
 import SkanTable from './SkanTable';
 import Loader from "../../components/Loader/Loader";
@@ -51,8 +51,7 @@ const Skan = (props) => {
                                     />
 
                                     <a href="#" className="skan__block-link"
-                                    >Сбросить результат и начать заново</a
-                                    >
+                                    >Сбросить результат и начать заново</a>
                                     <div className="skan__button">
                                         <a href="#" className="btn skan__button-btn">Продолжить</a>
                                         <a href="#" className="btn skan__button-cancel">Отмена</a>

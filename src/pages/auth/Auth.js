@@ -8,6 +8,8 @@ import { loginRequest } from "../../store/authorization/actions";
 
 
 const Auth = (props) => {
+    const { history, token, loader, error } = props;
+
 
     const [login, setLogin] = useState(null);
     const [password, setPassword] = useState(null);
@@ -17,6 +19,10 @@ const Auth = (props) => {
         event.preventDefault();
         const data = { login, password };
         props.loginUser(data);
+
+        if (token !== null) {
+            history.push('/overhead')
+        };
     };
 
 
@@ -25,10 +31,10 @@ const Auth = (props) => {
             <div className="container">
                 <div className="authoriz__wrapper">
 
-                    {props.loader ?
+                    {loader ?
                         <Loader />
                         :
-                        props.error ?
+                        error ?
                             <LoginModal />
                             :
                             < form onSubmit={(event) => { onAuthorizationSubmit(event) }}
@@ -73,7 +79,7 @@ const Auth = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    authData: state.authorization.authData,
+    token: state.authorization.token,
     loader: state.authorization.loader,
     error: state.authorization.error
 });

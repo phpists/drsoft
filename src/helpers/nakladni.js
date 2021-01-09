@@ -4,7 +4,7 @@ import { axiosInstance } from './baseUrl'
 export async function getNaklFiltered(year, month) {
   return await axiosInstance
     .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`)
-    //.get(`nakls/filtr`, null, { params: {address_id:1, year, month } })
+    //.get(`nakls/filtr`, {data: null}, { params: { year, month } })
     .then(response => {
       return response
     })

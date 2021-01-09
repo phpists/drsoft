@@ -3,6 +3,7 @@ import { Types } from './actions';
 
 
 const initialState = {
+  token: localStorage.getItem('drSoftToken') || null,
   authData: null,
   loader: false,
   error: false

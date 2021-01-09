@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import icon1 from "../../images/icon-1.png"
+import icon1 from "../../images/icon-1.png";
 import OverHeadTable from './OverHeadTable';
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -10,6 +10,7 @@ import { getNakladniRequest } from "../../store/nakladni/actions";
 
 
 const OverHead = (props) => {
+  const { nakladni, loader, error } = props;
 
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
@@ -74,16 +75,15 @@ const OverHead = (props) => {
   function changeYear(year) {
     setYear(year);
     const data = { year, month };
-    props.getNakladni(data)
+    props.getNakladni(data);
   };
 
 
   function changeMonth(month) {
     setMonth(month);
     const data = { year, month: month.number };
-    props.getNakladni(data)
+    props.getNakladni(data);
   };
-
 
 
   return (
@@ -209,48 +209,42 @@ const OverHead = (props) => {
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Расписание</a
-            >
+              Расписание</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Пациенты</a
-            >
+              Пациенты</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Прайс</a
-            >
+              Прайс</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Запись</a
-            >
+              Запись</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Напоминание</a
-            >
+              Напоминание</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
             ><div className="recording__item-icon">
                 <img src={icon1} alt="" />
               </div>
-              Шаблоны</a
-            >
+              Шаблоны</a>
           </div>
           <div className="recording__item">
             <a href="#" className="recording__item-link"
@@ -351,14 +345,14 @@ const OverHead = (props) => {
             </div>
             <div className="table__block-wrapper">
 
-              {props.loader || props.nakladni === null ?
+              {loader || nakladni === null ?
                 <Loader />
                 :
-                props.error ?
+                error ?
                   <ErrorMessage />
                   :
                   <OverHeadTable
-                    results={props.nakladni}
+                    results={nakladni}
                   />
               }
 
@@ -369,7 +363,6 @@ const OverHead = (props) => {
     </div >
   );
 };
-
 
 
 const mapStateToProps = (state) => ({
