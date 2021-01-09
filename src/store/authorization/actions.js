@@ -11,8 +11,11 @@ export const Types = {
 
 export const loginRequest = ({ login, password }) => {
   return dispatch => {
+    
     dispatch(startLogin());
+
     logIn(login, password)
+    
       .then(res => {
         if (res.is_error) {
           dispatch(loginFailure(true))

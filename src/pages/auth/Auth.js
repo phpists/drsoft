@@ -40,7 +40,6 @@ const Auth = (props) => {
                                     <div className="authoriz__input">
                                         <input
                                             onChange={(event) => setLogin(event.target.value)}
-                                            defaultValue="admin"
                                             type="text"
                                             required
                                             placeholder="логин"></input>
@@ -52,7 +51,6 @@ const Auth = (props) => {
                                     <div className="password__input">
                                         <input
                                             onChange={(event) => setPassword(event.target.value)}
-                                            defaultValue="pas"
                                             type="password"
                                             required
                                             placeholder="*****" />

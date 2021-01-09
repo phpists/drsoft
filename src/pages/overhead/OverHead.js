@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import icon1 from "../../images/icon-1.png"
-import { getNaklFiltered } from '../../helpers/nakladni';
 import OverHeadTable from './OverHeadTable';
-import Spinner from "../../components/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { getNakladniRequest } from "../../store/nakladni/actions";
 
 
-const OverHead = () => {
+
+const OverHead = (props) => {
+
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
   const [year, setYear] = useState(2021);
   const [month, setMonth] = useState({ number: 1, value: "Январь" });
   const [status, setStatus] = useState("Завершён");
-  const [results, setResults] = useState(null);
-  const [error, setError] = useState(false);
 
 
   useEffect(() => {
-    getNaklFiltered(year, month)
-      .then((data) => setResults(data))
-      .catch(() => setError(true));
-  }, [getNaklFiltered])
+    const data = { year, month };
+    props.getNakladni(data);
+  }, [props.getNakladni]);
+
 
   ////////////   Show/hide dropdown
   function onSelectClick(item) {
@@ -50,7 +52,6 @@ const OverHead = () => {
       2006
     ];
 
-
   const months =
     [
       { number: 1, value: "Январь" },
@@ -67,22 +68,22 @@ const OverHead = () => {
       { number: 12, value: "Декабрь" },
     ];
 
-
   const statuses = ["Завершён", "Не завершён"];
 
 
   function changeYear(year) {
     setYear(year);
-    getNaklFiltered(year, month.number)
-      .then((data) => setResults(data))
-  }
+    const data = { year, month };
+    props.getNakladni(data)
+  };
 
 
   function changeMonth(month) {
     setMonth(month);
-    getNaklFiltered(year, month.number)
-      .then((data) => setResults(data))
-  }
+    const data = { year, month: month.number };
+    props.getNakladni(data)
+  };
+
 
 
   return (
@@ -351,20 +352,19 @@ const OverHead = () => {
                 </div>
               </div>
             </div>
-
-
             <div className="table__block-wrapper">
-              {error ?
-                <ErrorMessage />
+
+              {props.loader || props.nakladni === null ?
+                <Loader />
                 :
-                results === null
-                  ?
-                  <Spinner />
+                props.error ?
+                  <ErrorMessage />
                   :
                   <OverHeadTable
-                    results={results}
+                    results={props.nakladni}
                   />
               }
+
             </div>
           </div>
         </div>
@@ -374,4 +374,21 @@ const OverHead = () => {
 };
 
 
-export default OverHead;
+
+
+const mapStateToProps = (state) => ({
+  nakladni: state.nakladni.nakladni,
+  loader: state.nakladni.loader,
+  error: state.nakladni.error
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  getNakladni: (data) => dispatch(getNakladniRequest(data))
+});
+
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OverHead)
+);
+

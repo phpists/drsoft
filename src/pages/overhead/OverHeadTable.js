@@ -96,61 +96,62 @@ const OverHeadTable = ({ results }) => {
 
 
     return (
-        results.length === 0
-            ?
-            <NoDataMessage />
-            :
-            <table className="table__block-table"
-                {...getTableProps()} >
-                <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr className="table__block-title"
-                            {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+        
+            results.length === 0
+                ?
+                <NoDataMessage />
+                :
+                <table className="table__block-table"
+                    {...getTableProps()} >
+                    <thead>
+                        {headerGroups.map((headerGroup) => (
+                            <tr className="table__block-title"
+                                {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column) => (
 
-                                //Add the sorting props to control sorting
-                                < th {...column.getHeaderProps(column.getSortByToggleProps())} >
-                                    {column.render("Header")}
+                                    //Add the sorting props to control sorting
+                                    < th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                                        {column.render("Header")}
 
-                                    {/* Add a sort direction indicator  */}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? ' 🔽'
-                                                : ' 🔼'
-                                            : ''}
-                                    </span>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
+                                        {/* Add a sort direction indicator  */}
+                                        <span>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? ' 🔽'
+                                                    : ' 🔼'
+                                                : ''}
+                                        </span>
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
 
 
-                <tbody {...getTableBodyProps()}>
-                    {results.length === 0
-                        ?
-                        <NoDataMessage />
-                        :
-                        rows.map((row, i) => {
-                            prepareRow(row);
-                            //console.log(row.original.style) 
+                    <tbody {...getTableBodyProps()}>
+                        {results.length === 0
+                            ?
+                            <NoDataMessage />
+                            :
+                            rows.map((row, i) => {
+                                prepareRow(row);
+                                //console.log(row.original.style) 
 
-                            return (
-                                < tr className = { row.original.style + "" }
+                                return (
+                                    < tr className={row.original.style + ""}
 
-                            {...row.getRowProps()}>
-                                    {row.cells.map((cell) => {
-                        return (
-                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                        )
-                    })}
-                                </tr>
-                );
-            })
-        }
-                </tbody>
-            </table >
+                                        {...row.getRowProps()}>
+                                        {row.cells.map((cell) => {
+                                            return (
+                                                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                            )
+                                        })}
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table >
     );
 };
 

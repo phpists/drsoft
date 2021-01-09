@@ -2,23 +2,20 @@ import { axiosInstance } from './baseUrl'
 
 
 export async function getNaklFiltered(year, month) {
+
   const config = {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'accessToken': "111111"
     }
   };
-  //const formData = new FormData();
-  //const jsonData = JSON.stringify({ address_id: 1, year: 2020 });
-
-  //formData.append("jsonData", jsonData);
-
 
   return await axiosInstance
     .get(`nakls/filtr?address_id=1&year=${year}&month=${month}&status_id=1`, config)
     .then(response => {
-      return response.data
-    }).catch(error => ({ error }))
+      return response
+    })
+    .catch((error) => ({ error }))
 };
 
 

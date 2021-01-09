@@ -3,7 +3,7 @@ import { Types } from './actions';
 
 
 const initialState = {
-  authData: null,
+  skans: null,
   loader: false,
   error: false
 };
@@ -13,42 +13,33 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case Types.LOGIN_REQUEST: {
-      console.log("LOGIN_REQUEST");
+    case Types.SKANS_REQUEST: {
+      console.log("SKANS_REQUEST");
 
       return {
         ...state,
         loader: true,
-        authData: action.payload,
+        skans: action.payload,
       }
     }
 
-    case Types.LOGIN_SUCCESS: {
-      console.log("LOGIN_SUCCESS");
+    case Types.SKANS_SUCCESS: {
+      console.log("SKANS_SUCCESS");
 
       return {
         ...state,
-        authData: action.payload,
+        skans: action.payload,
         loader: false,
       }
     }
 
-    case Types.LOGIN_FAILURE: {
-      console.log("LOGIN_FAILURE");
+    case Types.SKANS_FAILURE: {
+      console.log("SKANS_FAILURE");
 
       return {
         ...state,
         error: action.payload,
         loader: false,
-      }
-    }
-
-    case Types.CONTINUE_AFTER_FAILURE: {
-      console.log("CONTINUE_AFTER_FAILURE")
-
-      return {
-        ...state,
-        error: false,
       }
     }
 
