@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from "../../images/logo.png";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -10,20 +10,32 @@ import { loginRequest } from "../../store/authorization/actions";
 const Auth = (props) => {
     const { history, token, loader, error } = props;
 
-
     const [login, setLogin] = useState(null);
     const [password, setPassword] = useState(null);
+    const [isSent, setSentStatus] = useState(false)
+
 
 
     const onAuthorizationSubmit = (event) => {
         event.preventDefault();
         const data = { login, password };
-        props.loginUser(data);
+       
+        props.loginUser(data)
+        //window.location.reload();
 
+        console.log(token)
         if (token !== null) {
             history.push('/overhead')
-        };
+        }
     };
+
+
+    useEffect(() => {
+        if (token !== null) {
+            history.push('/overhead')
+        }
+    }, [token, history])
+
 
 
     return (
@@ -47,6 +59,7 @@ const Auth = (props) => {
                                     <div className="authoriz__input">
                                         <input
                                             onChange={(event) => setLogin(event.target.value)}
+                                            //defaultValue="admin"
                                             type="text"
                                             required
                                             placeholder="логин"></input>
@@ -58,6 +71,7 @@ const Auth = (props) => {
                                     <div className="password__input">
                                         <input
                                             onChange={(event) => setPassword(event.target.value)}
+                                            //defaultValue="pas"
                                             type="password"
                                             required
                                             placeholder="*****" />

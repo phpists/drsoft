@@ -30,17 +30,6 @@ const Navbar = (props) => {
     return (
         <>
             <ul style={ulStyle}>
-                <li style={liStyle}>
-                    <Link to="/accent">Accent Page</Link>
-                </li>
-
-                <li style={liStyle}>
-                    <Link to="/auth">Auth Page</Link>
-                </li>
-
-                <li style={liStyle}>
-                    <Link to="/edit">Edit Page</Link>
-                </li>
 
                 <li style={liStyle}>
                     <Link to="/overhead">OverHead Page</Link>
@@ -49,6 +38,19 @@ const Navbar = (props) => {
                 <li style={liStyle}>
                     <Link to="/skan">Skan Page</Link>
                 </li>
+
+                <li style={liStyle}>
+                    <Link to="/accent">Accent Page</Link>
+                </li>
+
+                {/* <li style={liStyle}>
+                    <Link to="/auth">Auth Page</Link>
+                </li> */}
+
+                {/* <li style={liStyle}>
+                    <Link to="/edit">Edit Page</Link>
+                </li> */}
+
                 <button onClick={() => (onLogOut())}
                 >Log Out</button>
             </ul>

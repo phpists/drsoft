@@ -31,6 +31,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         authData: action.payload,
         loader: false,
+        token: localStorage.getItem('drSoftToken') || null,
       }
     }
 

@@ -1,16 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { addNakl } from "../../helpers/nakladni";
+
 
 
 
 const Edit = () => {
+    const [nakl, setNakl] = useState(null);
+
+    useEffect(() => {
+
+        addNakl()
+            .then((data) => setNakl(data.data))
+        //.then((data) => console.log(data.data.provider_id))
+    }, [])
+
+    const numbers = { nakl_id: 1, provider_id: 1 };
+
+    console.log(nakl)
 
 
     return (
         <div className="edit">
             <div className="container">
                 <div className="edit__block">
+
+                    {
+                        nakl === null
+                            ?
+                            < h3 >Загрузка...</h3>
+                            :
+                            <>
+                                < h3 >data</h3>
+                                {/* <ul>
+                                    {nakl.map((item) => <li>{item}</li>)}
+                                </ul> */}
+                                <div>{nakl.provider_id}, {nakl.nakl_id}</div>
+                            </>
+                    }
+
                     <div className="edit__block-title">Поставщик</div>
-                    <div className="edit__block-subtitle">Для записи к гинекологу</div>
+                    {/* <div className="edit__block-subtitle">Для записи к гинекологу</div> */}
                     <form className="edit__block-form">
                         <div className="edit__block-form-item">
                             <div className="edit__block-form-left">ФИО</div>
@@ -51,17 +82,7 @@ const Edit = () => {
                             </div>
                         </div>
                     </form>
-                    <div className="edit__block-check">
-                        <div>
-                            <label className="label">
-                                <input type="checkbox" className="checkbox" />
-                                <span className="fake"></span>
-                            </label>
-                        </div>
-                        <div className="edit__block-text">
-                            Сохранить мои данные на этом компьютере в течении 5 минут
-              </div>
-                    </div>
+
                     <div className="skan__button">
                         <a href="#" className="btn skan__button-btn">Отправить</a>
                         <a href="#" className="btn skan__button-cancel">Отмена</a>
@@ -71,6 +92,22 @@ const Edit = () => {
         </div>
     );
 };
+
+
+// const mapStateToProps = (state) => ({
+//     //nakladni: state.nakladni.nakladni,
+//     loader: state.nakladni.loader,
+//     error: state.nakladni.error
+//   });
+
+// const mapDispatchToProps = dispatch => ({
+//     getNakladni: (data) => dispatch(getNakladniRequest(data))
+//   });
+
+
+//   export default withRouter(
+//     connect(mapStateToProps, mapDispatchToProps)(OverHead)
+//   );
 
 
 export default Edit;

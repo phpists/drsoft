@@ -15,8 +15,8 @@ const Private = ({ component: Component, ...rest }) => {
       if (rest.token) {
         return <Component {...props} />
       }
-      return <Redirect to="/auth" />
 
+      return <Redirect to="/auth" />
       //return <Component {...props} />
     }} />
   );

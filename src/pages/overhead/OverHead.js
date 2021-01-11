@@ -85,6 +85,10 @@ const OverHead = (props) => {
     props.getNakladni(data);
   };
 
+  function toEditForm() {
+    props.history.push('/edit');
+  };
+
 
   return (
     <div className="container">
@@ -275,7 +279,9 @@ const OverHead = (props) => {
             <div className="overhead__block-top-right">
               <div className="overhead__block-top-title">
                 Накладные
-                  <button className="buttonPlus">
+                  <button
+                  onClick={() => { toEditForm() }}
+                  className="buttonPlus">
                   <div className="buttonPlus-item"></div>
                   <div className="buttonPlus-item"></div>
                 </button>
