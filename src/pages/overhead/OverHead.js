@@ -359,8 +359,7 @@ const OverHead = (props) => {
                   :
                 <OverHeadTable
                   props={props}
-                  results={nakladni}
-                />
+                  results={nakladni}/>
               }
 
             </div>

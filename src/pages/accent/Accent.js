@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getNaklData } from "../../helpers/nakladni";
 import Loader from "../../components/Loader/Loader"
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
+import AccentTable from './AccentTable';
 
 
 
@@ -15,7 +16,6 @@ const Accent = () => {
   useEffect(() => {
     getNaklData()
       .then((data) => setNaklData(data.data));
-    //.then((data) => console.log(data.data))
   }, []);
 
 
@@ -126,39 +126,8 @@ const Accent = () => {
                 ?
                 <NoDataMessage />
                 :
-                <table className="table__block-table">
-                  <thead>
-                    <tr className="table__block-title">
-                      <th>Статус</th>
-                      <th>Наименование</th>
-                      <th>Коды маркировки</th>
-                      <th>Кол-во</th>
-                      <th>Проверка</th>
-                      <th>Цена, Р.</th>
-                      <th>НДС, Р.</th>
-                      <th>Сумма(с НДС)</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {naklData.map((item) => {
-                      return (
-                        <tr key={item.name}
-                          className="table__block-table-disagree">
-
-                          <td><span>hz</span></td>
-                          <td>{item.name}</td>
-                          <td>{item.code_count}</td>
-                          <td>{item.count}</td>
-                          <td>{item.validation}</td>
-                          <td>{item.price}</td>
-                          <td>{item.nds}</td>
-                          <td>{item.sum}</td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
+                <AccentTable
+                  results={naklData} />
           }
 
         </div>
