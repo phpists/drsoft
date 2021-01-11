@@ -18,7 +18,7 @@ const SkanTable = ({ skans }) => {
         () => skans.map((item, index) => {
             return {
                 number: index + 1,
-                code: item,
+                code: item.sgtin,
             }
         }), [skans]
     );

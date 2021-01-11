@@ -10,7 +10,7 @@ import { getNakladniRequest } from "../../store/nakladni/actions";
 
 
 const OverHead = (props) => {
-  const { nakladni, loader, error } = props;
+  const { nakladni, loader, error} = props;
 
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
@@ -331,7 +331,7 @@ const OverHead = (props) => {
                 </div>
               </div>
 
-              <div className="list-select">
+              {/* <div className="list-select">
                 <div className="list-select-text">Статус</div>
                 <div className={activeSelect && type === "status" ? "select active" : "select"}
                   onClick={() => onSelectClick("status")}>
@@ -347,7 +347,7 @@ const OverHead = (props) => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="table__block-wrapper">
 
@@ -357,9 +357,10 @@ const OverHead = (props) => {
                 error ?
                   <ErrorMessage />
                   :
-                  <OverHeadTable
-                    results={nakladni}
-                  />
+                <OverHeadTable
+                  props={props}
+                  results={nakladni}
+                />
               }
 
             </div>

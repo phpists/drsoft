@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getNaklData } from "../../helpers/nakladni";
+import Loader from "../../components/Loader/Loader"
+import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 
@@ -6,6 +9,15 @@ const Accent = () => {
   const [activeClass, setActiveClass] = useState(false);
   const [activeSelect, setActiveSelect] = useState(false);
   const [defaultDate, setDefaultDate] = useState("01.11.2020");
+  const [naklData, setNaklData] = useState(null);
+
+
+  useEffect(() => {
+    getNaklData()
+      .then((data) => setNaklData(data.data));
+    //.then((data) => console.log(data.data))
+  }, []);
+
 
   let toggleClass;
   activeClass ? toggleClass = "accent__block-toggle" : toggleClass = "accent__block-toggle noactive";
@@ -60,10 +72,6 @@ const Accent = () => {
         <div className="accent__block-select">
           <div className="list-select">
             <div className="list-select-text">Дата приемки</div>
-
-
-
-
             <div
               onClick={() => { setActiveSelect(activeSelect => !activeSelect) }}
               className={toggleSelect}>
@@ -92,13 +100,10 @@ const Accent = () => {
               </div>
               <div className="select__body-bg"></div>
               <div className="select__body">
-                <option className="list-select-option select__current">01.11.2020</div>
+                <option className="list-select-option select__current">01.11.2020</option>
                 <option className="list-select-option">02.11.2020</option>
               </div>
             </select> */}
-
-
-
           </div>
           <div className="list-select">
             <div
@@ -109,261 +114,54 @@ const Accent = () => {
             <div className="list-select-text">Отозванные товары</div>
           </div>
         </div>
-
         <div className="table__block-wrapper">
-          <table className="table__block-table">
-            <thead>
-              <tr className="table__block-title">
-                <th>Статус</th>
-                <th>Наименование</th>
-                <th>Коды маркировки</th>
-                <th>Кол-во</th>
-                <th>Проверка</th>
-                <th>Цена, Р.</th>
-                <th>НДС, Р.</th>
-                <th>Сумма(с НДС)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-coincide">
-                <td><span>Проверили, данные не совпадают</span></td>
-                <td>аскорбин</td>
-                <td>23.04.12</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-unverified">
-                <td><span>Проверили, данные совпадают</span></td>
-                <td>креатинин</td>
-                <td>12.01.02</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
 
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
+          {
+            naklData === null
+              ?
+              <Loader />
+              :
 
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
+              naklData.length === 0
+                ?
+                <NoDataMessage />
+                :
+                <table className="table__block-table">
+                  <thead>
+                    <tr className="table__block-title">
+                      <th>Статус</th>
+                      <th>Наименование</th>
+                      <th>Коды маркировки</th>
+                      <th>Кол-во</th>
+                      <th>Проверка</th>
+                      <th>Цена, Р.</th>
+                      <th>НДС, Р.</th>
+                      <th>Сумма(с НДС)</th>
+                    </tr>
+                  </thead>
 
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
+                  <tbody>
+                    {naklData.map((item) => {
+                      return (
+                        <tr key={item.name}
+                          className="table__block-table-disagree">
 
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
+                          <td><span>hz</span></td>
+                          <td>{item.name}</td>
+                          <td>{item.code_count}</td>
+                          <td>{item.count}</td>
+                          <td>{item.validation}</td>
+                          <td>{item.price}</td>
+                          <td>{item.nds}</td>
+                          <td>{item.sum}</td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+          }
 
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-unverified">
-                <td><span>Проверили, данные совпадают</span></td>
-                <td>креатинин</td>
-                <td>12.01.02</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-unverified">
-                <td><span>Проверили, данные совпадают</span></td>
-                <td>креатинин</td>
-                <td>12.01.02</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-unverified">
-                <td><span>Проверили, данные совпадают</span></td>
-                <td>креатинин</td>
-                <td>12.01.02</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-              <tr className="table__block-table-unverified">
-                <td><span>Проверили, данные совпадают</span></td>
-                <td>креатинин</td>
-                <td>12.01.02</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-
-              <tr className="table__block-table-disagree">
-                <td><span>Ещё не проверили</span></td>
-                <td>аспиран</td>
-                <td>123</td>
-                <td>123</td>
-                <td>нет</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-                <td>З10 000,00</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
-
         <div className="accent__block-button">
           <button className="btn">Прервать приемку</button>
           <button className="btn">Доверительная приемка</button>

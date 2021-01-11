@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 
-const OverHeadTable = ({ results }) => {
-    //const OverHeadTable = () => {
+const OverHeadTable = ({ results, props }) => {
+    //const OverHeadTable = ({ props }) => {
+
+    const onNaklSelect = (event) => {
+        event.preventDefault();
+        console.log(props);
+        props.history.push("/accent");
+    };
+
+
 
     // const results = [
     //     {
@@ -96,62 +104,63 @@ const OverHeadTable = ({ results }) => {
 
 
     return (
-        
-            results.length === 0
-                ?
-                <NoDataMessage />
-                :
-                <table className="table__block-table"
-                    {...getTableProps()} >
-                    <thead>
-                        {headerGroups.map((headerGroup) => (
-                            <tr className="table__block-title"
-                                {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map((column) => (
 
-                                    //Add the sorting props to control sorting
-                                    < th {...column.getHeaderProps(column.getSortByToggleProps())} >
-                                        {column.render("Header")}
+        results.length === 0
+            ?
+            <NoDataMessage />
+            :
+            <table className="table__block-table"
+                {...getTableProps()} >
+                <thead>
+                    {headerGroups.map((headerGroup) => (
+                        <tr className="table__block-title"
+                            {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column) => (
 
-                                        {/* Add a sort direction indicator  */}
-                                        <span>
-                                            {column.isSorted
-                                                ? column.isSortedDesc
-                                                    ? ' 🔽'
-                                                    : ' 🔼'
-                                                : ''}
-                                        </span>
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
+                                //Add the sorting props to control sorting
+                                < th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                                    {column.render("Header")}
+
+                                    {/* Add a sort direction indicator  */}
+                                    <span>
+                                        {column.isSorted
+                                            ? column.isSortedDesc
+                                                ? ' 🔽'
+                                                : ' 🔼'
+                                            : ''}
+                                    </span>
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
 
 
-                    <tbody {...getTableBodyProps()}>
-                        {results.length === 0
-                            ?
-                            <NoDataMessage />
-                            :
-                            rows.map((row, i) => {
-                                prepareRow(row);
-                                //console.log(row.original.style) 
+                <tbody {...getTableBodyProps()}>
+                    {results.length === 0
+                        ?
+                        <NoDataMessage />
+                        :
+                        rows.map((row, i) => {
+                            prepareRow(row);
+                            //console.log(row.original.style) 
 
-                                return (
-                                    < tr className={row.original.style + ""}
+                            return (
+                                <tr onDoubleClick={(event) => { onNaklSelect(event) }}
+                                    className={row.original.style + ""}
 
-                                        {...row.getRowProps()}>
-                                        {row.cells.map((cell) => {
-                                            return (
-                                                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                                            )
-                                        })}
-                                    </tr>
-                                );
-                            })
-                        }
-                    </tbody>
-                </table >
+                                    {...row.getRowProps()}>
+                                    {row.cells.map((cell) => {
+                                        return (
+                                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                        )
+                                    })}
+                                </tr>
+                            );
+                        })
+                    }
+                </tbody>
+            </table >
     );
 };
 

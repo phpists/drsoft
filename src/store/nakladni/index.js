@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case Types.NAKLADNI_REQUEST: {
-      console.log("NAKLADNI_REQUEST");
 
       return {
         ...state,
@@ -24,7 +23,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case Types.NAKLADNI_SUCCESS: {
-      console.log("NAKLADNI_SUCCESS");
 
       return {
         ...state,
@@ -34,7 +32,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case Types.NAKLADNI_FAILURE: {
-      console.log("NAKLADNI_FAILURE");
 
       return {
         ...state,

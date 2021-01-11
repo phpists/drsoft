@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addNakl } from "../../helpers/nakladni";
+import { editNakl, addNakl } from "../../helpers/nakladni";
+import Loader from "../../components/Loader/Loader"
 
 
 
 
-const Edit = () => {
+const Edit = (props) => {
     const [nakl, setNakl] = useState(null);
 
     useEffect(() => {
-
-        addNakl()
+        editNakl()
             .then((data) => setNakl(data.data))
-        //.then((data) => console.log(data.data.provider_id))
-    }, [])
+    }, []);
 
-    const numbers = { nakl_id: 1, provider_id: 1 };
 
-    console.log(nakl)
+    const onAddNakl = (event) => {
+        event.preventDefault();
+        addNakl()
+            .then((data) => console.log(data));
+        props.history.push("/accent");
+    };
 
 
     return (
@@ -29,64 +32,73 @@ const Edit = () => {
                     {
                         nakl === null
                             ?
-                            < h3 >Загрузка...</h3>
+                            <Loader />
                             :
                             <>
-                                < h3 >data</h3>
-                                {/* <ul>
-                                    {nakl.map((item) => <li>{item}</li>)}
-                                </ul> */}
-                                <div>{nakl.provider_id}, {nakl.nakl_id}</div>
+                                <div className="edit__block-title">Поставщик</div>
+                                <form
+                                    onSubmit={(event) => { onAddNakl(event) }}
+                                    className="edit__block-form">
+
+                                    <div className="edit__block-form-item">
+                                        <div className="edit__block-form-left">Поставщик</div>
+                                        <div className="edit__block-form-right">
+                                            <input
+                                                type="text"
+                                                placeholder={nakl.provider_id}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="edit__block-form-item">
+                                        <div className="edit__block-form-left">Дата получения товара</div>
+                                        <div className="edit__block-form-right">
+                                            <input
+                                                type="text"
+                                                placeholder={nakl.operation_date}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="edit__block-form-item">
+                                        <div className="edit__block-form-left">Дата накладной</div>
+                                        <div className="edit__block-form-right">
+                                            <input
+                                                type="text"
+                                                placeholder={nakl.doc_date}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="edit__block-form-item">
+                                        <div className="edit__block-form-left">Номер накладной</div>
+                                        <div className="edit__block-form-right">
+                                            <input
+                                                type="text"
+                                                placeholder={nakl.doc_num}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="edit__block-form-item">
+                                        <div className="edit__block-form-left">Источник финансирования</div>
+                                        <div className="edit__block-form-right">
+                                            <input
+                                                type="text"
+                                                placeholder={nakl.source_type_id}
+                                            />
+                                        </div>
+                                    </div>
+
+
+                                    <div className="skan__button">
+                                        <button className="btn skan__button-btn">Отправить</button>
+                                        {/* <button className="btn skan__button-cancel">Отмена</button> */}
+                                    </div>
+
+                                </form>
                             </>
                     }
-
-                    <div className="edit__block-title">Поставщик</div>
-                    {/* <div className="edit__block-subtitle">Для записи к гинекологу</div> */}
-                    <form className="edit__block-form">
-                        <div className="edit__block-form-item">
-                            <div className="edit__block-form-left">ФИО</div>
-                            <div className="edit__block-form-right">
-                                <input
-                                    type="text"
-                                    placeholder="Анатолий Анатольевич Анатольев"
-                                />
-                            </div>
-                        </div>
-                        <div className="edit__block-form-item">
-                            <div className="edit__block-form-left">Телефон</div>
-                            <div className="edit__block-form-right">
-                                <input type="tel" />
-                            </div>
-                        </div>
-                        <div className="edit__block-form-item">
-                            <div className="edit__block-form-left">Дата рождения</div>
-                            <div className="select edit__block-form-right">
-                                <div className="edit__block-selector edit__block-form-right">
-                                    <span className="select__current">2020</span>
-                                </div>
-                                <div className="select__body-bg"></div>
-                                <div className="select__body">
-                                    <div className="edit__block-option">2020</div>
-                                    <div className="edit__block-option">2019</div>
-                                    <div className="edit__block-option">2018</div>
-                                    <div className="edit__block-option">2017</div>
-                                    <div className="edit__block-option">2016</div>
-                                    <div className="edit__block-option">2015</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="edit__block-form-item">
-                            <div className="edit__block-form-left">Примечание</div>
-                            <div className="edit__block-form-right">
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div className="skan__button">
-                        <a href="#" className="btn skan__button-btn">Отправить</a>
-                        <a href="#" className="btn skan__button-cancel">Отмена</a>
-                    </div>
                 </div>
             </div>
         </div>
