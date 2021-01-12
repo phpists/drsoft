@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { getNaklData } from "../../helpers/nakladni";
 import Loader from "../../components/Loader/Loader"
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import AccentTable from './AccentTable';
 
+//import { getNaklData } from "../../helpers/nakladni";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { getNakladnaRequest } from "../../store/nakladni/actions";
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 
-const Accent = () => {
+
+const Accent = (props) => {
+  const { naklData, loader, error } = props;
+
   const [activeClass, setActiveClass] = useState(false);
   const [activeSelect, setActiveSelect] = useState(false);
   const [defaultDate, setDefaultDate] = useState("01.11.2020");
-  const [naklData, setNaklData] = useState(null);
+  //const [naklData, setNaklData] = useState(null);
 
 
   useEffect(() => {
-    getNaklData()
-      .then((data) => setNaklData(data.data));
-  }, []);
+    props.getNakladna();
+  }, [props.getNakladna]);
 
 
   let toggleClass;
@@ -117,14 +123,12 @@ const Accent = () => {
         <div className="table__block-wrapper">
 
           {
-            naklData === null
+            loader || naklData === null
               ?
               <Loader />
               :
-
-              naklData.length === 0
-                ?
-                <NoDataMessage />
+              error ?
+                <ErrorMessage />
                 :
                 <AccentTable
                   results={naklData} />
@@ -143,4 +147,20 @@ const Accent = () => {
 };
 
 
-export default Accent;
+const mapStateToProps = (state) => ({
+  naklData: state.nakladni.naklData,
+  loader: state.nakladni.loader,
+  error: state.nakladni.error
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  getNakladna: () => dispatch(getNakladnaRequest())
+});
+
+
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Accent)
+);
+

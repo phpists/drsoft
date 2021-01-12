@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 
 const OverHeadTable = ({ results, props }) => {
-    //const OverHeadTable = ({ props }) => {
+//const OverHeadTable = ({ props }) => {
 
     const onNaklSelect = (event) => {
         event.preventDefault();
         console.log(props);
         props.history.push("/accent");
     };
-
 
 
     // const results = [

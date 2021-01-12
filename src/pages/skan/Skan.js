@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { getSkansRequest } from "../../store/skans/actions";
 
 
+
 const Skan = (props) => {
     const { loader, skans, error } = props;
 

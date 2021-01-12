@@ -4,7 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { editNakl, addNakl } from "../../helpers/nakladni";
 import Loader from "../../components/Loader/Loader"
 
-
+// import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+// import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
+// import { getSkansRequest } from "../../store/skans/actions";
 
 
 const Edit = (props) => {
@@ -107,19 +110,19 @@ const Edit = (props) => {
 
 
 // const mapStateToProps = (state) => ({
-//     //nakladni: state.nakladni.nakladni,
+//     nakladni: state.nakladni.nakladni,
 //     loader: state.nakladni.loader,
 //     error: state.nakladni.error
-//   });
+// });
 
 // const mapDispatchToProps = dispatch => ({
 //     getNakladni: (data) => dispatch(getNakladniRequest(data))
-//   });
+// });
 
 
-//   export default withRouter(
-//     connect(mapStateToProps, mapDispatchToProps)(OverHead)
-//   );
+// export default withRouter(
+//     connect(mapStateToProps, mapDispatchToProps)(Edit)
+// );
 
 
 export default Edit;

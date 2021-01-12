@@ -10,7 +10,7 @@ import { getNakladniRequest } from "../../store/nakladni/actions";
 
 
 const OverHead = (props) => {
-  const { nakladni, loader, error} = props;
+  const { nakladni, loader, error } = props;
 
   const [activeSelect, setActiveSelect] = useState(false);
   const [type, setType] = useState(null);
@@ -351,15 +351,17 @@ const OverHead = (props) => {
             </div>
             <div className="table__block-wrapper">
 
-              {loader || nakladni === null ?
-                <Loader />
-                :
-                error ?
-                  <ErrorMessage />
+              {
+                loader || nakladni === null
+                  ?
+                  <Loader />
                   :
-                <OverHeadTable
-                  props={props}
-                  results={nakladni}/>
+                  error ?
+                    <ErrorMessage />
+                    :
+                    <OverHeadTable
+                      props={props}
+                      results={nakladni} />
               }
 
             </div>
