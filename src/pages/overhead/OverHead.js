@@ -16,11 +16,11 @@ const OverHead = (props) => {
   const [type, setType] = useState(null);
   const [year, setYear] = useState(2021);
   const [month, setMonth] = useState({ number: 1, value: "Январь" });
-  const [status, setStatus] = useState("Завершён");
+  const [status, setStatus] = useState({ id: null, value: "-" });
 
 
   useEffect(() => {
-    const data = { year, month };
+    const data = { year, month: month.number, status: 1 };
     props.getNakladni(data);
   }, [props.getNakladni]);
 
@@ -41,20 +41,12 @@ const OverHead = (props) => {
       2018,
       2017,
       2016,
-      2015,
-      2014,
-      2013,
-      2012,
-      2011,
-      2010,
-      2009,
-      2008,
-      2007,
-      2006
+      2015
     ];
 
   const months =
     [
+      { number: null, value: "-" },
       { number: 1, value: "Январь" },
       { number: 2, value: "Февраль" },
       { number: 3, value: "Март" },
@@ -69,21 +61,34 @@ const OverHead = (props) => {
       { number: 12, value: "Декабрь" },
     ];
 
-  const statuses = ["Завершён", "Не завершён"];
+  const statuses = [
+    { id: null, value: "-" },
+    { id: 1, value: "Новая поставка" },
+    { id: 2, value: "Приемка товара" },
+    { id: 4, value: "Ошибка" }
+  ];
 
 
   function changeYear(year) {
     setYear(year);
-    const data = { year, month };
+    const data = { year, month: month.number, status: status.id };
     props.getNakladni(data);
   };
 
 
   function changeMonth(month) {
     setMonth(month);
-    const data = { year, month: month.number };
+    const data = { year, month: month.number, status: status.id };
     props.getNakladni(data);
   };
+
+
+  function changeStatus(status) {
+    setStatus(status);
+    const data = { year, month: month.number, status: status.id };
+    props.getNakladni(data);
+  };
+
 
   function toEditForm() {
     props.history.push('/edit');
@@ -291,6 +296,7 @@ const OverHead = (props) => {
           </div>
           <div className="overhead__block-bottom">
             <div className="overhead__block-select">
+
               <div className="list-select">
                 <div className="list-select-text">Год</div>
                 <div
@@ -326,6 +332,27 @@ const OverHead = (props) => {
                       <div key={month.number}
                         onClick={() => changeMonth(month)}
                         className="list-select-option">{month.value}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="list-select">
+                <div className="list-select-text">Статус</div>
+
+                <div className={activeSelect && type === "status" ? "select active" : "select"}
+                  onClick={() => onSelectClick("status")}>
+                  <div className="list-select-selector">
+                    <span className="select__current">{status.value}</span>
+                  </div>
+                  <div className="select__body-bg"></div>
+                  <div className="select__body">
+
+                    {statuses.map((status) => (
+                      <div key={status.id}
+                        onClick={() => changeStatus(status)}
+                        className="list-select-option">{status.value}</div>
                     ))}
                   </div>
                 </div>

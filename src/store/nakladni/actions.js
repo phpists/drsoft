@@ -12,12 +12,12 @@ export const Types = {
 };
 
 
-export const getNakladniRequest = ({ year, month }) => {
+export const getNakladniRequest = ({ year, month,status }) => {
   return dispatch => {
 
     dispatch(startNakladniRequest());
 
-    getNaklFiltered(year, month)
+    getNaklFiltered(year, month,status)
 
       .then(res => {
         // console.log(res)

@@ -1,11 +1,9 @@
 import { axiosInstance } from './baseUrl'
 
 
-export async function getNaklFiltered(year, month) {
+export async function getNaklFiltered(year, month, status) {
   return await axiosInstance
-    //.get(`nakls/filtr?company_id=1&year=${year}&month=${month}&status_id=1`)
-    //&status_id=1
-    .get(`nakls/filtr?company_id=1&year=${year}&month=${month}&status_id=1`)
+    .get(`nakls/filtr?company_id=1&year=${year}&month=${month}&status_id=${status}`)
     //.get(`nakls/filtr`, {data: null}, { params: { year, month } })
     .then(response => {
       return response
