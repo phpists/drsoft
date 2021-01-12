@@ -16,6 +16,18 @@ const Skan = (props) => {
         props.getSkans();
     }, [props.getSkans]);
 
+    let skansQuantity;
+    { skans === null || skans === undefined ? skansQuantity = 0 : skansQuantity = skans.length };
+
+    let newSkansQuantity;
+    { skans === null || skans === undefined ? newSkansQuantity = 0 : newSkansQuantity = skans.filter(item => item.status === "Новый").length };
+
+    let testedSkansQuantity;
+    { skans === null || skans === undefined ? testedSkansQuantity = 0 : testedSkansQuantity = skans.filter(item => item.status === "Проверен").length };
+
+    let notTestedSkansQuantity;
+    { skans === null || skans === undefined ? notTestedSkansQuantity = 0 : notTestedSkansQuantity = skans.filter(item => item.status === "Не проверен").length };
+
 
     return (
         <div className="skan">
@@ -30,12 +42,38 @@ const Skan = (props) => {
                         <div className="skan__block-img">
                             <img src={skan} alt="skan" ></img>
                         </div>
+
+
                         <div className="skan__block-num">
                             <div className="skan__block-number">
-                                {skans === null || skans === undefined ? 0 : skans.length}
+                                {skansQuantity}
                             </div>
                             <div className="skan__block-text">Отсканированих кодов</div>
                         </div>
+
+
+                        <div className="skan__block-num">
+                            <div className="skan__block-number">
+                                {newSkansQuantity}
+                            </div>
+                            <div className="skan__block-text">Новых</div>
+                        </div>
+
+                        <div className="skan__block-num">
+                            <div className="skan__block-number">
+                                {testedSkansQuantity}
+                            </div>
+                            <div className="skan__block-text">Провереныx</div>
+                        </div>
+
+                        <div className="skan__block-num">
+                            <div className="skan__block-number">
+                                {notTestedSkansQuantity}
+                            </div>
+                            <div className="skan__block-text">Не провереныx</div>
+                        </div>
+
+
                     </div>
 
                     <div className="table__block-wrapper">
@@ -54,8 +92,8 @@ const Skan = (props) => {
                                     <a href="#" className="skan__block-link"
                                     >Сбросить результат и начать заново</a>
                                     <div className="skan__button">
-                                        <a href="#" className="btn skan__button-btn">Продолжить</a>
-                                        <a href="#" className="btn skan__button-cancel">Отмена</a>
+                                        <button className="btn skan__button-btn">Продолжить</button>
+                                        <button className="btn skan__button-cancel">Отмена</button>
                                     </div>
                                 </>
                         }
