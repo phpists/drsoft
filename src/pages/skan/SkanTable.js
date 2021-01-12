@@ -19,6 +19,7 @@ const SkanTable = ({ skans }) => {
             return {
                 number: index + 1,
                 code: item.sgtin,
+                status: item.status,
             }
         }), [skans]
     );
@@ -30,9 +31,13 @@ const SkanTable = ({ skans }) => {
                 accessor: "number",
             },
             {
+                Header: "Cтатус",
+                accessor: "status",
+            },
+            {
                 Header: "Коды маркировки",
                 accessor: "code",
-            }
+            },
         ],
         [skans]
     );
