@@ -5,6 +5,8 @@ import { Types } from './actions';
 const initialState = {
   nakladni: null,
   naklData: null,
+  editModal: false,
+  editNaklData: null,
   loader: false,
   error: false
 };
@@ -55,6 +57,44 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         loader: false,
+      }
+    }
+
+
+    case Types.EDIT_NAKL_REQUEST: {
+      return {
+        ...state,
+        loader: true,
+        editNaklData: action.payload,
+      }
+    }
+    case Types.EDIT_NAKL_SUCCESS: {
+      return {
+        ...state,
+        editNaklData: action.payload.data,
+        loader: false,
+      }
+    }
+    case Types.EDIT_NAKL_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+        loader: false,
+      }
+    }
+
+
+    case Types.SHOW_EDIT_MODAL: {
+      return {
+        ...state,
+        editModal: true
+      }
+    }
+
+    case Types.CLOSE_EDIT_MODAL: {
+      return {
+        ...state,
+        editModal: false
       }
     }
 

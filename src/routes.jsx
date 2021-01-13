@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Auth from './pages/auth/Auth';
-import Edit from './pages/edit/Edit';
+//import Edit from './pages/edit/Edit';
 import Accent from './pages/accent/Accent';
 import OverHead from './pages/overhead/OverHead';
 import Skan from './pages/skan/Skan';
@@ -34,7 +34,7 @@ const Routes = () => {
       <Route exact path="/" component={Auth} />
       <Route path="/auth" component={Auth} />
       <PrivateRoute path="/accent" component={Accent} />
-      <PrivateRoute path="/edit" component={Edit} />
+      {/* <PrivateRoute path="/edit" component={Edit} /> */}
       <PrivateRoute path="/overhead" component={OverHead} />
       <PrivateRoute path="/skan" component={Skan} />
     </Switch>

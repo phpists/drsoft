@@ -27,7 +27,7 @@ export async function addNakl() {
     //.post("nakls-full", null , {params:{}})
     .post("nakls-full?provider_id=1&operation_date=2021-01-01T00:00:00&doc_date=2021-01-01T00:00:00&doc_num=9s9d9ss&receive_type_id=0&source_type_id=0&contract_type_id=2&contract_num=9sdls99")
     .then(response => {
-      // console.log(response)
+      //console.log(response)
       return response
     }).catch(error => ({ error }))
 };
