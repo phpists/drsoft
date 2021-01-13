@@ -7,6 +7,9 @@ const initialState = {
   naklData: null,
   editModal: false,
   editNaklData: null,
+
+  naklHeaderData: null,
+
   loader: false,
   error: false
 };
@@ -59,6 +62,35 @@ const reducer = (state = initialState, action) => {
         loader: false,
       }
     }
+
+
+
+
+
+    case Types.NAKL_HEADER_DATA_REQUEST: {
+      return {
+        ...state,
+        loader: true,
+        naklHeaderData: action.payload,
+      }
+    }
+    case Types.NAKL_HEADER_DATA_SUCCESS: {
+      return {
+        ...state,
+        naklHeaderData: action.payload.data,
+        loader: false,
+      }
+    }
+    case Types.NAKL_HEADER_DATA_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+        loader: false,
+      }
+    }
+
+
+
 
 
     case Types.EDIT_NAKL_REQUEST: {

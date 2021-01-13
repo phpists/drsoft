@@ -1,4 +1,4 @@
-import { getNaklFiltered, getNaklData, editNakl, addNakl } from '../../helpers/nakladni';
+import { getNaklFiltered, getNaklData, editNakl, addNakl, getNaklHeaderData } from '../../helpers/nakladni';
 
 
 export const Types = {
@@ -13,6 +13,10 @@ export const Types = {
   EDIT_NAKL_REQUEST: 'EDIT_NAKL_REQUEST',
   EDIT_NAKL_SUCCESS: 'EDIT_NAKL_SUCCESS',
   EDIT_NAKL_FAILURE: 'EDIT_NAKL_FAILURE',
+
+  NAKL_HEADER_DATA_REQUEST: 'NAKL_HEADER_DATA_REQUEST',
+  NAKL_HEADER_DATA_SUCCESS: 'NAKL_HEADER_DATA_SUCCESS',
+  NAKL_HEADER_DATA_FAILURE: 'NAKL_HEADER_DATA_FAILURE',
 
   SHOW_EDIT_MODAL: 'SHOW_EDIT_MODAL',
   CLOSE_EDIT_MODAL: 'CLOSE_EDIT_MODAL',
@@ -92,6 +96,43 @@ export const getEditNaklData = () => {
       })
   };
 };
+
+
+export const getNaklHeaderDataRequest = () => {
+  return dispatch => {
+
+    dispatch(startNaklHeaderDataRequest());
+
+    getNaklHeaderData()
+
+      .then(res => {
+        // console.log(res)
+        if (res.status === 200) {
+          dispatch(getNaklHeaderDataSuccess(res));
+
+        } else {
+          dispatch(getNaklHeaderDataFailure(res));
+        }
+      })
+  };
+};
+
+const startNaklHeaderDataRequest = () => ({
+  type: Types.NAKL_HEADER_DATA_REQUEST
+});
+
+const getNaklHeaderDataSuccess = (payload) => ({
+  type: Types.NAKL_HEADER_DATA_SUCCESS,
+  payload
+});
+
+const getNaklHeaderDataFailure = error => ({
+  type: Types.NAKL_HEADER_DATA_FAILURE,
+  payload: {
+    error
+  }
+});
+
 
 
 const startEditNaklDataRequest = () => ({

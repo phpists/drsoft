@@ -7,37 +7,11 @@ import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 const OverHeadTable = ({ results, props }) => {
 //const OverHeadTable = ({ props }) => {
 
-    const onNaklSelect = (event) => {
+    const onNaklSelect = (event,id) => {
         event.preventDefault();
-        console.log(props);
-        props.history.push("/accent");
+        console.log(id);
+        //props.history.push("/accent");
     };
-
-
-    // const results = [
-    //     {
-    //         "id": 1,
-    //         "number": "9sdls99",
-    //         "date_time": "2021-01-01T00:00:00",
-    //         "provider": "РОГА И КОПЫТА",
-    //         "acceptance_type": "Прямой",
-    //         "contract_type": "Комисия",
-    //         "sum": 1200.00,
-    //         "status": "Новая поставка",
-    //         "status_style": "table__block-newover"
-    //     },
-    //     {
-    //         "id": -1,
-    //         "number": "9sdls99",
-    //         "date_time": "2021-01-01T00:00:00",
-    //         "provider": "ОАО Мартышкин Труд",
-    //         "acceptance_type": "Обратный",
-    //         "contract_type": "Комисия",
-    //         "sum": 138250.00,
-    //         "status": "Новая поставка",
-    //         "status_style": "table__block-newover"
-    //     }
-    // ];
 
 
     const data = React.useMemo(
@@ -51,6 +25,7 @@ const OverHeadTable = ({ results, props }) => {
                 acceptance_type: item.acceptance_type,
                 ContractTypeName: item.ContractTypeName,
                 Sum: item.sum,
+                id: item.nakl_id,
             }
         }), [results]
     );
@@ -142,16 +117,18 @@ const OverHeadTable = ({ results, props }) => {
                         :
                         rows.map((row, i) => {
                             prepareRow(row);
-                            //console.log(row.original.style) 
 
                             return (
-                                <tr onDoubleClick={(event) => { onNaklSelect(event) }}
+                                <tr 
+                                onDoubleClick={(event) => { onNaklSelect(event, row.original.id) }}
                                     className={row.original.style + ""}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
                                         return (
-                                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                            <td 
+                                            
+                                            {...cell.getCellProps()}>{cell.render("Cell")}</td>
                                         )
                                     })}
                                 </tr>

@@ -33,12 +33,21 @@ export async function addNakl() {
 };
 
 
-
 export async function getNaklData() {
   return await axiosInstance
     .get("nakl-items/1")
     .then(response => {
       //console.log(response.data)
+      return response
+    }).catch(error => ({ error }))
+};
+
+
+export async function getNaklHeaderData() {
+  return await axiosInstance
+    .get("nakls/1")
+    .then(response => {
+      //console.log(response)
       return response
     }).catch(error => ({ error }))
 };

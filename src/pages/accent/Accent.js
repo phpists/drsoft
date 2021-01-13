@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Loader from "../../components/Loader/Loader"
-import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import AccentTable from './AccentTable';
-
-//import { getNaklData } from "../../helpers/nakladni";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getNakladnaRequest } from "../../store/nakladni/actions";
+import { getNakladnaRequest, getNaklHeaderDataRequest } from "../../store/nakladni/actions";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import AccentHeader from './AccentHeader';
 
 
 
 const Accent = (props) => {
-  const { naklData, loader, error } = props;
+  const { naklData, naklHeaderData, loader, error } = props;
 
   const [activeClass, setActiveClass] = useState(false);
   const [activeSelect, setActiveSelect] = useState(false);
   const [defaultDate, setDefaultDate] = useState("01.11.2020");
-  //const [naklData, setNaklData] = useState(null);
 
 
   useEffect(() => {
     props.getNakladna();
-  }, [props.getNakladna]);
+    props.getHeader();
+
+  }, [props.getNakladna, props.getHeader]);
 
 
   let toggleClass;
   activeClass ? toggleClass = "accent__block-toggle" : toggleClass = "accent__block-toggle noactive";
-
   let toggleSelect;
   activeSelect ? toggleSelect = "select active" : toggleSelect = "select";
 
@@ -35,28 +33,21 @@ const Accent = (props) => {
   return (
     <div className="accent">
       <div className="accent__block">
-        <div className="accent__block-title">Прямой акцепт №124 от 24.09.19</div>
-        <div className="accent__block-subtitle">Поясняющий текст</div>
-        <div className="accent__block-post">
-          <div className="accent__block-post-left">
-            <a href="#" className="accent__block-post-title">Поставщик</a>
-            <div className="accent__block-post-subtitle">ООО «Фармстандарт»</div>
-            <div className="accent__block-post-inn">ИНН 0848323654273</div>
-            <div className="accent__block-post-text">
-              Свердловская область, Екатеринбург, ул. Мамина-Сибиряка 23
-              </div>
-          </div>
-          <div className="accent__block-post-right">
-            <a href="#" className="accent__block-post-title">Получатель</a>
-            <div className="accent__block-post-subtitle">
-              ООО «ФМ-Логистик» Склад №21
-              </div>
-            <div className="accent__block-post-inn">ИНН 0848323654273</div>
-            <div className="accent__block-post-text">
-              Свердловская область, Екатеринбург, ул. Комарова 12
-              </div>
-          </div>
-        </div>
+       
+        {
+          loader || naklHeaderData === null
+            ?
+            <Loader />
+            :
+            error ?
+              <ErrorMessage />
+              :
+              <AccentHeader
+                header={naklHeaderData}
+              />
+        }
+
+
         <div className="accent__block-post-line">
           <div className="accent__block-post-point1 point">
             <div className="accent__block-post-point1-text">
@@ -111,14 +102,14 @@ const Accent = (props) => {
               </div>
             </select> */}
           </div>
-          <div className="list-select">
+          {/* <div className="list-select">
             <div
               onClick={() => { setActiveClass(activeClass => !activeClass) }}
               className={toggleClass}>
               <div className="accent__block-toggle-point"></div>
             </div>
             <div className="list-select-text">Отозванные товары</div>
-          </div>
+          </div> */}
         </div>
         <div className="table__block-wrapper">
 
@@ -149,13 +140,15 @@ const Accent = (props) => {
 
 const mapStateToProps = (state) => ({
   naklData: state.nakladni.naklData,
+  naklHeaderData: state.nakladni.naklHeaderData,
   loader: state.nakladni.loader,
   error: state.nakladni.error
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  getNakladna: () => dispatch(getNakladnaRequest())
+  getNakladna: () => dispatch(getNakladnaRequest()),
+  getHeader: () => dispatch(getNaklHeaderDataRequest())
 });
 
 
