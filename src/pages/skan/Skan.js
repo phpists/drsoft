@@ -93,7 +93,8 @@ const Skan = (props) => {
                                     >Сбросить результат и начать заново</a>
                                     <div className="skan__button">
                                         <button className="btn skan__button-btn">Продолжить</button>
-                                        <button className="btn skan__button-cancel">Отмена</button>
+                                        <button
+                                            className="btn skan__button-cancel">Отмена</button>
                                     </div>
                                 </>
                         }

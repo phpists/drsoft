@@ -97,7 +97,6 @@ const OverHead = (props) => {
     //props.history.push('/edit');
   };
 
-  //console.log(editModal)
 
   return (
     <div className="container">

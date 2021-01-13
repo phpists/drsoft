@@ -11,3 +11,12 @@
 .password__input {
   margin-bottom: 40px;
 }
+
+.skan__button-cancel{
+  width:230px!important;
+  border:2px solid #d9d9da!important;
+  background-color:inherit!important;
+  color:#d9d9da!important;
+}
+
+.skan__button-cancel:hover{border:2px solid #63608b;color:#63608b}
