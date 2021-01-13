@@ -20,6 +20,8 @@ export const Types = {
 
   SHOW_EDIT_MODAL: 'SHOW_EDIT_MODAL',
   CLOSE_EDIT_MODAL: 'CLOSE_EDIT_MODAL',
+
+  SET_NAKL_ID: 'SET_NAKL_ID',
 };
 
 
@@ -98,12 +100,11 @@ export const getEditNaklData = () => {
 };
 
 
-export const getNaklHeaderDataRequest = () => {
+export const getNaklHeaderDataRequest = ({ id }) => {
   return dispatch => {
-
     dispatch(startNaklHeaderDataRequest());
 
-    getNaklHeaderData()
+    getNaklHeaderData(id)
 
       .then(res => {
         // console.log(res)
@@ -116,6 +117,23 @@ export const getNaklHeaderDataRequest = () => {
       })
   };
 };
+
+
+
+export const setNaklId = ({ id }) => {
+  //console.log("setNaklId id:", id)
+  return setlId(id)
+  
+};
+
+
+const setlId = (payload) => ({
+  type: Types.SET_NAKL_ID,
+  payload
+});
+
+
+
 
 const startNaklHeaderDataRequest = () => ({
   type: Types.NAKL_HEADER_DATA_REQUEST

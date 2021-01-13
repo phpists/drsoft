@@ -43,9 +43,10 @@ export async function getNaklData() {
 };
 
 
-export async function getNaklHeaderData() {
+export async function getNaklHeaderData(id) {
+  //console.log(id)
   return await axiosInstance
-    .get("nakls/1")
+    .get(`nakls/${id}`)
     .then(response => {
       //console.log(response)
       return response

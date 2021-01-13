@@ -7,12 +7,14 @@ const initialState = {
   naklData: null,
   editModal: false,
   editNaklData: null,
+  naklId: 1,
 
   naklHeaderData: null,
 
   loader: false,
   error: false
 };
+
 
 
 const reducer = (state = initialState, action) => {
@@ -112,6 +114,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         loader: false,
+      }
+    }
+
+
+    case Types.SET_NAKL_ID: {
+      console.log("state.naklId", state.naklId)
+
+      return {
+        ...state,
+        naklId: action.payload
       }
     }
 

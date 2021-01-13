@@ -2,20 +2,25 @@ import React from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setNaklId } from "../../store/nakladni/actions";
 
 
-const OverHeadTable = ({ results, props }) => {
-//const OverHeadTable = ({ props }) => {
 
-    const onNaklSelect = (event,id) => {
+const OverHeadTable = (props) => {
+
+    const onNaklSelect = (event, id) => {
         event.preventDefault();
-        console.log(id);
-        //props.history.push("/accent");
+        //console.log(id);
+
+        props.setId({ id })
+        props.history.push("/accent");
     };
 
 
     const data = React.useMemo(
-        () => results.map((item) => {
+        () => props.results.map((item) => {
             return {
                 status: item.status,
                 style: item.status_style,
@@ -27,9 +32,8 @@ const OverHeadTable = ({ results, props }) => {
                 Sum: item.sum,
                 id: item.nakl_id,
             }
-        }), [results]
+        }), [props.results]
     );
-
 
     const columns = React.useMemo(
         () => [
@@ -58,9 +62,8 @@ const OverHeadTable = ({ results, props }) => {
                 accessor: "Sum",
             },
         ],
-        [results]
+        [props.results]
     );
-
 
     const {
         getTableProps,
@@ -76,10 +79,8 @@ const OverHeadTable = ({ results, props }) => {
     );
 
 
-
     return (
-
-        results.length === 0
+        props.results.length === 0
             ?
             <NoDataMessage />
             :
@@ -111,7 +112,7 @@ const OverHeadTable = ({ results, props }) => {
 
 
                 <tbody {...getTableBodyProps()}>
-                    {results.length === 0
+                    {props.results.length === 0
                         ?
                         <NoDataMessage />
                         :
@@ -119,16 +120,16 @@ const OverHeadTable = ({ results, props }) => {
                             prepareRow(row);
 
                             return (
-                                <tr 
-                                onDoubleClick={(event) => { onNaklSelect(event, row.original.id) }}
+                                <tr
+                                    onDoubleClick={(event) => { onNaklSelect(event, row.original.id) }}
                                     className={row.original.style + ""}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
                                         return (
-                                            <td 
-                                            
-                                            {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                            <td
+
+                                                {...cell.getCellProps()}>{cell.render("Cell")}</td>
                                         )
                                     })}
                                 </tr>
@@ -141,4 +142,13 @@ const OverHeadTable = ({ results, props }) => {
 };
 
 
-export default OverHeadTable;
+const mapDispatchToProps = dispatch => ({
+    setId: (id) => dispatch(setNaklId(id)),
+});
+
+
+export default withRouter(
+    connect(null, mapDispatchToProps)(OverHeadTable)
+);
+
+//export default OverHeadTable;

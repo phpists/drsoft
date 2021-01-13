@@ -10,7 +10,7 @@ import AccentHeader from './AccentHeader';
 
 
 const Accent = (props) => {
-  const { naklData, naklHeaderData, loader, error } = props;
+  const { naklData, naklHeaderData, loader, error, naklId } = props;
 
   const [activeClass, setActiveClass] = useState(false);
   const [activeSelect, setActiveSelect] = useState(false);
@@ -18,10 +18,10 @@ const Accent = (props) => {
 
 
   useEffect(() => {
-    props.getNakladna();
-    props.getHeader();
+    props.getNakladna({ id: naklId });
+    props.getHeader({ id: naklId });
+  }, [props.getHeader, props.getNakladna]);
 
-  }, [props.getNakladna, props.getHeader]);
 
 
   let toggleClass;
@@ -30,10 +30,11 @@ const Accent = (props) => {
   activeSelect ? toggleSelect = "select active" : toggleSelect = "select";
 
 
+
   return (
     <div className="accent">
       <div className="accent__block">
-       
+
         {
           loader || naklHeaderData === null
             ?
@@ -140,6 +141,9 @@ const Accent = (props) => {
 
 const mapStateToProps = (state) => ({
   naklData: state.nakladni.naklData,
+
+  naklId: state.nakladni.naklId,
+
   naklHeaderData: state.nakladni.naklHeaderData,
   loader: state.nakladni.loader,
   error: state.nakladni.error
@@ -147,8 +151,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  getNakladna: () => dispatch(getNakladnaRequest()),
-  getHeader: () => dispatch(getNaklHeaderDataRequest())
+  getNakladna: (id) => dispatch(getNakladnaRequest(id)),
+  getHeader: (id) => dispatch(getNaklHeaderDataRequest(id))
 });
 
 
