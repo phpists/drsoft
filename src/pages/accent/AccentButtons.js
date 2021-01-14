@@ -1,26 +1,26 @@
 import React from 'react';
-import Loader from "../../components/Loader/Loader";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { naklTrustAccept } from "../../helpers/nakladni";
+import { naklTrustAccept, naklSignAndSend } from "../../helpers/nakladni";
+
 
 
 const AccentButtons = (props) => {
-    const { naklHeaderData } = props;
+    const { naklHeaderData, history } = props;
 
     const onTrustedAcceptanceButtonClick = () => {
-       // console.log(naklHeaderData.nakl_id)
         naklTrustAccept(naklHeaderData.nakl_id)
     };
 
-
     const onSignAndSendButtonClick = () => {
+        naklSignAndSend(naklHeaderData.nakl_id)
     };
-
 
     const onBackButtonClick = () => {
-        props.history.push("/overhead");
+        history.push("/overhead");
     };
+
+
 
     return (
         <div className="accent__block-button">
@@ -48,11 +48,8 @@ const mapStateToProps = (state) => ({
     error: state.nakladni.error
 });
 
-const mapDispatchToProps = dispatch => ({
-
-});
 
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(AccentButtons)
+    connect(mapStateToProps, null)(AccentButtons)
 );
