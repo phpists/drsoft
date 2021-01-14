@@ -19,4 +19,12 @@
   color:#d9d9da!important;
 }
 
-.skan__button-cancel:hover{border:2px solid #63608b;color:#63608b}
+
+.skan__button-cancel:hover{
+  border:2px solid #63608b;
+  color:#63608b;
+}
+
+.skan__block-link {
+  cursor: pointer;
+}

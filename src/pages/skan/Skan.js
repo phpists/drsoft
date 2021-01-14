@@ -6,6 +6,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getSkansRequest } from "../../store/skans/actions";
+import { deleteSkans } from "../../helpers/skans";
 
 
 
@@ -15,6 +16,12 @@ const Skan = (props) => {
     useEffect(() => {
         props.getSkans({ idForSkans });
     }, [props.getSkans, idForSkans]);
+
+    const onDeleteSkansClick = () => {
+        deleteSkans(idForSkans);
+       // window.location.reload();
+    };
+
 
 
     let skansQuantity;
@@ -83,21 +90,18 @@ const Skan = (props) => {
                             error ?
                                 <ErrorMessage />
                                 :
-                                <>
-                                    <SkanTable
-                                        skans={skans}
-                                    />
-
-                                    <a href="#" className="skan__block-link"
-                                    >Сбросить результат и начать заново</a>
-                                    <div className="skan__button">
-                                        <button className="btn skan__button-btn">Продолжить</button>
-                                        <button
-                                            className="btn skan__button-cancel">Отмена</button>
-                                    </div>
-                                </>
+                                <SkanTable skans={skans} />
                         }
 
+                    </div>
+
+                    <a onClick={() => onDeleteSkansClick()}
+                        className="skan__block-link"
+                    >Сбросить результат и начать заново</a>
+                    <div className="skan__button">
+                        <button className="btn skan__button-btn">Продолжить</button>
+                        <button
+                            className="btn skan__button-cancel">Отмена</button>
                     </div>
                 </div>
             </div>
