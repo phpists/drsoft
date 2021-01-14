@@ -14,7 +14,6 @@ const Private = ({ component: Component, ...rest }) => {
       if (rest.token) {
         return <Component {...props} />
       }
-
       return <Redirect to="/auth" />
       //return <Component {...props} />
     }} />
@@ -25,7 +24,7 @@ const mapStateToProps = (state) => ({
   token: state.authorization.token,
 });
 
-const PrivateRoute = connect(mapStateToProps)(Private)
+const PrivateRoute = connect(mapStateToProps)(Private);
 
 const Routes = () => {
   return (

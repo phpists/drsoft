@@ -1,20 +1,16 @@
 import { Types } from './actions';
 
 
-
 const initialState = {
   nakladni: null,
   naklData: null,
   editModal: false,
   editNaklData: null,
   naklId: 1,
-
   naklHeaderData: null,
-
   loader: false,
   error: false
 };
-
 
 
 const reducer = (state = initialState, action) => {
@@ -66,9 +62,6 @@ const reducer = (state = initialState, action) => {
     }
 
 
-
-
-
     case Types.NAKL_HEADER_DATA_REQUEST: {
       return {
         ...state,
@@ -90,9 +83,6 @@ const reducer = (state = initialState, action) => {
         loader: false,
       }
     }
-
-
-
 
 
     case Types.EDIT_NAKL_REQUEST: {
@@ -119,8 +109,6 @@ const reducer = (state = initialState, action) => {
 
 
     case Types.SET_NAKL_ID: {
-      console.log("state.naklId", state.naklId)
-
       return {
         ...state,
         naklId: action.payload
@@ -134,7 +122,6 @@ const reducer = (state = initialState, action) => {
         editModal: true
       }
     }
-
     case Types.CLOSE_EDIT_MODAL: {
       return {
         ...state,

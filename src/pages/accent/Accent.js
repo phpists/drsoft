@@ -23,9 +23,9 @@ const Accent = (props) => {
   }, [props.getHeader, props.getNakladna]);
 
 
-
   let toggleClass;
   activeClass ? toggleClass = "accent__block-toggle" : toggleClass = "accent__block-toggle noactive";
+
   let toggleSelect;
   activeSelect ? toggleSelect = "select active" : toggleSelect = "select";
 
@@ -47,7 +47,6 @@ const Accent = (props) => {
                 header={naklHeaderData}
               />
         }
-
 
         <div className="accent__block-post-line">
           <div className="accent__block-post-point1 point">

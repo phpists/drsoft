@@ -5,7 +5,7 @@ import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getNakladniRequest, showModal,setNaklId } from "../../store/nakladni/actions";
+import { getNakladniRequest, showModal } from "../../store/nakladni/actions";
 import EditModal from '../../components/Modals/EditModal';
 
 

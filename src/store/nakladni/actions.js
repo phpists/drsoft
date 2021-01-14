@@ -25,6 +25,7 @@ export const Types = {
 };
 
 
+
 export const getNakladniRequest = ({ year, month, status }) => {
   return dispatch => {
 
@@ -44,58 +45,55 @@ export const getNakladniRequest = ({ year, month, status }) => {
   };
 };
 
-export const getNakladnaRequest = () => {
+export const getNakladnaRequest = ({id}) => {
   return dispatch => {
-
     dispatch(startNakladnaRequest());
 
-    getNaklData()
-
+    getNaklData(id)
       .then(res => {
-        // console.log(res)
         if (res.status === 200) {
           dispatch(getNakladnaSuccess(res));
-
         } else {
           dispatch(getNakladnaFailure(res));
         }
-      })
+      });
   };
 };
+
 
 export const showModal = () => {
   return dispatch => {
     dispatch(showEditModal());
-  }
+  };
 };
+
 
 export const closeModal = () => {
   return dispatch => {
     dispatch(closeEditModal());
-  }
+  };
 };
+
 
 export const addOneNakl = () => {
   return dispatch => {
     addNakl();
-  }
+  };
 };
+
 
 export const getEditNaklData = () => {
   return dispatch => {
-
     dispatch(startEditNaklDataRequest());
 
     editNakl()
-
       .then(res => {
         if (res.status === 200) {
           dispatch(getEditNaklDataSuccess(res));
-
         } else {
           dispatch(getEditNaklDataFailure(res));
         }
-      })
+      });
   };
 };
 
@@ -105,25 +103,21 @@ export const getNaklHeaderDataRequest = ({ id }) => {
     dispatch(startNaklHeaderDataRequest());
 
     getNaklHeaderData(id)
-
       .then(res => {
         // console.log(res)
         if (res.status === 200) {
           dispatch(getNaklHeaderDataSuccess(res));
-
         } else {
           dispatch(getNaklHeaderDataFailure(res));
         }
-      })
+      });
   };
 };
 
 
-
 export const setNaklId = ({ id }) => {
   //console.log("setNaklId id:", id)
-  return setlId(id)
-  
+  return setlId(id);
 };
 
 
@@ -131,9 +125,6 @@ const setlId = (payload) => ({
   type: Types.SET_NAKL_ID,
   payload
 });
-
-
-
 
 const startNaklHeaderDataRequest = () => ({
   type: Types.NAKL_HEADER_DATA_REQUEST
@@ -151,8 +142,6 @@ const getNaklHeaderDataFailure = error => ({
   }
 });
 
-
-
 const startEditNaklDataRequest = () => ({
   type: Types.EDIT_NAKL_REQUEST
 });
@@ -168,7 +157,6 @@ const getEditNaklDataFailure = error => ({
     error
   }
 });
-
 
 const startNakladnaRequest = () => ({
   type: Types.NAKLADNA_REQUEST
@@ -186,7 +174,6 @@ const getNakladnaFailure = error => ({
   }
 });
 
-
 const startNakladniRequest = () => ({
   type: Types.NAKLADNI_REQUEST
 });
@@ -202,7 +189,6 @@ const getNakladniFailure = error => ({
     error
   }
 });
-
 
 
 const showEditModal = () => ({

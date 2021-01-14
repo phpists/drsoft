@@ -33,9 +33,9 @@ export async function addNakl() {
 };
 
 
-export async function getNaklData() {
+export async function getNaklData(id) {
   return await axiosInstance
-    .get("nakl-items/1")
+    .get(`nakl-items/${id}`)
     .then(response => {
       //console.log(response.data)
       return response
@@ -44,7 +44,7 @@ export async function getNaklData() {
 
 
 export async function getNaklHeaderData(id) {
-  //console.log(id)
+  //console.log("getNaklHeaderData", id)
   return await axiosInstance
     .get(`nakls/${id}`)
     .then(response => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
-
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setNaklId } from "../../store/nakladni/actions";
@@ -9,11 +8,9 @@ import { setNaklId } from "../../store/nakladni/actions";
 
 
 const OverHeadTable = (props) => {
-
     const onNaklSelect = (event, id) => {
         event.preventDefault();
         //console.log(id);
-
         props.setId({ id })
         props.history.push("/accent");
     };
@@ -34,6 +31,7 @@ const OverHeadTable = (props) => {
             }
         }), [props.results]
     );
+
 
     const columns = React.useMemo(
         () => [
@@ -64,6 +62,7 @@ const OverHeadTable = (props) => {
         ],
         [props.results]
     );
+
 
     const {
         getTableProps,
@@ -151,4 +150,3 @@ export default withRouter(
     connect(null, mapDispatchToProps)(OverHeadTable)
 );
 
-//export default OverHeadTable;
