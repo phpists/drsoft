@@ -1,6 +1,7 @@
 import { Types } from './actions';
 
 
+
 const initialState = {
   nakladni: null,
   naklData: null,

@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { getNakladnaRequest, getNaklHeaderDataRequest } from "../../store/nakladni/actions";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import AccentHeader from './AccentHeader';
+import AccentButtons from './AccentButtons';
 
 
 
@@ -121,17 +122,13 @@ const Accent = (props) => {
               error ?
                 <ErrorMessage />
                 :
-                <AccentTable
-                  results={naklData} />
+                <AccentTable results={naklData} />
           }
 
         </div>
-        <div className="accent__block-button">
-          <button className="btn">Прервать приемку</button>
-          <button className="btn">Доверительная приемка</button>
-          <button className="btn">Отказ</button>
-          <button className="btn">Завершить приемку</button>
-        </div>
+
+        <AccentButtons />
+
       </div >
     </div >
   );

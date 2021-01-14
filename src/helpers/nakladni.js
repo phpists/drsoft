@@ -1,4 +1,5 @@
-import { axiosInstance } from './baseUrl'
+import { axiosInstance } from './baseUrl';
+
 
 
 export async function getNaklFiltered(year, month, status) {
@@ -11,7 +12,6 @@ export async function getNaklFiltered(year, month, status) {
     .catch((error) => ({ error }))
 };
 
-
 export async function editNakl() {
   return await axiosInstance
     .get("nakls-full/-1")
@@ -20,7 +20,6 @@ export async function editNakl() {
       return response
     }).catch(error => ({ error }))
 };
-
 
 export async function addNakl() {
   return await axiosInstance
@@ -32,7 +31,6 @@ export async function addNakl() {
     }).catch(error => ({ error }))
 };
 
-
 export async function getNaklData(id) {
   return await axiosInstance
     .get(`nakl-items/${id}`)
@@ -42,11 +40,22 @@ export async function getNaklData(id) {
     }).catch(error => ({ error }))
 };
 
-
 export async function getNaklHeaderData(id) {
   //console.log("getNaklHeaderData", id)
   return await axiosInstance
     .get(`nakls/${id}`)
+    .then(response => {
+      //console.log(response)
+      return response
+    }).catch(error => ({ error }))
+};
+
+
+
+export async function naklTrustAccept(id) {
+  console.log("naklTrustAccept done, id:",id)
+  return await axiosInstance
+    .put(`nakls/trust-accept/${id}`)
     .then(response => {
       //console.log(response)
       return response

@@ -14,6 +14,7 @@ const AccentHeader = ({ header }) => {
                 <div className="accent__block-title">{header.form_caption}</div>
                 {/* <div className="accent__block-subtitle">Поясняющий текст</div> */}
                 <div className="accent__block-subtitle">Cтатус накладной {header.nakl_status_id}</div>
+                <div className="accent__block-subtitle">Тип акцепта {header.acceptance_type}</div>
                 <div className="accent__block-post">
                     <div className="accent__block-post-left">
                         <a className="accent__block-post-title">Поставщик</a>

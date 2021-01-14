@@ -13,8 +13,8 @@ const Skan = (props) => {
     const { loader, skans, error, idForSkans } = props;
 
     useEffect(() => {
-        props.getSkans({  idForSkans });
-    }, [props.getSkans]);
+        props.getSkans({ idForSkans });
+    }, [props.getSkans, idForSkans]);
 
 
     let skansQuantity;
@@ -22,10 +22,10 @@ const Skan = (props) => {
 
     let newSkansQuantity;
     { skans === null || skans === undefined ? newSkansQuantity = 0 : newSkansQuantity = skans.filter(item => item.status === "Новый").length };
-    
+
     let testedSkansQuantity;
     { skans === null || skans === undefined ? testedSkansQuantity = 0 : testedSkansQuantity = skans.filter(item => item.status === "Проверен").length };
-    
+
     let notTestedSkansQuantity;
     { skans === null || skans === undefined ? notTestedSkansQuantity = 0 : notTestedSkansQuantity = skans.filter(item => item.status === "Не проверен").length };
 

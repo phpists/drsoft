@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
-
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setIdForSkans } from "../../store/skans/actions";
@@ -78,8 +77,7 @@ const AccentTable = (props) => {
     );
 
 
-    const onNaklStringSelect = ( id) => {
-        //console.log(id);
+    const onNaklStringSelect = (id) => {
         props.setSkansId({ id });
         props.history.push("/skan");
     };
@@ -125,11 +123,10 @@ const AccentTable = (props) => {
                         :
                         rows.map((row, i) => {
                             prepareRow(row);
-                            //console.log(row.original.style) 
 
                             return (
                                 <tr className={row.original.style + ""}
-                                    onDoubleClick={() => { onNaklStringSelect( row.original.id) }}
+                                    onDoubleClick={() => { onNaklStringSelect(row.original.id) }}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
