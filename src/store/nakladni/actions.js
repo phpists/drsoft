@@ -104,7 +104,6 @@ export const getNaklHeaderDataRequest = ({ id }) => {
 
     getNaklHeaderData(id)
       .then(res => {
-        // console.log(res)
         if (res.status === 200) {
           dispatch(getNaklHeaderDataSuccess(res));
         } else {
@@ -116,7 +115,6 @@ export const getNaklHeaderDataRequest = ({ id }) => {
 
 
 export const setNaklId = ({ id }) => {
-  //console.log("setNaklId id:", id)
   return setlId(id);
 };
 

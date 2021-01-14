@@ -10,21 +10,22 @@ import { getSkansRequest } from "../../store/skans/actions";
 
 
 const Skan = (props) => {
-    const { loader, skans, error } = props;
+    const { loader, skans, error, idForSkans } = props;
 
     useEffect(() => {
-        props.getSkans();
+        props.getSkans({  idForSkans });
     }, [props.getSkans]);
+
 
     let skansQuantity;
     { skans === null || skans === undefined ? skansQuantity = 0 : skansQuantity = skans.length };
 
     let newSkansQuantity;
     { skans === null || skans === undefined ? newSkansQuantity = 0 : newSkansQuantity = skans.filter(item => item.status === "Новый").length };
-
+    
     let testedSkansQuantity;
     { skans === null || skans === undefined ? testedSkansQuantity = 0 : testedSkansQuantity = skans.filter(item => item.status === "Проверен").length };
-
+    
     let notTestedSkansQuantity;
     { skans === null || skans === undefined ? notTestedSkansQuantity = 0 : notTestedSkansQuantity = skans.filter(item => item.status === "Не проверен").length };
 
@@ -72,13 +73,11 @@ const Skan = (props) => {
                             </div>
                             <div className="skan__block-text">Не провереныx</div>
                         </div>
-
-
                     </div>
 
                     <div className="table__block-wrapper">
 
-                        {loader || skans === null ?
+                        {loader || skans === null || idForSkans == undefined ?
                             <Loader />
                             :
                             error ?
@@ -110,12 +109,13 @@ const Skan = (props) => {
 
 const mapStateToProps = (state) => ({
     skans: state.skans.skans,
+    idForSkans: state.skans.idForSkans,
     loader: state.skans.loader,
     error: state.skans.error
 });
 
 const mapDispatchToProps = dispatch => ({
-    getSkans: () => dispatch(getSkansRequest())
+    getSkans: (id) => dispatch(getSkansRequest(id))
 });
 
 

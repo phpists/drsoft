@@ -1,12 +1,11 @@
-import { axiosInstance } from './baseUrl'
+import { axiosInstance } from './baseUrl';
 
 
-export async function getSkans() {
- 
+export async function getSkans(id) {
+  
   return await axiosInstance
-    .get(`sgtins/1`)
+    .get(`sgtins/${id}`)
     .then(response => {
-      //console.log(response)
       return response
     }).catch(error => ({ error }))
 };

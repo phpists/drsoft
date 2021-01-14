@@ -140,9 +140,7 @@ const Accent = (props) => {
 
 const mapStateToProps = (state) => ({
   naklData: state.nakladni.naklData,
-
   naklId: state.nakladni.naklId,
-
   naklHeaderData: state.nakladni.naklHeaderData,
   loader: state.nakladni.loader,
   error: state.nakladni.error

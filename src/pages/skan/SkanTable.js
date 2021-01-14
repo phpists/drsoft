@@ -5,14 +5,6 @@ import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 const SkanTable = ({ skans }) => {
-    //const SkanTable = () => {
-
-    // const skans = [
-    //     "24746632",
-    //     "9326332",
-    //     "93263632",
-    //     "93929393"
-    // ];
 
     const data = React.useMemo(
         () => skans.map((item, index) => {
@@ -61,6 +53,7 @@ const SkanTable = ({ skans }) => {
             ?
             <NoDataMessage />
             :
+
             <table className="table__block-table"
                 {...getTableProps()} >
                 <thead>

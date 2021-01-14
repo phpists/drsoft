@@ -2,38 +2,15 @@ import React from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setIdForSkans } from "../../store/skans/actions";
 
 
-const AccentTable = ({ results }) => {
-
-    // const results = [
-    //     {
-    //         "id": 1,
-    //         "number": "9sdls99",
-    //         "date_time": "2021-01-01T00:00:00",
-    //         "provider": "РОГА И КОПЫТА",
-    //         "acceptance_type": "Прямой",
-    //         "contract_type": "Комисия",
-    //         "sum": 1200.00,
-    //         "status": "Новая поставка",
-    //         "status_style": "table__block-newover"
-    //     },
-    //     {
-    //         "id": -1,
-    //         "number": "9sdls99",
-    //         "date_time": "2021-01-01T00:00:00",
-    //         "provider": "ОАО Мартышкин Труд",
-    //         "acceptance_type": "Обратный",
-    //         "contract_type": "Комисия",
-    //         "sum": 138250.00,
-    //         "status": "Новая поставка",
-    //         "status_style": "table__block-newover"
-    //     }
-    // ];
-
+const AccentTable = (props) => {
 
     const data = React.useMemo(
-        () => results.map((item) => {
+        () => props.results.map((item) => {
             return {
                 status: "-",
                 name: item.name,
@@ -44,10 +21,10 @@ const AccentTable = ({ results }) => {
                 price: item.price,
                 nds: item.nds,
                 sum: item.sum,
+                id: item.nakl_item_id,
             }
-        }), [results]
+        }), [props.results]
     );
-
 
     const columns = React.useMemo(
         () => [
@@ -84,9 +61,8 @@ const AccentTable = ({ results }) => {
                 accessor: "sum",
             },
         ],
-        [results]
+        [props.results]
     );
-
 
     const {
         getTableProps,
@@ -102,10 +78,16 @@ const AccentTable = ({ results }) => {
     );
 
 
+    const onNaklStringSelect = ( id) => {
+        //console.log(id);
+        props.setSkansId({ id });
+        props.history.push("/skan");
+    };
+
 
     return (
 
-        results.length === 0
+        props.results.length === 0
             ?
             <NoDataMessage />
             :
@@ -137,7 +119,7 @@ const AccentTable = ({ results }) => {
 
 
                 <tbody {...getTableBodyProps()}>
-                    {results.length === 0
+                    {props.results.length === 0
                         ?
                         <NoDataMessage />
                         :
@@ -147,6 +129,7 @@ const AccentTable = ({ results }) => {
 
                             return (
                                 <tr className={row.original.style + ""}
+                                    onDoubleClick={() => { onNaklStringSelect( row.original.id) }}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
@@ -164,4 +147,13 @@ const AccentTable = ({ results }) => {
 };
 
 
-export default AccentTable;
+
+const mapDispatchToProps = dispatch => ({
+    setSkansId: (id) => dispatch(setIdForSkans(id)),
+});
+
+
+export default withRouter(
+    connect(null, mapDispatchToProps)(AccentTable)
+);
+

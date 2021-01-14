@@ -10,7 +10,6 @@ import { setNaklId } from "../../store/nakladni/actions";
 const OverHeadTable = (props) => {
     const onNaklSelect = (event, id) => {
         event.preventDefault();
-        //console.log(id);
         props.setId({ id })
         props.history.push("/accent");
     };
