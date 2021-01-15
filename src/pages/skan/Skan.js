@@ -11,7 +11,7 @@ import { deleteSkans } from "../../helpers/skans";
 
 
 const Skan = (props) => {
-    const { loader, skans, error, idForSkans, titleForSkans } = props;
+    const { loader, skans, error, idForSkans, titleForSkans, history } = props;
 
 
     useEffect(() => {
@@ -85,7 +85,7 @@ const Skan = (props) => {
 
                     <div className="table__block-wrapper">
 
-                        {loader || skans === null  ?
+                        {loader || skans === null ?
                             <Loader />
                             :
                             error ?
@@ -99,10 +99,15 @@ const Skan = (props) => {
                     <a onClick={() => onDeleteSkansClick()}
                         className="skan__block-link"
                     >Сбросить результат и начать заново</a>
+
                     <div className="skan__button">
-                        <button className="btn skan__button-btn">Продолжить</button>
+
                         <button
-                            className="btn skan__button-cancel">Отмена</button>
+                            onClick={() => history.push("/accent")}
+                            className="btn skan__button-btn">Продолжить</button>
+                        {/*                         
+                        <button
+                            className="btn skan__button-cancel">Отмена</button> */}
                     </div>
                 </div>
             </div>
