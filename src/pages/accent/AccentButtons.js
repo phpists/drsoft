@@ -7,7 +7,7 @@ import { showButtonsModal } from "../../store/nakladni/actions";
 
 
 const AccentButtons = (props) => {
-    const { naklHeaderData, history, setModal } = props;
+    const { naklHeaderData, history } = props;
 
     const onTrustedAcceptanceButtonClick = () => {
         props.showButtonsModal();
