@@ -5,7 +5,7 @@ import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 
 
 const SkanTable = ({ skans }) => {
-
+    
     const data = React.useMemo(
         () => skans.map((item, index) => {
             return {
@@ -49,55 +49,59 @@ const SkanTable = ({ skans }) => {
 
 
     return (
-        skans.length === 0
-            ?
-            <NoDataMessage />
-            :
+        // skans === undefined
+        //     ?
+        //     <h1>choose nakl</h1>
+        //     :
+            skans.length === 0
+                ?
+                <NoDataMessage />
+                :
 
-            <table className="table__block-table"
-                {...getTableProps()} >
-                <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr className="table__block-title"
-                            {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+                <table className="table__block-table"
+                    {...getTableProps()} >
+                    <thead>
+                        {headerGroups.map((headerGroup) => (
+                            <tr className="table__block-title"
+                                {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column) => (
 
-                                //Add the sorting props to control sorting
-                                < th {...column.getHeaderProps(column.getSortByToggleProps())} >
-                                    {column.render("Header")}
+                                    //Add the sorting props to control sorting
+                                    < th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                                        {column.render("Header")}
 
-                                    {/* Add a sort direction indicator  */}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? ' 🔽'
-                                                : ' 🔼'
-                                            : ''}
-                                    </span>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
+                                        {/* Add a sort direction indicator  */}
+                                        <span>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? ' 🔽'
+                                                    : ' 🔼'
+                                                : ''}
+                                        </span>
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
 
-                <tbody {...getTableBodyProps()}>
-                    {
-                        rows.map((row, i) => {
-                            prepareRow(row);
-                            return (
-                                <tr className="table__block-table-text"
-                                    {...row.getRowProps()}>
-                                    {row.cells.map((cell) => {
-                                        return (
-                                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                                        )
-                                    })}
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </table >
+                    <tbody {...getTableBodyProps()}>
+                        {
+                            rows.map((row, i) => {
+                                prepareRow(row);
+                                return (
+                                    <tr className="table__block-table-text"
+                                        {...row.getRowProps()}>
+                                        {row.cells.map((cell) => {
+                                            return (
+                                                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                            )
+                                        })}
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table >
     );
 };
 

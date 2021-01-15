@@ -67,7 +67,9 @@ const OverHead = (props) => {
     { id: null, value: "-" },
     { id: 1, value: "Новая поставка" },
     { id: 2, value: "Приемка товара" },
-    { id: 4, value: "Ошибка" }
+    { id: 3, value: "Отправка данных" },
+    { id: 4, value: "Ошибка" },
+    { id: 5, value: "Завершено" }
   ];
 
 

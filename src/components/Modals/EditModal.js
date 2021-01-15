@@ -12,7 +12,7 @@ const EditModal = (props) => {
 
     useEffect(() => {
         props.getNaklData()
-    }, []);
+    }, [props.getNaklData]);
 
 
     const onAddNakl = (event) => {
@@ -122,6 +122,7 @@ const mapDispatchToProps = dispatch => ({
     closeEditModal: () => dispatch(closeModal()),
     addNakl: () => dispatch(addOneNakl())
 });
+
 
 
 export default withRouter(

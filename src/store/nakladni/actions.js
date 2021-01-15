@@ -21,6 +21,9 @@ export const Types = {
   SHOW_EDIT_MODAL: 'SHOW_EDIT_MODAL',
   CLOSE_EDIT_MODAL: 'CLOSE_EDIT_MODAL',
 
+  SHOW_BUTTONS_MODAL: 'SHOW_BUTTONS_MODAL',
+  CLOSE_BUTTONS_MODAL: 'CLOSE_BUTTONS_MODAL',
+
   SET_NAKL_ID: 'SET_NAKL_ID',
 };
 
@@ -28,16 +31,12 @@ export const Types = {
 
 export const getNakladniRequest = ({ year, month, status }) => {
   return dispatch => {
-
     dispatch(startNakladniRequest());
 
     getNaklFiltered(year, month, status)
-
       .then(res => {
-        // console.log(res)
         if (res.status === 200) {
           dispatch(getNakladniSuccess(res));
-
         } else {
           dispatch(getNakladniFailure(res));
         }
@@ -67,20 +66,17 @@ export const showModal = () => {
   };
 };
 
-
 export const closeModal = () => {
   return dispatch => {
     dispatch(closeEditModal());
   };
 };
 
-
 export const addOneNakl = () => {
   return dispatch => {
     addNakl();
   };
 };
-
 
 export const getEditNaklData = () => {
   return dispatch => {
@@ -97,7 +93,6 @@ export const getEditNaklData = () => {
   };
 };
 
-
 export const getNaklHeaderDataRequest = ({ id }) => {
   return dispatch => {
     dispatch(startNaklHeaderDataRequest());
@@ -113,11 +108,32 @@ export const getNaklHeaderDataRequest = ({ id }) => {
   };
 };
 
-
 export const setNaklId = ({ id }) => {
   return setlId(id);
 };
 
+
+export const showButtonsModal = () => {
+  return dispatch => {
+    dispatch(showButtonsPressModal());
+  };
+};
+
+export const closeButtonsModal = () => {
+  return dispatch => {
+    dispatch(closeButtonsPressModal());
+  };
+};
+
+
+
+const showButtonsPressModal = () => ({
+  type: Types.SHOW_BUTTONS_MODAL
+});
+
+const closeButtonsPressModal = () => ({
+  type: Types.CLOSE_BUTTONS_MODAL
+});
 
 const setlId = (payload) => ({
   type: Types.SET_NAKL_ID,

@@ -76,7 +76,6 @@ const AccentTable = (props) => {
         useSortBy
     );
 
-
     const onNaklStringSelect = (id, name) => {
         props.setSkansId( id );
         props.setSkansTitle( name );
@@ -85,7 +84,6 @@ const AccentTable = (props) => {
 
 
     return (
-
         props.results.length === 0
             ?
             <NoDataMessage />
@@ -152,6 +150,7 @@ const mapDispatchToProps = dispatch => ({
     setSkansId: (id) => dispatch(setIdForSkans(id)),
     setSkansTitle: (name) => dispatch(setTitleForSkans(name)),
 });
+
 
 
 export default withRouter(

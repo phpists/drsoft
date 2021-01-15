@@ -6,6 +6,7 @@ const initialState = {
   nakladni: null,
   naklData: null,
   editModal: false,
+  buttonsModal: false,
   editNaklData: null,
   naklId: 1,
   naklHeaderData: null,
@@ -127,6 +128,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         editModal: false
+      }
+    }
+
+
+    case Types.SHOW_BUTTONS_MODAL: {
+      return {
+        ...state,
+        buttonsModal: true
+      }
+    }
+    case Types.CLOSE_BUTTONS_MODAL: {
+      return {
+        ...state,
+        buttonsModal: false
       }
     }
 

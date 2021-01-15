@@ -36,11 +36,11 @@ const Navbar = (props) => {
                 </li>
 
                 <li style={liStyle}>
-                    <Link to="/skan">Skan Page</Link>
+                    <Link to="/accent">Accent Page</Link>
                 </li>
 
                 <li style={liStyle}>
-                    <Link to="/accent">Accent Page</Link>
+                    <Link to="/skan">Skan Page</Link>
                 </li>
 
                 {/* <li style={liStyle}>

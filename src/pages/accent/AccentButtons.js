@@ -2,18 +2,21 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { naklTrustAccept, naklSignAndSend } from "../../helpers/nakladni";
+import { showButtonsModal } from "../../store/nakladni/actions";
 
 
 
 const AccentButtons = (props) => {
-    const { naklHeaderData, history } = props;
+    const { naklHeaderData, history, setModal } = props;
 
     const onTrustedAcceptanceButtonClick = () => {
-        naklTrustAccept(naklHeaderData.nakl_id)
+        props.showButtonsModal();
+        naklTrustAccept(naklHeaderData.nakl_id);
     };
 
     const onSignAndSendButtonClick = () => {
-        naklSignAndSend(naklHeaderData.nakl_id)
+        props.showButtonsModal();
+        naklSignAndSend(naklHeaderData.nakl_id);
     };
 
     const onBackButtonClick = () => {
@@ -21,9 +24,9 @@ const AccentButtons = (props) => {
     };
 
 
-
     return (
         <div className="accent__block-button">
+            {/* <AccentButtonsSuccessModal /> */}
             <button
                 onClick={() => onTrustedAcceptanceButtonClick()}
                 className="btn">Доверительная приемка</button>
@@ -43,13 +46,15 @@ const AccentButtons = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    naklHeaderData: state.nakladni.naklHeaderData,
-    loader: state.nakladni.loader,
-    error: state.nakladni.error
+    naklHeaderData: state.nakladni.naklHeaderData
+});
+
+const mapDispatchToProps = dispatch => ({
+    showButtonsModal: () => dispatch(showButtonsModal()),
 });
 
 
 
 export default withRouter(
-    connect(mapStateToProps, null)(AccentButtons)
+    connect(mapStateToProps, mapDispatchToProps)(AccentButtons)
 );
