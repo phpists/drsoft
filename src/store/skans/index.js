@@ -6,7 +6,8 @@ const initialState = {
   skans: null,
   loader: false,
   error: false,
-  idForSkans:1
+  idForSkans: 1,
+  titleForSkans: "АЦЦ 600МГ ПОРОШОК Д/ПРИГ.Р-РА/ПРИЕМКА ВНУТРЬ ПАК. X6 (R)"
 };
 
 
@@ -40,6 +41,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         idForSkans: action.payload
+      }
+    }
+    case Types.SET_TITLE_FOR_SKANS: {
+      return {
+        ...state,
+        titleForSkans: action.payload
       }
     }
 

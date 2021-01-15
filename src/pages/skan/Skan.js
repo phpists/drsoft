@@ -11,7 +11,8 @@ import { deleteSkans } from "../../helpers/skans";
 
 
 const Skan = (props) => {
-    const { loader, skans, error, idForSkans } = props;
+    const { loader, skans, error, idForSkans, titleForSkans } = props;
+
 
     useEffect(() => {
         props.getSkans({ idForSkans });
@@ -19,7 +20,7 @@ const Skan = (props) => {
 
     const onDeleteSkansClick = () => {
         deleteSkans(idForSkans);
-       // window.location.reload();
+        // window.location.reload();
     };
 
 
@@ -43,7 +44,7 @@ const Skan = (props) => {
                 <div className="skan__block">
                     <div className="skan__block-title">Сканирование кодов маркировки</div>
                     <div className="skan__block-subtitle">
-                        Ацц 600МГ порошок д/приг.Р-ра/приемка внутрь пак. X6 (R)
+                        {titleForSkans}
                     </div>
 
                     <div className="skan__block-wp">
@@ -84,7 +85,7 @@ const Skan = (props) => {
 
                     <div className="table__block-wrapper">
 
-                        {loader || skans === null || idForSkans == undefined ?
+                        {loader || skans === null  ?
                             <Loader />
                             :
                             error ?
@@ -114,6 +115,7 @@ const Skan = (props) => {
 const mapStateToProps = (state) => ({
     skans: state.skans.skans,
     idForSkans: state.skans.idForSkans,
+    titleForSkans: state.skans.titleForSkans,
     loader: state.skans.loader,
     error: state.skans.error
 });

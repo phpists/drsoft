@@ -3,7 +3,7 @@ import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setIdForSkans } from "../../store/skans/actions";
+import { setIdForSkans, setTitleForSkans } from "../../store/skans/actions";
 
 
 const AccentTable = (props) => {
@@ -77,8 +77,9 @@ const AccentTable = (props) => {
     );
 
 
-    const onNaklStringSelect = (id) => {
-        props.setSkansId({ id });
+    const onNaklStringSelect = (id, name) => {
+        props.setSkansId( id );
+        props.setSkansTitle( name );
         props.history.push("/skan");
     };
 
@@ -125,8 +126,10 @@ const AccentTable = (props) => {
                             prepareRow(row);
 
                             return (
-                                <tr className={row.original.style + ""}
-                                    onDoubleClick={() => { onNaklStringSelect(row.original.id) }}
+                                <tr className="cursor-pointer"
+                                    onDoubleClick={() => {
+                                        onNaklStringSelect(row.original.id, row.original.name)
+                                    }}
 
                                     {...row.getRowProps()}>
                                     {row.cells.map((cell) => {
@@ -147,6 +150,7 @@ const AccentTable = (props) => {
 
 const mapDispatchToProps = dispatch => ({
     setSkansId: (id) => dispatch(setIdForSkans(id)),
+    setSkansTitle: (name) => dispatch(setTitleForSkans(name)),
 });
 
 

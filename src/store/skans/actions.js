@@ -7,7 +7,9 @@ export const Types = {
   SKANS_FAILURE: 'SKANS_FAILURE',
 
   SET_ID_FOR_SKANS: 'SET_ID_FOR_SKANS',
+  SET_TITLE_FOR_SKANS: 'SET_TITLE_FOR_SKANS',
 };
+
 
 
 export const getSkansRequest = (id) => {
@@ -26,13 +28,23 @@ export const getSkansRequest = (id) => {
   };
 };
 
-export const setIdForSkans = ({ id }) => {
-  return setlId(id);
+export const setIdForSkans = (id) => {
+  return setId(id);
+};
+
+export const setTitleForSkans = (name) => {
+  return setTitle(name);
 };
 
 
-const setlId = (payload) => ({
+
+const setId = (payload) => ({
   type: Types.SET_ID_FOR_SKANS,
+  payload
+});
+
+const setTitle = (payload) => ({
+  type: Types.SET_TITLE_FOR_SKANS,
   payload
 });
 

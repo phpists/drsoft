@@ -51,24 +51,20 @@ export async function getNaklHeaderData(id) {
 };
 
 
-
 export async function naklTrustAccept(id) {
-  console.log("naklTrustAccept done, id:",id)
+  //console.log("naklTrustAccept done, id:",id)
   return await axiosInstance
     .put(`nakls/trust-accept/${id}`)
     .then(response => {
-      //console.log(response)
       return response
     }).catch(error => ({ error }))
 };
 
-
 export async function naklSignAndSend(id) {
-  console.log("naklSignAndSend done, id:",id)
+  //console.log("naklSignAndSend done, id:",id)
   return await axiosInstance
     .put(`nakls/sign-and-send/${id}`)
     .then(response => {
-      //console.log(response)
       return response
     }).catch(error => ({ error }))
 };
