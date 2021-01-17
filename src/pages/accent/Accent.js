@@ -117,7 +117,7 @@ const Accent = (props) => {
           </div>
           <div className="table__block-wrapper">
             {
-              loader || naklData === null
+              loader || naklData === null || undefined
                 ?
                 <Loader />
                 :

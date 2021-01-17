@@ -9,7 +9,7 @@ import { setIdForSkans, setTitleForSkans } from "../../store/skans/actions";
 const AccentTable = (props) => {
 
     const data = React.useMemo(
-        () => props.results.map((item) => {
+        () => props.results || [].map((item) => {
             return {
                 status: "-",
                 name: item.name,
@@ -77,8 +77,8 @@ const AccentTable = (props) => {
     );
 
     const onNaklStringSelect = (id, name) => {
-        props.setSkansId( id );
-        props.setSkansTitle( name );
+        props.setSkansId(id);
+        props.setSkansTitle(name);
         props.history.push("/skan");
     };
 
