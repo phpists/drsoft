@@ -15,29 +15,23 @@ const EditModal = (props) => {
     const [sourceTypes, setSourceTypes] = useState(null);
     const [turnoverTypes, setTurnoverTypes] = useState(null);
     const [contractTypes, setContractTypes] = useState(null);
-
     const [activeSelect, setActiveSelect] = useState(false);
     const [provider, setProvider] = useState("-");
-    const [sourceType, setSourceType] = useState("-");
-    const [turnoverType, setTurnoverType] = useState("-");
-    const [contractType, setContractType] = useState("-");
-
+    const [sourceType, setSourceType] = useState(null);
+    const [turnoverType, setTurnoverType] = useState(null);
+    const [contractType, setContractType] = useState(null);
     const [type, setType] = useState(null);
 
 
     useEffect(() => {
         getProviders()
             .then(res => setProviders(res.data));
-
         getSourceTypes()
             .then(res => setSourceTypes(res.data));
-
         getTurnoverTypes()
             .then(res => setTurnoverTypes(res.data));
-
         getContractTypes()
             .then(res => setContractTypes(res.data));
-
         props.getNaklData();
     }, [props.getNaklData]);
 
@@ -72,7 +66,6 @@ const EditModal = (props) => {
     const changeContractType = (contractType) => {
         setContractType(contractType);
     };
-
 
 
     return (
@@ -131,33 +124,21 @@ const EditModal = (props) => {
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Дата получения товара</div>
                                             <div className="edit__block-form-right">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    placeholder={editNaklData.operation_date || "-"}
-                                                />
+                                                <input type="text" />
                                             </div>
                                         </div>
 
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Дата накладной</div>
                                             <div className="edit__block-form-right">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    placeholder={editNaklData.doc_date}
-                                                />
+                                                <input type="text" />
                                             </div>
                                         </div>
 
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Номер накладной</div>
                                             <div className="edit__block-form-right">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    placeholder={editNaklData.doc_num}
-                                                />
+                                                <input type="text" />
                                             </div>
                                         </div>
 
@@ -172,7 +153,9 @@ const EditModal = (props) => {
                                                     className={activeSelect && type === "turnoverType" ? "select edit__block-form-right active" : "select edit__block-form-right"}>
                                                     <div
                                                         className="edit__block-selector edit__block-form-right">
-                                                        <span className="select__current">{turnoverType}</span>
+                                                        <span className="select__current">
+                                                            {turnoverType ? turnoverType : turnoverTypes[0].value}
+                                                        </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
                                                             {turnoverTypes.map((turnoverType) => (
@@ -197,7 +180,9 @@ const EditModal = (props) => {
                                                     onClick={() => onSelectClick("sourceType")}
                                                     className={activeSelect && type === "sourceType" ? "select edit__block-form-right active" : "select edit__block-form-right"}>
                                                     <div className="edit__block-selector edit__block-form-right">
-                                                        <span className="select__current">{sourceType}</span>
+                                                        <span className="select__current">
+                                                        {sourceType ? sourceType : sourceTypes[0].value}
+                                                        </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
                                                             {sourceTypes.map((sourceType) => (
@@ -223,7 +208,9 @@ const EditModal = (props) => {
                                                     className={activeSelect && type === "contractType" ? "select edit__block-form-right active" : "select edit__block-form-right"}>
                                                     <div
                                                         className="edit__block-selector edit__block-form-right">
-                                                        <span className="select__current">{contractType}</span>
+                                                        <span className="select__current">
+                                                        {contractType ? contractType : contractTypes[0].value}
+                                                        </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
                                                             {contractTypes.map((contractType) => (
@@ -241,38 +228,17 @@ const EditModal = (props) => {
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Номер контракта<br></br> *необязательное поле</div>
                                             <div className="edit__block-form-right">
-                                                <input
-                                                    type="text"
-                                                    placeholder={editNaklData.contract_num}
-                                                />
+                                                <input type="text" />
                                             </div>
                                         </div>
 
 
-                                        {/*  <div className="skan__button">
+                                        <div className="skan__button">
                                             <button className="btn skan__button-btn">Отправить</button>
                                             <button
                                                 onClick={() => { props.closeEditModal() }}
                                                 className="btn skan__button-cancel">Отмена</button>
-                                        </div> */}
-
-
-                                        {/* 
-
-                                        
-
-                                       
-
-                                        <div className="edit__block-form-item">
-                                            <div className="edit__block-form-left">Вид операции отгрузки</div>
-                                            <div className="edit__block-form-right">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    placeholder={editNaklData.receive_type_id}
-                                                />
-                                            </div>
-                                        </div> */}
+                                        </div>
 
                                     </form>
                                 </>
