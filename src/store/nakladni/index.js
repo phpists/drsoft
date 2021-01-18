@@ -5,7 +5,10 @@ import { Types } from './actions';
 const initialState = {
   nakladni: null,
   naklData: null,
-  editModal: false,
+  addNaklModal: false,
+
+  editNaklModal: false,
+
   buttonsModal: false,
   editNaklData: null,
   naklId: 1,
@@ -118,16 +121,31 @@ const reducer = (state = initialState, action) => {
     }
 
 
-    case Types.SHOW_EDIT_MODAL: {
+    case Types.SHOW_ADD_MODAL: {
       return {
         ...state,
-        editModal: true
+        addNaklModal: true
+      }
+    }
+    case Types.CLOSE_ADD_MODAL: {
+      return {
+        ...state,
+        addNaklModal: false
+      }
+    }
+
+
+    case Types.SHOW_EDIT_MODAL: {
+      console.log(state.editNaklModal)
+      return {
+        ...state,
+        editNaklModal: true
       }
     }
     case Types.CLOSE_EDIT_MODAL: {
       return {
         ...state,
-        editModal: false
+        editNaklModal: false
       }
     }
 

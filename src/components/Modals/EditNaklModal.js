@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Loader from "../Loader/Loader";
-import { getEditNaklData, closeModal, addOneNakl } from "../../store/nakladni/actions";
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { getEditNaklData, closeEditNaklModal, addOneNakl } from "../../store/nakladni/actions";
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { getProviders, getSourceTypes, getTurnoverTypes, getContractTypes } from '../../helpers/common';
 
 
 
-const EditModal = (props) => {
+const EditNaklModal = (props) => {
     const { editNaklData, loader, error } = props;
 
     const [providers, setProviders] = useState(null);
@@ -36,11 +36,11 @@ const EditModal = (props) => {
     }, [props.getNaklData]);
 
 
-    const onAddNakl = (event) => {
+    const onUpdateNakl = (event) => {
         event.preventDefault();
-        props.addNakl();
-        props.closeEditModal();
-        props.history.push("/accent");
+        //props.addNakl();
+        props.closeEditNaklModal();
+        //props.history.push("/accent");
     };
 
     const onSelectClick = (item) => {
@@ -83,7 +83,7 @@ const EditModal = (props) => {
                                 <>
                                     <div className="edit__block-title">Поставщик</div>
                                     <form
-                                        onSubmit={(event) => { onAddNakl(event) }}
+                                        onSubmit={(event) => { onUpdateNakl(event) }}
                                         className="edit__block-form">
 
                                         {providers === null
@@ -236,7 +236,7 @@ const EditModal = (props) => {
                                         <div className="skan__button">
                                             <button className="btn skan__button-btn">Отправить</button>
                                             <button
-                                                onClick={() => { props.closeEditModal() }}
+                                                onClick={() => { props.closeAddNaklModal() }}
                                                 className="btn skan__button-cancel">Отмена</button>
                                         </div>
 
@@ -259,14 +259,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     getNaklData: () => dispatch(getEditNaklData()),
-    closeEditModal: () => dispatch(closeModal()),
+    closeEditNaklModal: () => dispatch(closeEditNaklModal()),
     addNakl: () => dispatch(addOneNakl())
 });
 
 
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(EditModal)
+    connect(mapStateToProps, mapDispatchToProps)(EditNaklModal)
 );
 
 

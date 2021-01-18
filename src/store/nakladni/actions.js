@@ -18,6 +18,9 @@ export const Types = {
   NAKL_HEADER_DATA_SUCCESS: 'NAKL_HEADER_DATA_SUCCESS',
   NAKL_HEADER_DATA_FAILURE: 'NAKL_HEADER_DATA_FAILURE',
 
+  SHOW_ADD_MODAL: 'SHOW_ADD_MODAL',
+  CLOSE_ADD_MODAL: 'CLOSE_ADD_MODAL',
+
   SHOW_EDIT_MODAL: 'SHOW_EDIT_MODAL',
   CLOSE_EDIT_MODAL: 'CLOSE_EDIT_MODAL',
 
@@ -44,7 +47,7 @@ export const getNakladniRequest = ({ year, month, status }) => {
   };
 };
 
-export const getNakladnaRequest = ({id}) => {
+export const getNakladnaRequest = ({ id }) => {
   return dispatch => {
     dispatch(startNakladnaRequest());
 
@@ -62,15 +65,29 @@ export const getNakladnaRequest = ({id}) => {
 
 export const showModal = () => {
   return dispatch => {
-    dispatch(showEditModal());
+    dispatch(showAddNaklModal());
   };
 };
 
 export const closeModal = () => {
   return dispatch => {
+    dispatch(closeAddNaklModal());
+  };
+};
+
+
+export const showEditNaklModal = () => {
+  return dispatch => {
+    dispatch(showEditModal());
+  };
+};
+
+export const closeEditNaklModal = () => {
+  return dispatch => {
     dispatch(closeEditModal());
   };
 };
+
 
 export const addOneNakl = () => {
   return dispatch => {
@@ -124,7 +141,6 @@ export const closeButtonsModal = () => {
     dispatch(closeButtonsPressModal());
   };
 };
-
 
 
 const showButtonsPressModal = () => ({
@@ -202,6 +218,15 @@ const getNakladniFailure = error => ({
   payload: {
     error
   }
+});
+
+
+const showAddNaklModal = () => ({
+  type: Types.SHOW_ADD_MODAL
+});
+
+const closeAddNaklModal = () => ({
+  type: Types.CLOSE_ADD_MODAL
 });
 
 
