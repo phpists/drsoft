@@ -26,13 +26,7 @@
 .skan__block-link,.cursor-pointer {
   cursor: pointer;
 }
-
-.edit__block-form-item .select, 
-.edit__block-form-item .list-select-selector,
-.edit__block-form-item .list-select-option {
-  width: 390px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* 
+.select__body {
+  z-index: 1 !important;
+} */
