@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Loader from "../Loader/Loader";
-import { getEditNaklData, closeEditNaklModal, addOneNakl } from "../../store/nakladni/actions";
+import { getEditNaklData, closeEditNaklModal, updateNaklData } from "../../store/nakladni/actions";
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { getProviders, getSourceTypes, getTurnoverTypes, getContractTypes } from '../../helpers/common';
 
 
 
 const EditNaklModal = (props) => {
-    const { editNaklData, loader, error } = props;
+    const { editNaklData, loader, error, naklId } = props;
 
     const [providers, setProviders] = useState(null);
     const [sourceTypes, setSourceTypes] = useState(null);
@@ -24,6 +24,7 @@ const EditNaklModal = (props) => {
 
 
     useEffect(() => {
+        props.getNaklData({ naklId });
         getProviders()
             .then(res => setProviders(res.data));
         getSourceTypes()
@@ -32,15 +33,13 @@ const EditNaklModal = (props) => {
             .then(res => setTurnoverTypes(res.data));
         getContractTypes()
             .then(res => setContractTypes(res.data));
-        props.getNaklData();
-    }, [props.getNaklData]);
+    }, [props.getNaklData, naklId]);
 
 
     const onUpdateNakl = (event) => {
         event.preventDefault();
-        //props.addNakl();
+        props.updateNakl();
         props.closeEditNaklModal();
-        //props.history.push("/accent");
     };
 
     const onSelectClick = (item) => {
@@ -66,6 +65,20 @@ const EditNaklModal = (props) => {
     const changeContractType = (contractType) => {
         setContractType(contractType);
     };
+
+
+    // editNaklData && console.log("editNaklData.provider_id", editNaklData.provider_id)
+    //providers && console.log(providers.map(company => company.company_id))
+
+    // let defProv;
+    // {
+    //     editNaklData && providers ?
+    //         defProv = providers.filter((company) => ( 
+    //             company.company_id === editNaklData.provider_id))
+    //     :
+    //     defProv = "хз"
+    //     console.log("defProv", ...defProv)
+    // }
 
 
     return (
@@ -181,7 +194,7 @@ const EditNaklModal = (props) => {
                                                     className={activeSelect && type === "sourceType" ? "select edit__block-form-right active" : "select edit__block-form-right"}>
                                                     <div className="edit__block-selector edit__block-form-right">
                                                         <span className="select__current">
-                                                        {sourceType ? sourceType : sourceTypes[0].value}
+                                                            {sourceType ? sourceType : sourceTypes[0].value}
                                                         </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
@@ -209,7 +222,7 @@ const EditNaklModal = (props) => {
                                                     <div
                                                         className="edit__block-selector edit__block-form-right">
                                                         <span className="select__current">
-                                                        {contractType ? contractType : contractTypes[0].value}
+                                                            {contractType ? contractType : contractTypes[0].value}
                                                         </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
@@ -236,7 +249,7 @@ const EditNaklModal = (props) => {
                                         <div className="skan__button">
                                             <button className="btn skan__button-btn">Отправить</button>
                                             <button
-                                                onClick={() => { props.closeAddNaklModal() }}
+                                                onClick={() => { props.closeEditNaklModal() }}
                                                 className="btn skan__button-cancel">Отмена</button>
                                         </div>
 
@@ -252,15 +265,16 @@ const EditNaklModal = (props) => {
 
 
 const mapStateToProps = (state) => ({
+    naklId: state.nakladni.naklId,
     editNaklData: state.nakladni.editNaklData,
     loader: state.nakladni.loader,
     error: state.nakladni.error
 });
 
 const mapDispatchToProps = dispatch => ({
-    getNaklData: () => dispatch(getEditNaklData()),
+    getNaklData: (id) => dispatch(getEditNaklData(id)),
     closeEditNaklModal: () => dispatch(closeEditNaklModal()),
-    addNakl: () => dispatch(addOneNakl())
+    updateNakl: () => dispatch(updateNaklData())
 });
 
 

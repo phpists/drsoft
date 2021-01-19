@@ -6,12 +6,10 @@ const initialState = {
   nakladni: null,
   naklData: null,
   addNaklModal: false,
-
   editNaklModal: false,
-
   buttonsModal: false,
   editNaklData: null,
-  naklId: 1,
+  naklId: -1,
   naklHeaderData: null,
   loader: false,
   error: false
@@ -136,7 +134,6 @@ const reducer = (state = initialState, action) => {
 
 
     case Types.SHOW_EDIT_MODAL: {
-      console.log(state.editNaklModal)
       return {
         ...state,
         editNaklModal: true

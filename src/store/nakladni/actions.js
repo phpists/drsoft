@@ -1,4 +1,4 @@
-import { getNaklFiltered, getNaklData, editNakl, addNakl, getNaklHeaderData } from '../../helpers/nakladni';
+import { getNaklFiltered, getNaklData, editNakl, addNakl, getNaklHeaderData, updateNakl } from '../../helpers/nakladni';
 
 
 export const Types = {
@@ -95,11 +95,18 @@ export const addOneNakl = () => {
   };
 };
 
-export const getEditNaklData = () => {
+export const updateNaklData = () => {
+  return dispatch => {
+    updateNakl();
+  };
+};
+
+export const getEditNaklData = (id) => {
+ //console.log(id.naklId)
   return dispatch => {
     dispatch(startEditNaklDataRequest());
 
-    editNakl()
+    editNakl(id.naklId)
       .then(res => {
         if (res.status === 200) {
           dispatch(getEditNaklDataSuccess(res));

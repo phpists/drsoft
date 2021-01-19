@@ -6,7 +6,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getNakladniRequest, showModal } from "../../store/nakladni/actions";
-import AddNaklModal from '../../components/Modals/EditNaklModal';
+import AddNaklModal from '../../components/Modals/AddNaklModal';
 
 
 
@@ -103,7 +103,7 @@ const OverHead = (props) => {
 
       {addNaklModal
         ?
-        <AddNaklModal />
+        <AddNaklModal/>
         :
         <>
           <header className="header">

@@ -9,7 +9,7 @@ import { getProviders, getSourceTypes, getTurnoverTypes, getContractTypes } from
 
 
 const AddNaklModal = (props) => {
-    const { editNaklData, loader, error } = props;
+    const { editNaklData, loader, error, naklId } = props;
 
     const [providers, setProviders] = useState(null);
     const [sourceTypes, setSourceTypes] = useState(null);
@@ -24,6 +24,7 @@ const AddNaklModal = (props) => {
 
 
     useEffect(() => {
+        props.getNaklData({ naklId });
         getProviders()
             .then(res => setProviders(res.data));
         getSourceTypes()
@@ -32,8 +33,7 @@ const AddNaklModal = (props) => {
             .then(res => setTurnoverTypes(res.data));
         getContractTypes()
             .then(res => setContractTypes(res.data));
-        props.getNaklData();
-    }, [props.getNaklData]);
+    }, [props.getNaklData, naklId]);
 
 
     const onAddNakl = (event) => {
@@ -81,6 +81,7 @@ const AddNaklModal = (props) => {
                                 <ErrorMessage />
                                 :
                                 <>
+                                    <h1>ADD</h1>
                                     <div className="edit__block-title">Поставщик</div>
                                     <form
                                         onSubmit={(event) => { onAddNakl(event) }}
@@ -181,7 +182,7 @@ const AddNaklModal = (props) => {
                                                     className={activeSelect && type === "sourceType" ? "select edit__block-form-right active" : "select edit__block-form-right"}>
                                                     <div className="edit__block-selector edit__block-form-right">
                                                         <span className="select__current">
-                                                        {sourceType ? sourceType : sourceTypes[0].value}
+                                                            {sourceType ? sourceType : sourceTypes[0].value}
                                                         </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
@@ -209,7 +210,7 @@ const AddNaklModal = (props) => {
                                                     <div
                                                         className="edit__block-selector edit__block-form-right">
                                                         <span className="select__current">
-                                                        {contractType ? contractType : contractTypes[0].value}
+                                                            {contractType ? contractType : contractTypes[0].value}
                                                         </span>
                                                         <div className="select__body-bg"></div>
                                                         <div className="select__body">
@@ -252,13 +253,14 @@ const AddNaklModal = (props) => {
 
 
 const mapStateToProps = (state) => ({
+    naklId: state.nakladni.naklId,
     editNaklData: state.nakladni.editNaklData,
     loader: state.nakladni.loader,
     error: state.nakladni.error
 });
 
 const mapDispatchToProps = dispatch => ({
-    getNaklData: () => dispatch(getEditNaklData()),
+    getNaklData: (id) => dispatch(getEditNaklData(id)),
     closeAddNaklModal: () => dispatch(closeModal()),
     addNakl: () => dispatch(addOneNakl())
 });
