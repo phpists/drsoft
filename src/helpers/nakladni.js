@@ -16,7 +16,7 @@ export async function editNakl(id) {
 
   return await axiosInstance
     //.get("nakls-full/-1")
-    .get(`nakls-full/${id}`)
+    .get(`nakls-full/-${id}`)
     .then(response => {
       return response
     }).catch(error => ({ error }))

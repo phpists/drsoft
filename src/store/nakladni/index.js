@@ -9,7 +9,7 @@ const initialState = {
   editNaklModal: false,
   buttonsModal: false,
   editNaklData: null,
-  naklId: -1,
+  naklId: 1,
   naklHeaderData: null,
   loader: false,
   error: false

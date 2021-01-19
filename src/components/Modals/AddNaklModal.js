@@ -81,7 +81,6 @@ const AddNaklModal = (props) => {
                                 <ErrorMessage />
                                 :
                                 <>
-                                    <h1>ADD</h1>
                                     <div className="edit__block-title">Поставщик</div>
                                     <form
                                         onSubmit={(event) => { onAddNakl(event) }}

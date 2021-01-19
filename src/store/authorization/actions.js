@@ -11,15 +11,15 @@ export const Types = {
 
 export const loginRequest = ({ login, password }) => {
   return dispatch => {
-
     dispatch(startLogin());
 
     logIn(login, password)
-
       .then(res => {
         if (res.data && res.data.access_token) {
+          localStorage.setItem('drSoftLogin', login);
           localStorage.setItem('drSoftToken', res.data.access_token);
-          dispatch(loginSuccess(res));
+          localStorage.setItem('drSoftUser', res.data.fio);
+          dispatch(loginSuccess(res.data.fio));
         } else {
           dispatch(loginFailure(true))
         }

@@ -30,3 +30,14 @@
 .active {
   z-index: 999 !important;
 }
+
+
+.menu__list-link-user{
+  transition: all 0.3s;
+    font-family: "OpenSans-Bold";
+    padding: 10px 15px 7px 60px;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    white-space: nowrap;
+}

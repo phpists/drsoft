@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getNakladniRequest, showModal } from "../../store/nakladni/actions";
 import AddNaklModal from '../../components/Modals/AddNaklModal';
+import Navbar from '../../components/Navbar';
 
 
 
@@ -24,7 +25,6 @@ const OverHead = (props) => {
     const data = { year, month: month.number, status: 1 };
     props.getNakladni(data);
   }, [props.getNakladni]);
-
 
   ////////////   Show/hide dropdown
   const onSelectClick = (item) => {
@@ -103,190 +103,11 @@ const OverHead = (props) => {
 
       {addNaklModal
         ?
-        <AddNaklModal/>
+        <AddNaklModal />
         :
         <>
-          <header className="header">
-            <ul className="menu">
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Справочники</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">
-                  Формы
-                <div className="menu__list-sublink">
-                    <div className="menu__list-sublink-word">
-                      <span>Справочники</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Продажи</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Должники</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Предоплата</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Наряды</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Дни рождения пациентов</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Госпитализация</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                    <div className="menu__list-sublink-word">
-                      <span>Раздватри</span>
-                      <div className="menu__list-sublink-block">
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                        <div className="menu__list-sublink-subword">Справочники</div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">ТМЦ</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Профосмотры</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Отчеты</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Польз.отчеты</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Опросы</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Helix</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Администрирование</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Помощь</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Докторов Д.Д. (sa)</a>
-              </li>
-              <li className="menu__list">
-                <a href="#" className="menu__list-link">Пациенты</a>
-              </li>
-            </ul>
-            <div className="recording">
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Расписание</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Пациенты</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Прайс</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Запись</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Напоминание</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Шаблоны</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Документы</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link"
-                ><div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Отчеты</a>
-              </div>
-              <div className="recording__item">
-                <a href="#" className="recording__item-link">
-                  <div className="recording__item-icon">
-                    <img src={icon1} alt="" />
-                  </div>
-                  Сообщения</a>
-              </div>
-            </div>
-          </header>
+          <Navbar />
+
           <div className="overhead height">
             <div className="overhead__block">
               <div className="overhead__block-top">
@@ -316,7 +137,6 @@ const OverHead = (props) => {
                       </div>
                       <div className="select__body-bg"></div>
                       <div className="select__body">
-
                         {years.map((year) => (
                           <div key={year}
                             onClick={() => changeYear(year)}
@@ -328,7 +148,6 @@ const OverHead = (props) => {
 
                   <div className="list-select">
                     <div className="list-select-text">Месяц</div>
-
                     <div className={activeSelect && type === "month" ? "select active" : "select"}
                       onClick={() => onSelectClick("month")}>
                       <div className="list-select-selector">
@@ -336,7 +155,6 @@ const OverHead = (props) => {
                       </div>
                       <div className="select__body-bg"></div>
                       <div className="select__body">
-
                         {months.map((month) => (
                           <div key={month.number}
                             onClick={() => changeMonth(month)}
@@ -349,7 +167,6 @@ const OverHead = (props) => {
 
                   <div className="list-select">
                     <div className="list-select-text">Статус</div>
-
                     <div className={activeSelect && type === "status" ? "select active" : "select"}
                       onClick={() => onSelectClick("status")}>
                       <div className="list-select-selector">
@@ -357,7 +174,6 @@ const OverHead = (props) => {
                       </div>
                       <div className="select__body-bg"></div>
                       <div className="select__body">
-
                         {statuses.map((status) => (
                           <div key={status.id}
                             onClick={() => changeStatus(status)}
@@ -390,7 +206,6 @@ const OverHead = (props) => {
           </div >
         </>
       }
-
     </div >
   );
 };
@@ -400,13 +215,13 @@ const mapStateToProps = (state) => ({
   nakladni: state.nakladni.nakladni,
   loader: state.nakladni.loader,
   error: state.nakladni.error,
-  addNaklModal: state.nakladni.addNaklModal
+  addNaklModal: state.nakladni.addNaklModal,
 });
 
 
 const mapDispatchToProps = dispatch => ({
   getNakladni: (data) => dispatch(getNakladniRequest(data)),
-  showAddNaklModal: () => dispatch(showModal()),
+  showAddNaklModal: () => dispatch(showModal())
 });
 
 
