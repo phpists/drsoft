@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setIdForSkans, setTitleForSkans } from "../../store/skans/actions";
+import changeHeight from '../../helpers/tablesHeight';
+
 
 
 const AccentTable = (props) => {
+
+    useEffect(() => {
+        //    Функция изменения высоты таблицы
+        changeHeight();
+    }, [changeHeight]);
+
 
     const data = React.useMemo(
         () => props.results || [].map((item) => {

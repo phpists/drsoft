@@ -22,7 +22,7 @@ const AccentHeader = ({ header,openEditModal }) => {
                     <div className="accent__block-post-left">
                         <a 
                         onClick={()=>openEditModal()}
-                        className="accent__block-post-title">Поставщик</a>
+                        className="accent__block-post-title cursor-pointer">Поставщик</a>
                         <div className="accent__block-post-subtitle">{header.provider_name}</div>
 
                         <div className="accent__block-post-inn">ИНН {header.provider_inn}</div>
