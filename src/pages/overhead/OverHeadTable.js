@@ -103,7 +103,7 @@ const OverHeadTable = (props) => {
                                     {column.render("Header")}
 
                                     {/* Add a sort direction indicator  */}
-                                    <span>
+                                    <span style={{position:"absolute"}}>
                                         {column.isSorted
                                             ? column.isSortedDesc
                                                 ? ' 🔽'
