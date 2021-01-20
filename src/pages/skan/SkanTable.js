@@ -1,122 +1,112 @@
 import React, { useEffect } from 'react';
 import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
+import changeHeight from '../../helpers/tablesHeight';
 
 
 
-//const SkanTable = ({ skans }) => {
-const SkanTable = () => {
+const SkanTable = ({ skans }) => {
+    //const SkanTable = () => {
 
     useEffect(() => {
-        change()
-    })
+        //    Функция изменения высоты таблицы
+        changeHeight();
+    }, [changeHeight])
 
-    function change() {
-        console.log("change")
-        let height = window.screen.height,
-            width = window.screen.width;
-        const wrapper = document.querySelector(".table__block-wrapper");
+    
 
-        if (width <= 800)
-            wrapper.style.maxHeight = `${(height = height - 550)}px`;
-        else wrapper.style.maxHeight = `${(height = height - 580)}px`;
-
-        const moveHeight = wrapper.clientHeight;
-        if (moveHeight + 1 > height) wrapper.style.overflowY = "scroll";
-        else wrapper.style.overflowY = "hidden";
-    }
-    change();
-
-    //window.addEventListener("load", change);
-
-    const skans = [
-       
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-        {
-            "sgtin": "3333454888",
-            "status": "Не проверен",
-            "style": "color"
-        },
-        {
-            "sgtin": "3344444444444444432233333333333333",
-            "status": "Совпадает",
-            "style": "color"
-        },
-    ]
+    // const skans = [
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3333454888",
+    //         "status": "Не проверен",
+    //         "style": "color"
+    //     },
+    //     {
+    //         "sgtin": "3344444444444444432233333333333333",
+    //         "status": "Совпадает",
+    //         "style": "color"
+    //     },
+    // ]
 
     const data = React.useMemo(
         () => skans.map((item, index) => {

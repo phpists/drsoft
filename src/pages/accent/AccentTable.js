@@ -77,7 +77,6 @@ const AccentTable = (props) => {
     );
 
     const onNaklStringSelect = (id, name) => {
-        console.log(id)
         props.setSkansId(id);
         props.setSkansTitle(name);
         props.history.push("/skan");
