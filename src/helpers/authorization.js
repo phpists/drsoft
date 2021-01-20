@@ -9,7 +9,7 @@ export async function logIn(login, password) {
 };
 
 
-export function logOut() {
+export function loginOut() {
   return axiosInstance.put("users/exit")
     .then(response => {
       return response

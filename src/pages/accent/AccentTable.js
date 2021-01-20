@@ -77,6 +77,7 @@ const AccentTable = (props) => {
     );
 
     const onNaklStringSelect = (id, name) => {
+        console.log(id)
         props.setSkansId(id);
         props.setSkansTitle(name);
         props.history.push("/skan");
@@ -126,7 +127,7 @@ const AccentTable = (props) => {
                             return (
                                 <tr className="cursor-pointer"
                                     onDoubleClick={() => {
-                                        onNaklStringSelect(row.original.id, row.original.name)
+                                        onNaklStringSelect(row.original.nakl_item_id, row.original.name)
                                     }}
 
                                     {...row.getRowProps()}>

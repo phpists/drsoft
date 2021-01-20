@@ -1,4 +1,4 @@
-import { logIn } from '../../helpers/authorization';
+import { logIn, loginOut } from '../../helpers/authorization';
 
 export const Types = {
   LOGIN_REQUEST: 'LOGIN_REQUEST',
@@ -36,12 +36,13 @@ export const continueAfterError = () => {
 
 export const logOut = () => {
   return dispatch => {
-    dispatch(loginOut());
+    loginOut();
+    dispatch(loginOutRequest());
   };
 };
 
 
-const loginOut = () => ({
+const loginOutRequest = () => ({
   type: Types.LOGIN_OUT
 });
 

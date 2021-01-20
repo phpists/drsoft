@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
 
 
     case Types.SET_ID_FOR_SKANS: {
+
       return {
         ...state,
         idForSkans: action.payload

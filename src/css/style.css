@@ -31,7 +31,6 @@
   z-index: 999 !important;
 }
 
-
 .menu__list-link-user{
   transition: all 0.3s;
     font-family: "OpenSans-Bold";
@@ -40,4 +39,8 @@
     font-size: 15px;
     position: relative;
     white-space: nowrap;
+}
+
+.skan__block-num {
+  padding-right: 40px;
 }

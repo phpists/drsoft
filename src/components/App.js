@@ -9,10 +9,8 @@ const App = () => {
 
 	return (
 		<Provider store={store}>
-
 			{/* <Navbar /> */}
 			<Routes />
-			
 		</Provider>
 	);
 };
