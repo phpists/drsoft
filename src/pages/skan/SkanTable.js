@@ -11,7 +11,7 @@ const SkanTable = ({ skans }) => {
     useEffect(() => {
         //    Функция изменения высоты таблицы
         changeHeight();
-    }, [changeHeight])
+    }, [changeHeight]);
 
     
 
