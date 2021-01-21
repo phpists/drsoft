@@ -80,6 +80,7 @@ const EditNaklModal = (props) => {
     //     console.log("defProv", ...defProv)
     // }
 
+    console.log(editNaklData)
 
     return (
         <div className="edit">
@@ -137,21 +138,24 @@ const EditNaklModal = (props) => {
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Дата получения товара</div>
                                             <div className="edit__block-form-right">
-                                                <input type="text" />
+                                                <input type="text"
+                                                    defaultValue={editNaklData.operation_date} />
                                             </div>
                                         </div>
 
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Дата накладной</div>
                                             <div className="edit__block-form-right">
-                                                <input type="text" />
+                                                <input type="text"
+                                                    defaultValue={editNaklData.doc_date} />
                                             </div>
                                         </div>
 
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Номер накладной</div>
                                             <div className="edit__block-form-right">
-                                                <input type="text" />
+                                                <input type="text"
+                                                    defaultValue={editNaklData.doc_num} />
                                             </div>
                                         </div>
 
@@ -241,7 +245,8 @@ const EditNaklModal = (props) => {
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Номер контракта<br></br> *необязательное поле</div>
                                             <div className="edit__block-form-right">
-                                                <input type="text" />
+                                                <input type="text"
+                                                    defaultValue={editNaklData.contract_num} />
                                             </div>
                                         </div>
 
