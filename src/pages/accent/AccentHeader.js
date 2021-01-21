@@ -1,10 +1,11 @@
 import React from 'react';
 import Loader from "../../components/Loader/Loader";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 
-const AccentHeader = ({ header,openEditModal }) => {
-
+const AccentHeader = ({ header, openEditModal,naklStatus}) => {
 
     return (
         !header
@@ -14,15 +15,15 @@ const AccentHeader = ({ header,openEditModal }) => {
             <>
                 <div className="accent__block-title">{header.form_caption}</div>
                 <div className="accent__block-subtitle">Cтатус накладной:
-                    {header.nakl_status_id}
+                    {naklStatus}
                 </div>
 
-                <div className="accent__block-subtitle">Тип акцепта {header.acceptance_type}</div>
+                {/* <div className="accent__block-subtitle">Тип акцепта {header.acceptance_type}</div> */}
                 <div className="accent__block-post">
                     <div className="accent__block-post-left">
-                        <a 
-                        onClick={()=>openEditModal()}
-                        className="accent__block-post-title cursor-pointer">Поставщик</a>
+                        <a
+                            onClick={() => openEditModal()}
+                            className="accent__block-post-title cursor-pointer">Поставщик</a>
                         <div className="accent__block-post-subtitle">{header.provider_name}</div>
 
                         <div className="accent__block-post-inn">ИНН {header.provider_inn}</div>
@@ -47,4 +48,12 @@ const AccentHeader = ({ header,openEditModal }) => {
 };
 
 
-export default AccentHeader;
+const mapStateToProps = (state) => ({
+    naklStatus: state.nakladni.naklStatus
+});
+
+
+export default withRouter(
+    connect(mapStateToProps, null)(AccentHeader)
+);
+

@@ -10,6 +10,7 @@ const initialState = {
   buttonsModal: false,
   editNaklData: null,
   naklId: 1,
+  naklStatus: "Новая поставка",
   naklHeaderData: null,
   loader: false,
   error: false
@@ -115,6 +116,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         naklId: action.payload
+      }
+    }
+    case Types.SET_NAKL_STATUS: {
+      return {
+        ...state,
+        naklStatus: action.payload
       }
     }
 

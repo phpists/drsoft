@@ -3,7 +3,7 @@ import { useTable, useSortBy } from "react-table";
 import NoDataMessage from '../../components/NoDataMessage/NoDataMessage';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setNaklId } from "../../store/nakladni/actions";
+import { setNaklId, setNaklStatus } from "../../store/nakladni/actions";
 import changeHeight from '../../helpers/tablesHeight';
 
 
@@ -16,9 +16,11 @@ const OverHeadTable = (props) => {
     }, [changeHeight]);
 
 
-    const onNaklSelect = (event, id) => {
+    const onNaklSelect = (event, id, status) => {
+        console.log(status)
         event.preventDefault();
         props.setId({ id });
+        props.setStatus({ status });
         props.history.push("/accent");
     };
 
@@ -127,7 +129,7 @@ const OverHeadTable = (props) => {
 
                             return (
                                 <tr
-                                    onDoubleClick={(event) => { onNaklSelect(event, row.original.id) }}
+                                    onDoubleClick={(event) => { onNaklSelect(event, row.original.id, row.original.status) }}
                                     className={row.original.style + " cursor-pointer"}
 
                                     {...row.getRowProps()}>
@@ -150,6 +152,7 @@ const OverHeadTable = (props) => {
 
 const mapDispatchToProps = dispatch => ({
     setId: (id) => dispatch(setNaklId(id)),
+    setStatus: (status) => dispatch(setNaklStatus(status)),
 });
 
 

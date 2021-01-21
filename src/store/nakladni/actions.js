@@ -28,6 +28,7 @@ export const Types = {
   CLOSE_BUTTONS_MODAL: 'CLOSE_BUTTONS_MODAL',
 
   SET_NAKL_ID: 'SET_NAKL_ID',
+  SET_NAKL_STATUS: 'SET_NAKL_STATUS',
 };
 
 
@@ -102,7 +103,7 @@ export const updateNaklData = (data) => {
 };
 
 export const getEditNaklData = (id) => {
- //console.log(id.naklId)
+  //console.log(id.naklId)
   return dispatch => {
     dispatch(startEditNaklDataRequest());
 
@@ -136,6 +137,10 @@ export const setNaklId = ({ id }) => {
   return setlId(id);
 };
 
+export const setNaklStatus = ({ status }) => {
+  return setStatus(status);
+};
+
 
 export const showButtonsModal = () => {
   return dispatch => {
@@ -160,6 +165,11 @@ const closeButtonsPressModal = () => ({
 
 const setlId = (payload) => ({
   type: Types.SET_NAKL_ID,
+  payload
+});
+
+const setStatus = (payload) => ({
+  type: Types.SET_NAKL_STATUS,
   payload
 });
 

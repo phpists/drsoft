@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setIdForSkans, setTitleForSkans } from "../../store/skans/actions";
 import changeHeight from '../../helpers/tablesHeight';
+import Loader from "../../components/Loader/Loader";
 
 
 
@@ -92,63 +93,66 @@ const AccentTable = (props) => {
 
 
     return (
-        props.results.length === 0
-            ?
-            <NoDataMessage />
+        !props.results ?
+            <Loader />
             :
-            <table className="table__block-table"
-                {...getTableProps()} >
-                <thead>
-                    {headerGroups.map((headerGroup) => (
-                        <tr className="table__block-title"
-                            {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column) => (
+            props.results.length === 0
+                ?
+                <NoDataMessage />
+                :
+                <table className="table__block-table"
+                    {...getTableProps()} >
+                    <thead>
+                        {headerGroups.map((headerGroup) => (
+                            <tr className="table__block-title"
+                                {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map((column) => (
 
-                                //Add the sorting props to control sorting
-                                < th {...column.getHeaderProps(column.getSortByToggleProps())} >
-                                    {column.render("Header")}
+                                    //Add the sorting props to control sorting
+                                    < th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                                        {column.render("Header")}
 
-                                    {/* Add a sort direction indicator  */}
-                                    <span style={{position:"absolute"}}>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? ' 🔽'
-                                                : ' 🔼'
-                                            : ''}
-                                    </span>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
+                                        {/* Add a sort direction indicator  */}
+                                        <span style={{ position: "absolute" }}>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? ' 🔽'
+                                                    : ' 🔼'
+                                                : ''}
+                                        </span>
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
 
 
-                <tbody {...getTableBodyProps()}>
-                    {props.results.length === 0
-                        ?
-                        <NoDataMessage />
-                        :
-                        rows.map((row, i) => {
-                            prepareRow(row);
+                    <tbody {...getTableBodyProps()}>
+                        {props.results.length === 0
+                            ?
+                            <NoDataMessage />
+                            :
+                            rows.map((row, i) => {
+                                prepareRow(row);
 
-                            return (
-                                <tr className="cursor-pointer"
-                                    onDoubleClick={() => {
-                                        onNaklStringSelect(row.original.nakl_item_id, row.original.name)
-                                    }}
+                                return (
+                                    <tr className="cursor-pointer"
+                                        onDoubleClick={() => {
+                                            onNaklStringSelect(row.original.nakl_item_id, row.original.name)
+                                        }}
 
-                                    {...row.getRowProps()}>
-                                    {row.cells.map((cell) => {
-                                        return (
-                                            <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                                        )
-                                    })}
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </table >
+                                        {...row.getRowProps()}>
+                                        {row.cells.map((cell) => {
+                                            return (
+                                                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                                            )
+                                        })}
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </table >
     );
 };
 
