@@ -73,7 +73,7 @@ const AddNaklModal = (props) => {
             <div className="container">
                 <div className="edit__block">
                     {
-                        loader || editNaklData === null
+                        loader || !editNaklData
                             ?
                             <Loader />
                             :
@@ -86,7 +86,7 @@ const AddNaklModal = (props) => {
                                         onSubmit={(event) => { onAddNakl(event) }}
                                         className="edit__block-form">
 
-                                        {providers === null
+                                        {!providers
                                             ?
                                             <Loader />
                                             :
@@ -142,7 +142,7 @@ const AddNaklModal = (props) => {
                                             </div>
                                         </div>
 
-                                        {turnoverTypes === null
+                                        {!turnoverTypes
                                             ?
                                             <Loader />
                                             :
@@ -170,7 +170,7 @@ const AddNaklModal = (props) => {
                                             </div>
                                         }
 
-                                        {sourceTypes === null
+                                        {!sourceTypes
                                             ?
                                             <Loader />
                                             :
@@ -197,7 +197,7 @@ const AddNaklModal = (props) => {
                                             </div>
                                         }
 
-                                        {contractTypes === null
+                                        {!contractTypes
                                             ?
                                             <Loader />
                                             :

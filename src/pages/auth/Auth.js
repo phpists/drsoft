@@ -22,7 +22,7 @@ const Auth = (props) => {
 
 
     useEffect(() => {
-        if (token !== null) {
+        if (token) {
             history.push('/overhead')
         }
     }, [token, history]);

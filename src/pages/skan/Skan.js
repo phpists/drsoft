@@ -29,16 +29,16 @@ const Skan = (props) => {
 
 
     let skansQuantity;
-    { skans === null || skans === undefined ? skansQuantity = 0 : skansQuantity = skans.length };
+    { !skans ? skansQuantity = 0 : skansQuantity = skans.length };
 
     let newSkansQuantity;
-    { skans === null || skans === undefined ? newSkansQuantity = 0 : newSkansQuantity = skans.filter(item => item.status === "Новый").length };
+    { !skans ? newSkansQuantity = 0 : newSkansQuantity = skans.filter(item => item.status === "Новый").length };
 
     let testedSkansQuantity;
-    { skans === null || skans === undefined ? testedSkansQuantity = 0 : testedSkansQuantity = skans.filter(item => item.status === "Проверен").length };
+    { !skans ? testedSkansQuantity = 0 : testedSkansQuantity = skans.filter(item => item.status === "Проверен").length };
 
     let notTestedSkansQuantity;
-    { skans === null || skans === undefined ? notTestedSkansQuantity = 0 : notTestedSkansQuantity = skans.filter(item => item.status === "Не проверен").length };
+    { !skans ? notTestedSkansQuantity = 0 : notTestedSkansQuantity = skans.filter(item => item.status === "Не проверен").length };
 
 
     return (
@@ -92,7 +92,7 @@ const Skan = (props) => {
 
                         <div className="table__block-wrapper">
 
-                            {loader || skans === null ?
+                            {loader || !skans ?
                                 <Loader />
                                 :
                                 error ?

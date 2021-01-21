@@ -29,9 +29,9 @@ const Navbar = (props) => {
                         <Link to="/accent" className="menu__list-link">Одна накладная</Link>
                     </li>
 
-                    {/**/}<li className="menu__list">
+                    {/*<li className="menu__list">
                         <Link  to="/skan" className="menu__list-link">Skan Page</Link>
-                    </li> 
+                    </li>*/} 
 
 
                     <li className="menu__list">

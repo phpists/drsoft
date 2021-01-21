@@ -15,12 +15,23 @@ const EditNaklModal = (props) => {
     const [sourceTypes, setSourceTypes] = useState(null);
     const [turnoverTypes, setTurnoverTypes] = useState(null);
     const [contractTypes, setContractTypes] = useState(null);
+
     const [activeSelect, setActiveSelect] = useState(false);
-    const [provider, setProvider] = useState("-");
-    const [sourceType, setSourceType] = useState(null);
-    const [turnoverType, setTurnoverType] = useState(null);
-    const [contractType, setContractType] = useState(null);
     const [type, setType] = useState(null);
+    const [provider, setProvider] = useState("-");
+
+    const [providerId, setProviderId] = useState(null);
+    const [operation_date, setOperation_date] = useState(null);
+    const [doc_date, setDoc_date] = useState(null);
+    const [doc_num, setDoc_num] = useState(null);
+    const [sourceType, setSourceType] = useState(null);
+    const [sourceTypeId, setSourceTypeId] = useState(null);
+    const [turnoverType, setTurnoverType] = useState(null);
+    const [turnoverTypeId, setTurnoverTypeId] = useState(null);
+    const [contractType, setContractType] = useState(null);
+    const [contractTypeId, setContractTypeId] = useState(null);
+
+    const [contract_num, setContract_num] = useState(null);
 
 
     useEffect(() => {
@@ -37,8 +48,20 @@ const EditNaklModal = (props) => {
 
 
     const onUpdateNakl = (event) => {
+        //const data = {providerId};
+        //console.log("provider_id:", providerId);
+        // console.log("nakl_id:", editNaklData.nakl_id);
+        //console.log("operation_date:", operation_date || editNaklData.operation_date);
+        //console.log("doc_date:", doc_date || editNaklData.doc_date);
+        //console.log("doc_num:", doc_num || editNaklData.doc_num);
+        //console.log("receive_type_id:", turnoverTypeId || editNaklData.receive_type_id);
+        //console.log("source_type_id:", sourceTypeId || editNaklData.source_type_id);
+        //console.log("contract_type_id:", contractTypeId || editNaklData.contract_type_id);
+        //console.log("contract_num:", contract_num || editNaklData.contract_num);
+        // console.log(data)
+
         event.preventDefault();
-        props.updateNakl();
+        //props.updateNakl();
         props.closeEditNaklModal();
     };
 
@@ -50,20 +73,24 @@ const EditNaklModal = (props) => {
         item === "contractType" && setType("contractType")
     };
 
-    const changeProvider = (provider) => {
+    const changeProvider = (provider, id) => {
         setProvider(provider);
+        setProviderId(id);
     };
 
-    const changeSourceType = (sourceType) => {
+    const changeSourceType = (sourceType, id) => {
         setSourceType(sourceType);
+        setSourceTypeId(id);
     };
 
-    const changeTurnoverType = (turnoverType) => {
+    const changeTurnoverType = (turnoverType, id) => {
         setTurnoverType(turnoverType);
+        setTurnoverTypeId(id);
     };
 
-    const changeContractType = (contractType) => {
+    const changeContractType = (contractType, id) => {
         setContractType(contractType);
+        setContractTypeId(id);
     };
 
 
@@ -80,14 +107,13 @@ const EditNaklModal = (props) => {
     //     console.log("defProv", ...defProv)
     // }
 
-    console.log(editNaklData)
 
     return (
         <div className="edit">
             <div className="container">
                 <div className="edit__block">
                     {
-                        loader || editNaklData === null
+                        loader || !editNaklData
                             ?
                             <Loader />
                             :
@@ -100,7 +126,7 @@ const EditNaklModal = (props) => {
                                         onSubmit={(event) => { onUpdateNakl(event) }}
                                         className="edit__block-form">
 
-                                        {providers === null
+                                        {!providers
                                             ?
                                             <Loader />
                                             :
@@ -115,7 +141,7 @@ const EditNaklModal = (props) => {
                                                         <div className="select__body">
                                                             {providers.map((provider) => (
                                                                 <div
-                                                                    onClick={() => changeProvider(provider.name)}
+                                                                    onClick={() => changeProvider(provider.name, provider.company_id)}
                                                                     key={provider.company_id}
                                                                     className="edit__block-option">{provider.name}</div>
                                                             ))}
@@ -124,7 +150,6 @@ const EditNaklModal = (props) => {
                                                 </div>
                                             </div>
                                         }
-
                                         {/* <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Адрес поставщика</div>
                                             <div className="edit__block-form-right">
@@ -134,11 +159,11 @@ const EditNaklModal = (props) => {
                                                 />
                                             </div>
                                         </div> */}
-
                                         <div className="edit__block-form-item">
                                             <div className="edit__block-form-left">Дата получения товара</div>
                                             <div className="edit__block-form-right">
                                                 <input type="text"
+                                                    onChange={event => setOperation_date(event.target.value)}
                                                     defaultValue={editNaklData.operation_date} />
                                             </div>
                                         </div>
@@ -147,6 +172,7 @@ const EditNaklModal = (props) => {
                                             <div className="edit__block-form-left">Дата накладной</div>
                                             <div className="edit__block-form-right">
                                                 <input type="text"
+                                                    onChange={event => setDoc_date(event.target.value)}
                                                     defaultValue={editNaklData.doc_date} />
                                             </div>
                                         </div>
@@ -155,11 +181,12 @@ const EditNaklModal = (props) => {
                                             <div className="edit__block-form-left">Номер накладной</div>
                                             <div className="edit__block-form-right">
                                                 <input type="text"
+                                                    onChange={event => setDoc_num(event.target.value)}
                                                     defaultValue={editNaklData.doc_num} />
                                             </div>
                                         </div>
 
-                                        {turnoverTypes === null
+                                        {!turnoverTypes
                                             ?
                                             <Loader />
                                             :
@@ -177,7 +204,7 @@ const EditNaklModal = (props) => {
                                                         <div className="select__body">
                                                             {turnoverTypes.map((turnoverType) => (
                                                                 <div
-                                                                    onClick={() => changeTurnoverType(turnoverType.value)}
+                                                                    onClick={() => changeTurnoverType(turnoverType.value, turnoverType.turnover_type_id)}
                                                                     key={turnoverType.turnover_type_id}
                                                                     className="edit__block-option">{turnoverType.value}</div>
                                                             ))}
@@ -187,7 +214,7 @@ const EditNaklModal = (props) => {
                                             </div>
                                         }
 
-                                        {sourceTypes === null
+                                        {!sourceTypes
                                             ?
                                             <Loader />
                                             :
@@ -204,7 +231,7 @@ const EditNaklModal = (props) => {
                                                         <div className="select__body">
                                                             {sourceTypes.map((sourceType) => (
                                                                 <div
-                                                                    onClick={() => changeSourceType(sourceType.value)}
+                                                                    onClick={() => changeSourceType(sourceType.value, sourceType.source_type_id)}
                                                                     key={sourceType.source_type_id}
                                                                     className="edit__block-option">{sourceType.value}</div>
                                                             ))}
@@ -214,7 +241,7 @@ const EditNaklModal = (props) => {
                                             </div>
                                         }
 
-                                        {contractTypes === null
+                                        {!contractTypes
                                             ?
                                             <Loader />
                                             :
@@ -232,7 +259,7 @@ const EditNaklModal = (props) => {
                                                         <div className="select__body">
                                                             {contractTypes.map((contractType) => (
                                                                 <div
-                                                                    onClick={() => changeContractType(contractType.value)}
+                                                                    onClick={() => changeContractType(contractType.value, contractType.contract_type_id)}
                                                                     key={contractType.contract_type_id}
                                                                     className="edit__block-option">{contractType.value}</div>
                                                             ))}
@@ -246,15 +273,18 @@ const EditNaklModal = (props) => {
                                             <div className="edit__block-form-left">Номер контракта<br></br> *необязательное поле</div>
                                             <div className="edit__block-form-right">
                                                 <input type="text"
+                                                    onChange={event => setContract_num(event.target.value)}
                                                     defaultValue={editNaklData.contract_num} />
                                             </div>
                                         </div>
 
 
                                         <div className="skan__button">
-                                            <button className="btn skan__button-btn">Отправить</button>
                                             <button
-                                                onClick={() => { props.closeEditNaklModal() }}
+                                                type="submit"
+                                                className="btn skan__button-btn">Отправить</button>
+                                            <button
+                                                //onSubmit={() => { props.closeEditNaklModal() }}
                                                 className="btn skan__button-cancel">Отмена</button>
                                         </div>
 

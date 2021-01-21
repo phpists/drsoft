@@ -186,7 +186,7 @@ const OverHead = (props) => {
                 <div className="table__block-wrapper">
 
                   {
-                    loader || nakladni === null
+                    loader || !nakladni
                       ?
                       <Loader />
                       :
