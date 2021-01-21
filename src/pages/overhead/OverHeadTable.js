@@ -17,7 +17,6 @@ const OverHeadTable = (props) => {
 
 
     const onNaklSelect = (event, id, status) => {
-        console.log(status)
         event.preventDefault();
         props.setId({ id });
         props.setStatus({ status });

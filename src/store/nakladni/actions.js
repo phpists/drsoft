@@ -29,6 +29,7 @@ export const Types = {
 
   SET_NAKL_ID: 'SET_NAKL_ID',
   SET_NAKL_STATUS: 'SET_NAKL_STATUS',
+  SET_ACCEPTANCE_TYPE: 'SET_ACCEPTANCE_TYPE',
 };
 
 
@@ -141,6 +142,10 @@ export const setNaklStatus = ({ status }) => {
   return setStatus(status);
 };
 
+export const setAcceptanceType = ({ type }) => {
+  return setType(type);
+};
+
 
 export const showButtonsModal = () => {
   return dispatch => {
@@ -170,6 +175,11 @@ const setlId = (payload) => ({
 
 const setStatus = (payload) => ({
   type: Types.SET_NAKL_STATUS,
+  payload
+});
+
+const setType = (payload) => ({
+  type: Types.SET_ACCEPTANCE_TYPE,
   payload
 });
 

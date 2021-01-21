@@ -12,8 +12,6 @@ export async function getNaklFiltered(year, month, status) {
 };
 
 export async function editNakl(id) {
-  //console.log("editNakl,id:", id)
-
   return await axiosInstance
     //.get("nakls-full/-1")
     .get(`nakls-full/-${id}`)

@@ -13,7 +13,8 @@ const initialState = {
   naklStatus: "Новая поставка",
   naklHeaderData: null,
   loader: false,
-  error: false
+  error: false,
+  acceptanceType: null
 };
 
 
@@ -122,6 +123,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         naklStatus: action.payload
+      }
+    }
+    case Types.SET_ACCEPTANCE_TYPE: {
+      return {
+        ...state,
+        acceptanceType: action.payload
       }
     }
 

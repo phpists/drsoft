@@ -18,7 +18,6 @@ const AccentHeader = ({ header, openEditModal,naklStatus}) => {
                     {naklStatus}
                 </div>
 
-                {/* <div className="accent__block-subtitle">Тип акцепта {header.acceptance_type}</div> */}
                 <div className="accent__block-post">
                     <div className="accent__block-post-left">
                         <a

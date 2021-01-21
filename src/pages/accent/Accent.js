@@ -3,7 +3,7 @@ import Loader from "../../components/Loader/Loader"
 import AccentTable from './AccentTable';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getNakladnaRequest, getNaklHeaderDataRequest, showEditNaklModal } from "../../store/nakladni/actions";
+import { getNakladnaRequest, getNaklHeaderDataRequest, showEditNaklModal, setAcceptanceType } from "../../store/nakladni/actions";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import AccentHeader from './AccentHeader';
 import AccentButtons from './AccentButtons';
@@ -31,10 +31,11 @@ const Accent = (props) => {
   let toggleSelect;
   activeSelect ? toggleSelect = "select active" : toggleSelect = "select";
 
-
   const openEditModal = () => {
     props.showEditModal();
   };
+
+  naklHeaderData && props.setAcceptType({type:naklHeaderData.acceptance_type});
 
 
   return (
@@ -156,7 +157,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   getNakladna: (id) => dispatch(getNakladnaRequest(id)),
   getHeader: (id) => dispatch(getNaklHeaderDataRequest(id)),
-  showEditModal: () => dispatch(showEditNaklModal())
+  showEditModal: () => dispatch(showEditNaklModal()),
+
+  setAcceptType: (type) => dispatch(setAcceptanceType(type)),
 });
 
 
