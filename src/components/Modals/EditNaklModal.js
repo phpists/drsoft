@@ -66,9 +66,7 @@ const EditNaklModal = (props) => {
         //console.log("contract_num:", contract_num || editNaklData.contract_num);
         const contract_num = contractNum || editNaklData.contract_num;
         //console.log("contract_num:", contract_num || editNaklData.contract_num);
-
         const data = { nakl_id, provider_id, operation_date, doc_date, doc_num, receive_type_id, source_type_id, contract_type_id, contract_num };
-
         props.updateNakl(data);
         props.closeEditNaklModal();
     };
@@ -416,8 +414,7 @@ const EditNaklModal = (props) => {
                                         }
 
                                         <div className="skan__button">
-                                            <button
-                                                type="submit"
+                                            <button type="submit"
                                                 className="btn skan__button-btn">Отправить</button>
                                             <button
                                                 onClick={() => { props.closeEditNaklModal() }}

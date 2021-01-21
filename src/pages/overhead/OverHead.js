@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import icon1 from "../../images/icon-1.png";
 import OverHeadTable from './OverHeadTable';
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';

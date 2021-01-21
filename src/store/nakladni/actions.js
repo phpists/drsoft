@@ -91,9 +91,9 @@ export const closeEditNaklModal = () => {
 };
 
 
-export const addOneNakl = () => {
+export const addOneNakl = (data) => {
   return dispatch => {
-    addNakl();
+    addNakl(data);
   };
 };
 
