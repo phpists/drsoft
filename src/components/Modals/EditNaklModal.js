@@ -21,9 +21,9 @@ const EditNaklModal = (props) => {
     const [provider, setProvider] = useState("-");
 
     const [providerId, setProviderId] = useState(null);
-    const [operation_date, setOperation_date] = useState(null);
-    const [doc_date, setDoc_date] = useState(null);
-    const [doc_num, setDoc_num] = useState(null);
+    const [operationDate, setOperation_date] = useState(null);
+    const [docDate, setDoc_date] = useState(null);
+    const [docNum, setDoc_num] = useState(null);
     const [sourceType, setSourceType] = useState(null);
     const [sourceTypeId, setSourceTypeId] = useState(null);
     const [turnoverType, setTurnoverType] = useState(null);
@@ -31,7 +31,7 @@ const EditNaklModal = (props) => {
     const [contractType, setContractType] = useState(null);
     const [contractTypeId, setContractTypeId] = useState(null);
 
-    const [contract_num, setContract_num] = useState(null);
+    const [contractNum, setContract_num] = useState(null);
 
 
     useEffect(() => {
@@ -48,20 +48,30 @@ const EditNaklModal = (props) => {
 
 
     const onUpdateNakl = (event) => {
-        //const data = {providerId};
-        //console.log("provider_id:", providerId);
-        // console.log("nakl_id:", editNaklData.nakl_id);
-        //console.log("operation_date:", operation_date || editNaklData.operation_date);
-        //console.log("doc_date:", doc_date || editNaklData.doc_date);
-        //console.log("doc_num:", doc_num || editNaklData.doc_num);
-        //console.log("receive_type_id:", turnoverTypeId || editNaklData.receive_type_id);
-        //console.log("source_type_id:", sourceTypeId || editNaklData.source_type_id);
-        //console.log("contract_type_id:", contractTypeId || editNaklData.contract_type_id);
-        //console.log("contract_num:", contract_num || editNaklData.contract_num);
-        // console.log(data)
-
         event.preventDefault();
-        //props.updateNakl();
+        // console.log("nakl_id:", editNaklData.nakl_id);
+        const nakl_id = editNaklData.nakl_id;
+        //console.log("provider_id:", providerId);
+        const provider_id = providerId || editNaklData.provider_id;
+        //console.log("operation_date:", operation_date || editNaklData.operation_date);
+        const operation_date = operationDate || editNaklData.operation_date;
+        //console.log("doc_date:", doc_date || editNaklData.doc_date);
+        const doc_date = docDate || editNaklData.doc_date;
+        //console.log("doc_num:", doc_num || editNaklData.doc_num);
+        const doc_num = docNum || editNaklData.doc_num;
+        //console.log("receive_type_id:", turnoverTypeId || editNaklData.receive_type_id);
+        const receive_type_id = turnoverTypeId || editNaklData.receive_type_id;
+        //console.log("source_type_id:", sourceTypeId || editNaklData.source_type_id);
+        const source_type_id = sourceTypeId || editNaklData.source_type_id;
+        //console.log("contract_type_id:", contractTypeId || editNaklData.contract_type_id);
+        const contract_type_id = contractTypeId || editNaklData.contract_type_id;
+        //console.log("contract_num:", contract_num || editNaklData.contract_num);
+        const contract_num = contractNum || editNaklData.contract_num;
+        //console.log("contract_num:", contract_num || editNaklData.contract_num);
+
+        const data = { nakl_id, provider_id, operation_date, doc_date, doc_num, receive_type_id, source_type_id, contract_type_id, contract_num };
+
+        props.updateNakl(data);
         props.closeEditNaklModal();
     };
 
@@ -284,7 +294,7 @@ const EditNaklModal = (props) => {
                                                 type="submit"
                                                 className="btn skan__button-btn">Отправить</button>
                                             <button
-                                                //onSubmit={() => { props.closeEditNaklModal() }}
+                                                onClick={() => { props.closeEditNaklModal() }}
                                                 className="btn skan__button-cancel">Отмена</button>
                                         </div>
 
@@ -309,7 +319,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     getNaklData: (id) => dispatch(getEditNaklData(id)),
     closeEditNaklModal: () => dispatch(closeEditNaklModal()),
-    updateNakl: () => dispatch(updateNaklData())
+    updateNakl: (data) => dispatch(updateNaklData(data))
 });
 
 

@@ -62,9 +62,19 @@ export async function naklSignAndSend(id) {
     }).catch(error => ({ error }))
 };
 
-export async function updateNakl() {
+export async function updateNakl(data) {
+  const { nakl_id, provider_id, operation_date, doc_date, doc_num, receive_type_id, source_type_id, contract_type_id, contract_num } = data;
+  // console.log(data.nakl_id)
+  // console.log(data.provider_id)
+  // console.log(data.operation_date)
+  // console.log(data.doc_date)
+  // console.log(data.doc_num)
+  // console.log(data.receive_type_id)
+  // console.log(data.source_type_id)
+  // console.log(data.contract_type_id)
+
   return await axiosInstance
-    .put("nakls-full?provider_id=1&operation_date=2021-01-01T00:00:00&doc_date=2021-01-01T00:00:00&doc_num=9s9d9ss&receive_type_id=0&source_type_id=0&contract_type_id=2&contract_num=9sdls99")
+    .put(`nakls-full/${nakl_id}?provider_id=${provider_id}&operation_date=${operation_date}&doc_date=${doc_date}&doc_num=${doc_num}&receive_type_id=${receive_type_id}&source_type_id=${source_type_id}&contract_type_id=${contract_type_id}&contract_num=${contract_num}`)
     .then(response => {
       return response
     }).catch(error => ({ error }))

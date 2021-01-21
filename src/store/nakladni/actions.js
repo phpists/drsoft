@@ -95,9 +95,9 @@ export const addOneNakl = () => {
   };
 };
 
-export const updateNaklData = () => {
+export const updateNaklData = (data) => {
   return dispatch => {
-    updateNakl();
+    updateNakl(data);
   };
 };
 
