@@ -158,7 +158,6 @@ const mapDispatchToProps = dispatch => ({
   getNakladna: (id) => dispatch(getNakladnaRequest(id)),
   getHeader: (id) => dispatch(getNaklHeaderDataRequest(id)),
   showEditModal: () => dispatch(showEditNaklModal()),
-
   setAcceptType: (type) => dispatch(setAcceptanceType(type)),
 });
 

@@ -27,7 +27,6 @@ const Skan = (props) => {
     };
 
 
-
     let skansQuantity;
     { !skans ? skansQuantity = 0 : skansQuantity = skans.length };
 
@@ -103,13 +102,11 @@ const Skan = (props) => {
 
                         </div>
 
-                        <a
-                            onClick={() => onDeleteSkansClick()}
+                        <a onClick={() => onDeleteSkansClick()}
                             className="skan__block-link"
                         >Сбросить результат и начать заново</a>
 
                         <div className="skan__button">
-
                             <button
                                 onClick={() => history.push("/accent")}
                                 className="btn skan__button-btn">Продолжить</button>

@@ -7,7 +7,7 @@ import { showButtonsModal } from "../../store/nakladni/actions";
 
 
 const AccentButtons = (props) => {
-    const { naklHeaderData, history } = props;
+    const { naklHeaderData, history, acceptanceType } = props;
 
     const onTrustedAcceptanceButtonClick = () => {
         props.showButtonsModal();
@@ -23,13 +23,15 @@ const AccentButtons = (props) => {
         history.push("/overhead");
     };
 
+    let trustedAcceptanceBtnClass;
+    acceptanceType === "Прямой" ? trustedAcceptanceBtnClass = "" : trustedAcceptanceBtnClass = "hide";
+
 
     return (
         <div className="accent__block-button">
-            {/* <AccentButtonsSuccessModal /> */}
             <button
                 onClick={() => onTrustedAcceptanceButtonClick()}
-                className="btn">Доверительная приемка</button>
+                className={"btn " + trustedAcceptanceBtnClass}>Доверительная приемка</button>
 
             <button
                 onClick={() => onSignAndSendButtonClick()}
@@ -46,7 +48,8 @@ const AccentButtons = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    naklHeaderData: state.nakladni.naklHeaderData
+    naklHeaderData: state.nakladni.naklHeaderData,
+    acceptanceType: state.nakladni.acceptanceType,
 });
 
 const mapDispatchToProps = dispatch => ({

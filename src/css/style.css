@@ -44,3 +44,7 @@
 .skan__block-num {
   padding-right: 40px;
 }
+
+.hide {
+  display: none !important;
+}
